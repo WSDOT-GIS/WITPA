@@ -1,0 +1,102 @@
+html, body, #borderContainer, #map {
+  width: 100%;
+  height: 100%;
+}
+
+html, body {
+  margin: 0;
+  overflow: hidden;
+}
+
+.form-group input {
+    display: block;
+}
+
+.btn-group {
+    display: flex;
+}
+
+.btn-group > .btn-group {
+    width: 50%;
+}
+
+.btn-group-justified {
+    width: 100%;
+}
+
+#topPane > div, #topPane h1 {
+    display: inline;
+    vertical-align: central;
+}
+
+/* fix for Bootstrap CSS messing up table grid_menu size */
+#table_gridMenu {
+  height: auto;
+  width: 100%;
+}
+#mapPane {
+  padding: 0;
+}
+
+#tablePane {
+  height: 350px;
+  padding: 0;
+}
+
+#toolsPane {
+  width: 300px;
+}
+
+#homeButton {
+  position: absolute;
+  top: 100px;
+  left: 28px;
+  z-index: 1;
+}
+
+.map progress {
+  position: absolute;
+  bottom: 50px;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+.map:not([data-updating]) progress {
+  display: none;
+}
+
+.dgrid {
+  font-family: 'Open Sans Condensed', 'Pragati Narrow', sans-serif;
+  font-size: 10pt;
+}
+
+/* Set default width for cells */
+.dgrid-cell {
+  width: 100px;
+}
+
+/* Set widths on individual columns */
+.field-Project_Title {
+  width: 450px;
+}
+
+.field-Work_Description {
+  width: 400px;
+}
+
+.field-Improvement_Type {
+  width: 300px;
+}
+
+.field-GIS_Route {
+  width: 100px;
+}
+
+.field-Funding_Source {
+  width: 200px;
+}
+
+.field-Sub_Program, .field-Revenue_Package, .field-County {
+  width: 200px;
+}

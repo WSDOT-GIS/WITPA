@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>WITPA - WA Interactive Transportation Planning Application</title>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css" async="async" />
+    <link href='//fonts.googleapis.com/css?family=Pragati+Narrow' rel='stylesheet' type='text/css' async="async">
+    <link rel="stylesheet" href="//js.arcgis.com/3.15/esri/css/esri.css" async="async" />
+    <link rel="stylesheet" href="//js.arcgis.com/3.15/dijit/themes/claro/claro.css" async="async">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" async="async" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" async="async" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+    <link href="style.css" rel="stylesheet" async="async" />
+    <link rel="shortcut icon" href="http://www.wsdot.wa.gov/favicon.ico" async="async" />
+    <meta charset="utf-8" />
+</head>
+<body class="claro esri">
+    <div data-dojo-type="dijit/layout/BorderContainer" data-dojo-props="gutters:false, design:'headline'" id="borderContainer">
+        <div id="topPane" data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region: 'top'">
+            <img src="http://www.wsdot.wa.gov/media/images/back/greenlogo.png" width="240" height="39" />
+            <div>
+                <h1>Projects</h1>
+            </div>
+        </div>
+        <div id="toolsPane" data-dojo-type="dijit/layout/AccordionContainer" data-dojo-props="region: 'leading', splitter: true">
+            <div id="layerListPane" data-dojo-type="dijit/layout/AccordionPane" title="Layers">
+                <div id="layerList"></div>
+            </div>
+            <div id="filterPane" data-dojo-type="dijit/layout/AccordionPane" title="Filter" data-dojo-props="selected:true">
+                
+            </div>
+        </div>
+        <div id="mapPane" data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region: 'center'">
+            <div id="map">
+                <div id="homeButton">Home</div>
+                <progress class="map-progress">Loading...</progress>
+            </div>
+        </div>
+        <div id="tablePane" data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region: 'bottom', splitter: true">
+            <div id="table"></div>
+        </div>
+    </div>
+    <script>
+        (function (root) {
+            window.dojoConfig = {
+                async: true,
+                packages: [
+                    {
+                        name: "witpa",
+                        location: root
+                    }
+                ]
+            }
+        }(location.href.replace(/\/[^\/]*$/, "")));
+    </script>
+    <script src="//cdn.polyfill.io/v2/polyfill.min.js?features=default,Array.from"></script>
+    <script data-semver="3.15.0" src="//js.arcgis.com/3.15/init.js" integrity="sha384-Zh5j59HJOGOiN5XDH9/HC98zIsqw49J3XxWeTgN7gsTUzGjKlPaXGs5ufnVngSAX" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+</body>
+</html>

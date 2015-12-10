@@ -1,0 +1,146 @@
+<form>
+    <!-- State Route -->
+    <div class="form-group">
+        <label for="srInput">State Route</label>
+        <div class="input-group">
+            <span class="input-group-addon">
+                <select data-where-template-for="Route">
+                    <option value="{field} = '{value}'">=</option>
+                    <option value="{field} LIKE '{value}%'">Starts With</option>
+                </select>
+            </span>
+            <input id="srInput" name="Route" type="text" class="form-control" pattern='\d{3}([\d[A-Z]]{2}[\d[A-Z]{0,6})?' title="Please enter a valid state route ID" />
+        </div>
+    </div>
+    <!-- Begin MP -->
+    <div class="form-group">
+        <label for="beginMPInput">Begin MP</label>
+        <div class="input-group">
+            <span class="input-group-addon">
+                <select data-where-template-for="Begin_Mile_Post">
+                    <option value="{field} &lt; {value}">&lt;</option>
+                    <option value="{field} &lt;= {value}">&le;</option>
+                    <option value="{field} = {value}" selected="selected">=</option>
+                    <option value="{field} &gt;= {value}">&ge;</option>
+                    <option value="{field} &gt; {value}">&gt;</option>
+                </select>
+            </span>
+            <input id="beginMPInput" name="Begin_Mile_Post" type="number" min="0" class="form-control" />
+        </div>
+    </div>
+    <!-- End MP -->
+    <div class="form-group">
+        <label for="endMPInput">End MP</label>
+        <div class="input-group">
+            <span class="input-group-addon">
+                <select data-where-template-for="End_Mile_Post">
+                    <option value="{field} &lt; {value}">&lt;</option>
+                    <option value="{field} &lt;= {value}">&le;</option>
+                    <option value="{field} = {value}" selected="selected">=</option>
+                    <option value="{field} &gt;= {value}">&ge;</option>
+                    <option value="{field} &gt; {value}">&gt;</option>
+                </select>
+            </span>
+            <input id="endMPInput" name="End_Mile_Post" type="number" min="0" class="form-control" />
+        </div>
+    </div>
+    <!--<div class="form-group">
+        <label for="constructionYearInput">Construction Year</label>
+        <div class="input-group">
+            <span class="input-group-addon">
+                <select>
+                    <option>&lt;</option>
+                    <option>&le;</option>
+                    <option selected="selected">=</option>
+                    <option>&ge;</option>
+                    <option>&gt;</option>
+                </select>
+            </span>
+            <input id="constructionYearInput" name="constructionYear" type="text" pattern="\d{4}" class="form-control" title="Please enter a valid year." />
+        </div>
+    </div>-->
+    <div class="form-group">
+        <label for="projectNoInput">Project No.</label>
+        <input id="projectNoInput" name="PIN" type="text" class="form-control"
+               data-where-template="{field} = '{value}'" />
+    </div>
+    <div class="form-group">
+        <label for="projectTitleInput">Project Title</label>
+        <div class="input-group">
+            <span class="input-group-addon">
+                <select data-where-template-for="Project_Title">
+                    <option value="{field} = '{value}'">=</option>
+                    <option value="{field} LIKE '{value}%'">Starts with</option>
+                    <option value="{field} LIKE '%{value}'">Ends with</option>
+                    <option value="{field} LIKE '%{value}%'">Contains</option>
+                </select>
+            </span>
+            <input id="projectTitleInput" name="Project_Title" type="text"
+                   class="form-control" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="legDistrictInput">Legislative District</label>
+        <input id="legDistrictInput" name="Legislative_District" type="text"
+               pattern="\d{2}" data-where-template="{field} LIKE '%{value}%'" class="form-control" />
+    </div>
+    <!--<div class="form-group">
+        <label for="cityInput">City</label>
+        <input id="cityInput" name="City" type="text" class="form-control" />
+    </div>-->
+    <div class="form-group">
+        <label for="countyInput">County</label>
+        <select id="countyInput" name="County" class="form-control"
+                data-where-template="{field} LIKE '%{value}%'">
+            <option value=""></option>
+            <option value="Adams">Adams</option>
+            <option value="Asotin">Asotin</option>
+            <option value="Benton">Benton</option>
+            <option value="Chelan">Chelan</option>
+            <option value="Clallam">Clallam</option>
+            <option value="Clark">Clark</option>
+            <option value="Columbia">Columbia</option>
+            <option value="Cowlitz">Cowlitz</option>
+            <option value="Douglas">Douglas</option>
+            <option value="Ferry">Ferry</option>
+            <option value="Franklin">Franklin</option>
+            <option value="Garfield">Garfield</option>
+            <option value="Grant">Grant</option>
+            <option value="Grays Harbor">Grays Harbor</option>
+            <option value="Island">Island</option>
+            <option value="Jefferson">Jefferson</option>
+            <option value="King">King</option>
+            <option value="Kitsap">Kitsap</option>
+            <option value="Kittitas">Kittitas</option>
+            <option value="Klickitat">Klickitat</option>
+            <option value="Lewis">Lewis</option>
+            <option value="Lincoln">Lincoln</option>
+            <option value="Mason">Mason</option>
+            <option value="Okanogan">Okanogan</option>
+            <option value="Pacific">Pacific</option>
+            <option value="Pend Oreille">Pend Oreille</option>
+            <option value="Pierce">Pierce</option>
+            <option value="San Juan">San Juan</option>
+            <option value="Skagit">Skagit</option>
+            <option value="Skamania">Skamania</option>
+            <option value="Snohomish">Snohomish</option>
+            <option value="Spokane">Spokane</option>
+            <option value="Stevens">Stevens</option>
+            <option value="Thurston">Thurston</option>
+            <option value="Wahkiakum">Wahkiakum</option>
+            <option value="Walla Walla">Walla Walla</option>
+            <option value="Whatcom">Whatcom</option>
+            <option value="Whitman">Whitman</option>
+            <option value="Yakima">Yakima</option>
+        </select>
+
+    </div>
+    <div class="btn-group btn-group-justified" role="group">
+        <div class="btn-group">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+        <div class="btn-group">
+            <button type="reset" class="btn btn-default">Reset</button>
+        </div>
+    </div>
+</form>
