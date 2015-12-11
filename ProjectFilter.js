@@ -1,8 +1,29 @@
+/**
+ * HTML Form Element
+ * @external HTMLFormElement
+ * @see {@link https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement}
+ */
+
+/*
+ * CustomEvent
+ * @external CustomEvent
+ * @see {@link https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent}
+ */
+
+/**
+ * A module that creates a filter UI for projects.
+ * @module ProjectFilter
+ */
 define(["dojo/text!./Templates/ProjectFilter.html"], function (template) {
     "use strict";
 
+    /**
+     * @constructor
+     * @alias module:ProjectFilter
+     */
     function ProjectFilter() {
         var _form = document.createElement("form");
+        var self = this;
 
         _form.innerHTML = template;
 
@@ -32,6 +53,7 @@ define(["dojo/text!./Templates/ProjectFilter.html"], function (template) {
 
             var customEvent;
             if (values) {
+
                 customEvent = new CustomEvent('submit-query', {
                     detail: {
                         where: values
@@ -44,12 +66,26 @@ define(["dojo/text!./Templates/ProjectFilter.html"], function (template) {
             return false;
         };
 
+        /**
+         * Form reset event
+         * 
+         * @event ProjectFilter#reset
+         * @type {external:CustomEvent}
+         */
         _form.addEventListener("reset", function () {
             var customEvent = new CustomEvent('reset');
             _form.dispatchEvent(customEvent);
         });
 
         Object.defineProperties(this, {
+            /**
+             * The HTML form
+             * 
+             * @type {external:HTMLFormElement}
+             * @instance
+             * @memberOf module:ProjectFilter
+             * @fires {module:ProjectFilter#submit-query}
+             */
             form: {
                 get: function () {
                     return _form;
@@ -57,6 +93,15 @@ define(["dojo/text!./Templates/ProjectFilter.html"], function (template) {
             }
         });
     }
+
+/**
+ * Submit query event
+ * 
+ * @event module:ProjectFilter#submit-query
+ * @type {CustomEvent}
+ * @property {Object} detail - Details about the submitted query
+ * @property {string} detail.where - The where clause to use with a filter
+ */
 
     return ProjectFilter;
 });
