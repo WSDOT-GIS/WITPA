@@ -40,6 +40,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="css\bootstrap-mimic.css" />
+    <Content Include="css\FeatureTable.css" />
+    <Content Include="css\style.css" />
     <Content Include="README.md" />
     <Content Include="Templates\ProjectFilter.html" />
     <Content Include="UNLICENSE" />
@@ -48,10 +51,12 @@
     <Content Include="index.html" />
     <Content Include="ProjectFilter.js" />
     <Content Include="script.js" />
-    <Content Include="style.css" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bower.json" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

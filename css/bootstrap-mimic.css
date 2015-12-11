@@ -1,0 +1,65 @@
+/* Used to mimic the layout of form using Bootstrap classes, 
+    but without stuff that messes up Dojo layout. */
+
+.btn-group {
+    padding: 0;
+}
+
+.btn-group-justified {
+    width: 100%;
+    display: flex;
+}
+
+    .btn-group-justified > .btn-group {
+        -ms-flex: auto;
+        -webkit-flex: auto;
+        flex: auto;
+    }
+
+.btn-group > button {
+    width: 100%;
+}
+
+.btn-group > div {
+    display: inline;
+}
+
+.form-group label, .input-group {
+    display: block;
+}
+
+.form-group label {
+    font-weight: bold;
+}
+
+.form-group {
+    margin-bottom: 1em;
+}
+
+.form-group > input, .form-group > select {
+    width: 100%;
+}
+
+.form-group > .input-group {
+    width: 100%;
+}
+
+.input-group {
+    display: flex;
+}
+
+    .input-group > input, .input-group > select {
+        -ms-flex: 4;
+        -webkit-flex: 4;
+        flex: 4;
+    }
+
+    .input-group > .input-group-addon {
+        -ms-flex: 1;
+        -webkit-flex: 1;
+        flex: 1;
+    }
+
+.input-group-addon > select, .input-group-addon > input {
+    width: 100%;
+}

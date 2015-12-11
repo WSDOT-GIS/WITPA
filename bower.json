@@ -1,0 +1,29 @@
+{
+  "name": "WITPA",
+  "authors": [
+    "WSDOT-GIS"
+  ],
+  "description": "WITPA - Washington Interactive Transportation Planning Application",
+  "main": "index.html",
+  "moduleType": [
+    "amd"
+  ],
+  "keywords": [
+    "WSDOT",
+    "transportation",
+    "planning",
+    "Washington"
+  ],
+  "license": "Unlicense",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+  }
+}

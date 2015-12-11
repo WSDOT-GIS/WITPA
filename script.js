@@ -35,7 +35,10 @@ require([
         console.log("submit-query event", e.detail.where);
     });
 
-    esriConfig.defaults.io.corsEnabledServers.push("hqolymgis98d:6080");
+    ["wsdot.wa.gov", "www.wsdot.wa.gov", "data.wsdot.wa.gov", "hqolymgis98d:6080"].forEach(function (server) {
+        esriConfig.defaults.io.corsEnabledServers.push(server);
+    })
+
 
     // Parse the Dojo layout widgets defined in HTML markup.
     parser.parse();
@@ -46,8 +49,10 @@ require([
         zoom: 7
     });
 
+    var mapServiceUrl = "http://hqolymgis98d:6080/arcgis/rest/services/TransportationProjects/SixYearPlan/MapServer";
+
     // Create the dynamic map layer for display on the map.
-    var dynamicLayer = new ArcGISDynamicMapServiceLayer("http://hqolymgis98d:6080/arcgis/rest/services/TransportationProjects/SixYearPlan/MapServer", {
+    var dynamicLayer = new ArcGISDynamicMapServiceLayer(mapServiceUrl, {
         id: "wsdot_projects"
     });
     map.addLayer(dynamicLayer);
@@ -77,7 +82,7 @@ require([
     ];
 
     // Create the feature layer that will be used by the FeatureTable and to highlight selected table rows on the map.
-    var featureLayerUrl = "http://hqolymgis98d:6080/arcgis/rest/services/TransportationProjects/SixYearPlan/MapServer/0";
+    var featureLayerUrl = [mapServiceUrl, "0"].join("/");
     var layer = new FeatureLayer(featureLayerUrl, {
         id: "wsdotprojects",
         mode: FeatureLayer.MODE_SELECTION,

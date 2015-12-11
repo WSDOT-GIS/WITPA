@@ -1,0 +1,34 @@
+.dgrid {
+  font-family: 'Open Sans Condensed', 'Pragati Narrow', sans-serif;
+  font-size: 10pt;
+}
+
+/* Set default width for cells */
+.dgrid-cell {
+  width: 100px;
+}
+
+/* Set widths on individual columns */
+.field-Project_Title {
+  width: 450px;
+}
+
+.field-Work_Description {
+  width: 400px;
+}
+
+.field-Improvement_Type {
+  width: 300px;
+}
+
+.field-GIS_Route {
+  width: 100px;
+}
+
+.field-Funding_Source {
+  width: 200px;
+}
+
+.field-Sub_Program, .field-Revenue_Package, .field-County {
+  width: 200px;
+}

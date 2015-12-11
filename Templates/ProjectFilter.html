@@ -61,7 +61,8 @@
     </div>-->
     <div class="form-group">
         <label for="projectNoInput">Project No.</label>
-        <input id="projectNoInput" name="PIN" type="text" class="form-control"
+        <input id="projectNoInput" name="PIN" type="text" class="form-control" 
+               pattern="\d{6}[A-Za-z]" title="Project number (six digits + letter)"
                data-where-template="{field} = '{value}'" />
     </div>
     <div class="form-group">
@@ -82,6 +83,7 @@
     <div class="form-group">
         <label for="legDistrictInput">Legislative District</label>
         <input id="legDistrictInput" name="Legislative_District" type="text"
+               inputmode="numeric"
                pattern="\d{2}" data-where-template="{field} LIKE '%{value}%'" class="form-control" />
     </div>
     <!--<div class="form-group">
