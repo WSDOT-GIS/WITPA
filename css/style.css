@@ -55,3 +55,11 @@ html, body {
 .map:not([data-updating]) progress {
   display: none;
 }
+
+#search {
+    position: absolute;
+    top: 1em;
+    left: 5em;
+    z-index: 1;
+    background-color: white;
+}

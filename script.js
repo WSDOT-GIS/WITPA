@@ -7,6 +7,19 @@
  * @member {FeatureLayer} target - The feature layer that performed the selection.
  */
 
+/**
+ * Create map response
+ * @external createMapResponse
+ * @see {@link https://developers.arcgis.com/javascript/jsapi/esri.arcgis.utils-amd.html#createmap esri/arcgis/utils.createMap()
+ * @member {external:esri/Map} map
+ * @member {(EventHandler|undefined)} clickEventHandle
+ * @member {(Function|undefined)} clickEventListener
+ * @member {Object} itemInfo
+ * @member {Object} itemInfo.item
+ * @member {Object} itemInfo.itemData
+ * @member {Object.<string, Error>} itemInfo.errors
+ */
+
 require([
   "esri/config",
   "esri/map",
@@ -19,8 +32,9 @@ require([
   "witpa/ProjectFilter",
   "dojo/parser",
   "esri/tasks/query",
-  //"witpa/webmapUtils",
   "esri/arcgis/utils",
+  "esri/geometry/Extent",
+  "esri/dijit/Search",
   "dojo/text!./webmap.json",
 
   "dijit/layout/BorderContainer",
@@ -39,8 +53,9 @@ require([
   ProjectFilter,
   parser,
   Query,
-  //webmapUtils,
   arcgisUtils,
+  Extent,
+  Search,
   webmapJson
 ) {
 
@@ -59,6 +74,7 @@ require([
     // Parse the Dojo layout widgets defined in HTML markup.
     parser.parse();
 
+    // Create the map using JSON webmap definition.
     arcgisUtils.createMap({
         itemData: JSON.parse(webmapJson)
     }, "map", {
@@ -67,10 +83,27 @@ require([
             zoom: 7
         }
     }
+    /**
+     * Post map creation tasks.
+     * @param {external:createMapResponse} response
+     */
     ).then(function (response) {
-        console.debug("createMap response", response);
-
         var map = response.map;
+
+        var search = new Search({
+            map: response.map
+        }, "search");
+
+        search.on("load", function () {
+            var sources = search.get("sources");
+            var source = sources[0];
+            source.countryCode = "US";
+            // Set the extent to WA. Values from http://epsg.io/1416-area.
+            source.searchExtent = new Extent(-116.91, 45.54, -124.79, 49.05);
+            search.set("sources", sources);
+        });
+
+        search.startup();
 
         var outFields = [
           "OBJECTID",
