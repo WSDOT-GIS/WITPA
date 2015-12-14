@@ -1,7 +1,7 @@
 {
   "operationalLayers": [
     {
-      "id": "CountyBoundaries",
+      "id": "CountyBoundaries_8646",
       "layerType": "ArcGISTiledMapServiceLayer",
       "url": "http://www.wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/CountyBoundaries/MapServer",
       "visibility": false,
@@ -10,7 +10,7 @@
       "itemId": "fe229f9df5aa4289b8ccd2a99289951b"
     },
     {
-      "id": "LegislativeDistricts",
+      "id": "LegislativeDistricts_6969",
       "layerType": "ArcGISMapServiceLayer",
       "url": "http://www.wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/LegislativeDistricts/MapServer",
       "visibility": false,
@@ -19,7 +19,7 @@
       "itemId": "f6d17366bae34d5f996386c2d46263ec"
     },
     {
-      "id": "CityLimits",
+      "id": "CityLimits_7517",
       "layerType": "ArcGISTiledMapServiceLayer",
       "url": "http://www.wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/CityLimits/MapServer",
       "visibility": false,
@@ -28,7 +28,7 @@
       "itemId": "bb7c67c334be494c88cf00ebb91fe51f"
     },
     {
-      "id": "RegionalTransportationPlanning",
+      "id": "RegionalTransportationPlanning_25",
       "layerType": "ArcGISMapServiceLayer",
       "url": "http://www.wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/RegionalTransportationPlanning/MapServer",
       "visibility": false,
@@ -37,7 +37,7 @@
       "itemId": "d1de4f2d8a8348e0af97c858c7cff8ad"
     },
     {
-      "id": "RegionBoundaries",
+      "id": "RegionBoundaries_5322",
       "layerType": "ArcGISTiledMapServiceLayer",
       "url": "http://www.wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/RegionBoundaries/MapServer",
       "visibility": false,
@@ -46,15 +46,202 @@
       "itemId": "1c0845bd12944017b3bb3631bda09e0e"
     },
     {
-      "id": "SixYearPlan",
+      "id": "SixYearPlan_5792",
       "layerType": "ArcGISMapServiceLayer",
       "url": "http://hqolymgis98d:6080/arcgis/rest/services/TransportationProjects/SixYearPlan/MapServer",
       "visibility": true,
       "opacity": 1,
-      "title": "WSDOT Projects (Six Year Plan)"
+      "title": "WSDOT Projects (Six Year Plan)",
+      "layers": [
+        {
+          "id": 0,
+          "popupInfo": {
+            "title": "WSDOT Projects (6 Year Plan): {PIN}",
+            "fieldInfos": [
+              {
+                "fieldName": "OBJECTID",
+                "label": "OBJECTID",
+                "tooltip": "",
+                "visible": false,
+                "format": null,
+                "stringFieldOption": "textbox"
+              },
+              {
+                "fieldName": "Region",
+                "label": "Region",
+                "tooltip": "",
+                "visible": true,
+                "format": null,
+                "stringFieldOption": "textbox"
+              },
+              {
+                "fieldName": "PIN",
+                "label": "Project Number",
+                "tooltip": "",
+                "visible": true,
+                "format": null,
+                "stringFieldOption": "textbox"
+              },
+              {
+                "fieldName": "Project_Title",
+                "label": "Project Title",
+                "tooltip": "",
+                "visible": true,
+                "format": null,
+                "stringFieldOption": "textbox"
+              },
+              {
+                "fieldName": "Improvement_Type",
+                "label": "Improvement Type",
+                "tooltip": "",
+                "visible": true,
+                "format": null,
+                "stringFieldOption": "textbox"
+              },
+              {
+                "fieldName": "Program",
+                "label": "Program",
+                "tooltip": "",
+                "visible": true,
+                "format": null,
+                "stringFieldOption": "textbox"
+              },
+              {
+                "fieldName": "Sub_Program",
+                "label": "Sub Program",
+                "tooltip": "",
+                "visible": true,
+                "format": null,
+                "stringFieldOption": "textbox"
+              },
+              {
+                "fieldName": "Work_Description",
+                "label": "Work Description",
+                "tooltip": "",
+                "visible": true,
+                "format": null,
+                "stringFieldOption": "textbox"
+              },
+              {
+                "fieldName": "PE_Start_Date",
+                "label": "Preliminary Engineering Start",
+                "tooltip": "",
+                "visible": true,
+                "format": null,
+                "stringFieldOption": "textbox"
+              },
+              {
+                "fieldName": "Ad_date",
+                "label": "Advertisement",
+                "tooltip": "",
+                "visible": true,
+                "format": null,
+                "stringFieldOption": "textbox"
+              },
+              {
+                "fieldName": "OC_Date",
+                "label": "Operationally Complete",
+                "tooltip": "",
+                "visible": true,
+                "format": null,
+                "stringFieldOption": "textbox"
+              },
+              {
+                "fieldName": "Revenue_Package",
+                "label": "Revenue Package",
+                "tooltip": "",
+                "visible": true,
+                "format": null,
+                "stringFieldOption": "textbox"
+              },
+              {
+                "fieldName": "Funding_Source",
+                "label": "Funding Source",
+                "tooltip": "",
+                "visible": true,
+                "format": null,
+                "stringFieldOption": "textbox"
+              },
+              {
+                "fieldName": "Congressional_District",
+                "label": "Congressional District",
+                "tooltip": "",
+                "visible": true,
+                "format": null,
+                "stringFieldOption": "textbox"
+              },
+              {
+                "fieldName": "Legislative_District",
+                "label": "Legislative District",
+                "tooltip": "",
+                "visible": true,
+                "format": null,
+                "stringFieldOption": "textbox"
+              },
+              {
+                "fieldName": "County",
+                "label": "County",
+                "tooltip": "",
+                "visible": true,
+                "format": null,
+                "stringFieldOption": "textbox"
+              },
+              {
+                "fieldName": "Route",
+                "label": "Route",
+                "tooltip": "",
+                "visible": true,
+                "format": null,
+                "stringFieldOption": "textbox"
+              },
+              {
+                "fieldName": "Begin_Mile_Post",
+                "label": "Begin Mile Post",
+                "tooltip": "",
+                "visible": true,
+                "format": {
+                  "places": 2,
+                  "digitSeparator": true
+                },
+                "stringFieldOption": "textbox"
+              },
+              {
+                "fieldName": "End_Mile_Post",
+                "label": "End Mile Post",
+                "tooltip": "",
+                "visible": true,
+                "format": {
+                  "places": 2,
+                  "digitSeparator": true
+                },
+                "stringFieldOption": "textbox"
+              },
+              {
+                "fieldName": "Shape",
+                "label": "Shape",
+                "tooltip": "",
+                "visible": false,
+                "format": null,
+                "stringFieldOption": "textbox"
+              },
+              {
+                "fieldName": "LRS_Date",
+                "label": "SRMP Date",
+                "tooltip": "",
+                "visible": true,
+                "format": null,
+                "stringFieldOption": "textbox"
+              }
+            ],
+            "description": null,
+            "showAttachments": true,
+            "mediaInfos": []
+          }
+        }
+      ]
     },
     {
-      "id": "MilepostValues",
+      "id": "MilepostValues_3457",
       "layerType": "ArcGISMapServiceLayer",
       "url": "http://wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/MilepostValues/MapServer",
       "visibility": false,
@@ -66,14 +253,14 @@
   "baseMap": {
     "baseMapLayers": [
       {
-        "id": "World_Dark_Gray_Base",
+        "id": "layer0",
         "layerType": "ArcGISTiledMapServiceLayer",
         "opacity": 1,
         "visibility": true,
         "url": "http://services.arcgisonline.com/arcgis/rest/services/Canvas/World_Dark_Gray_Base/MapServer"
       },
       {
-        "id": "World_Dark_Gray_Reference",
+        "id": "World_Dark_Gray_Reference_2065",
         "layerType": "ArcGISTiledMapServiceLayer",
         "isReference": true,
         "opacity": 1,

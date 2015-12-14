@@ -46,7 +46,6 @@
     <Content Include="README.md" />
     <Content Include="Templates\ProjectFilter.html" />
     <Content Include="UNLICENSE" />
-    <Content Include="webmapUtils.js" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="index.html" />
