@@ -19,6 +19,8 @@ require([
   "witpa/ProjectFilter",
   "dojo/parser",
   "esri/tasks/query",
+  "witpa/webmapUtils",
+  "dojo/text!./webmap.json",
 
   "dijit/layout/BorderContainer",
   "dijit/layout/ContentPane",
@@ -35,7 +37,9 @@ require([
   registry,
   ProjectFilter,
   parser,
-  Query
+  Query,
+  webmapUtils,
+  webmapJson
 ) {
 
     var projectFilter = new ProjectFilter(document.forms.filterForm);
@@ -100,6 +104,10 @@ require([
         mode: FeatureLayer.MODE_SELECTION,
         outFields: outFields
     });
+
+    var webmap = webmapUtils.parse(webmapJson);
+    console.debug("webmap", webmap);
+
     map.addLayer(layer);
 
     /**

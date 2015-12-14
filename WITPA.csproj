@@ -46,6 +46,7 @@
     <Content Include="README.md" />
     <Content Include="Templates\ProjectFilter.html" />
     <Content Include="UNLICENSE" />
+    <Content Include="webmapUtils.js" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="index.html" />
@@ -57,6 +58,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="bower.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="webmap.json" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
