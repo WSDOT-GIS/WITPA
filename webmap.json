@@ -1,0 +1,93 @@
+{
+  "operationalLayers": [
+    {
+      "id": "CountyBoundaries",
+      "layerType": "ArcGISTiledMapServiceLayer",
+      "url": "http://www.wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/CountyBoundaries/MapServer",
+      "visibility": false,
+      "opacity": 1,
+      "title": "County Boundaries",
+      "itemId": "fe229f9df5aa4289b8ccd2a99289951b"
+    },
+    {
+      "id": "LegislativeDistricts",
+      "layerType": "ArcGISMapServiceLayer",
+      "url": "http://www.wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/LegislativeDistricts/MapServer",
+      "visibility": false,
+      "opacity": 1,
+      "title": "Legislative Districts",
+      "itemId": "f6d17366bae34d5f996386c2d46263ec"
+    },
+    {
+      "id": "CityLimits",
+      "layerType": "ArcGISTiledMapServiceLayer",
+      "url": "http://www.wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/CityLimits/MapServer",
+      "visibility": false,
+      "opacity": 1,
+      "title": "City Limits",
+      "itemId": "bb7c67c334be494c88cf00ebb91fe51f"
+    },
+    {
+      "id": "RegionalTransportationPlanning",
+      "layerType": "ArcGISMapServiceLayer",
+      "url": "http://www.wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/RegionalTransportationPlanning/MapServer",
+      "visibility": false,
+      "opacity": 1,
+      "title": "Regional Transportation Planning Organization",
+      "itemId": "d1de4f2d8a8348e0af97c858c7cff8ad"
+    },
+    {
+      "id": "RegionBoundaries",
+      "layerType": "ArcGISTiledMapServiceLayer",
+      "url": "http://www.wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/RegionBoundaries/MapServer",
+      "visibility": false,
+      "opacity": 1,
+      "title": "Region Boundaries",
+      "itemId": "1c0845bd12944017b3bb3631bda09e0e"
+    },
+    {
+      "id": "SixYearPlan",
+      "layerType": "ArcGISMapServiceLayer",
+      "url": "http://hqolymgis98d:6080/arcgis/rest/services/TransportationProjects/SixYearPlan/MapServer",
+      "visibility": true,
+      "opacity": 1,
+      "title": "WSDOT Projects (Six Year Plan)"
+    },
+    {
+      "id": "MilepostValues",
+      "layerType": "ArcGISMapServiceLayer",
+      "url": "http://wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/MilepostValues/MapServer",
+      "visibility": false,
+      "opacity": 1,
+      "title": "Milepost Values",
+      "itemId": "03ec5ff3609f45caa849d5afa4d92e9e"
+    }
+  ],
+  "baseMap": {
+    "baseMapLayers": [
+      {
+        "id": "World_Dark_Gray_Base",
+        "layerType": "ArcGISTiledMapServiceLayer",
+        "opacity": 1,
+        "visibility": true,
+        "url": "http://services.arcgisonline.com/arcgis/rest/services/Canvas/World_Dark_Gray_Base/MapServer"
+      },
+      {
+        "id": "World_Dark_Gray_Reference",
+        "layerType": "ArcGISTiledMapServiceLayer",
+        "isReference": true,
+        "opacity": 1,
+        "visibility": true,
+        "url": "http://services.arcgisonline.com/arcgis/rest/services/Canvas/World_Dark_Gray_Reference/MapServer"
+      }
+    ],
+    "title": "Dark Gray Canvas"
+  },
+  "spatialReference": {
+    "wkid": 102100,
+    "latestWkid": 3857
+  },
+  "authoringApp": "WebMapViewer",
+  "authoringAppVersion": "3.10",
+  "version": "2.3"
+}
