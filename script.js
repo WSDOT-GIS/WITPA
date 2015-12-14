@@ -19,6 +19,9 @@ require([
   "witpa/ProjectFilter",
   "dojo/parser",
   "esri/tasks/query",
+  //"witpa/webmapUtils",
+  "esri/arcgis/utils",
+  "dojo/text!./webmap.json",
 
   "dijit/layout/BorderContainer",
   "dijit/layout/ContentPane",
@@ -35,7 +38,10 @@ require([
   registry,
   ProjectFilter,
   parser,
-  Query
+  Query,
+  //webmapUtils,
+  arcgisUtils,
+  webmapJson
 ) {
 
     var projectFilter = new ProjectFilter(document.forms.filterForm);
@@ -53,85 +59,84 @@ require([
     // Parse the Dojo layout widgets defined in HTML markup.
     parser.parse();
 
-    var map = new Map("map", {
-        basemap: "gray",
-        center: [-120.80566406246835, 47.41322033015946],
-        zoom: 7
-    });
-
-    var mapServiceUrl = "http://hqolymgis98d:6080/arcgis/rest/services/TransportationProjects/SixYearPlan/MapServer";
-
-    // Create the dynamic map layer for display on the map.
-    var dynamicLayer = new ArcGISDynamicMapServiceLayer(mapServiceUrl, {
-        id: "wsdot_projects"
-    });
-    map.addLayer(dynamicLayer);
-
-    var outFields = [
-      "OBJECTID",
-      "Region",
-      "PIN",
-      "Project_Title",
-      "Improvement_Type",
-      "Program",
-      "Sub_Program",
-      "Work_Description",
-      "PE_Start_Date",
-      "Ad_date",
-      "OC_Date",
-      "Revenue_Package",
-      "Funding_Source",
-      "Congressional_District",
-      "Legislative_District",
-      "County",
-      "Route",
-      "Begin_Mile_Post",
-      "End_Mile_Post",
-      "Shape",
-      "LRS_Date"
-    ];
-
-    var table;
-
-    // Create the feature layer that will be used by the FeatureTable and to highlight selected table rows on the map.
-    var featureLayerUrl = [mapServiceUrl, "0"].join("/");
-    var layer = new FeatureLayer(featureLayerUrl, {
-        id: "wsdotprojects",
-        mode: FeatureLayer.MODE_SELECTION,
-        outFields: outFields
-    });
-    map.addLayer(layer);
-
-    /**
-     * 
-     * @param {external:FeatureLayer#event:selection-complete} selEvt
-     */
-    layer.on("selection-complete", function (e) {
-        table.grid.refresh();
-    });
-
-    layer.on("selection-clear", function (e) {
-        if (table && table.grid) {
-            table.grid.refresh();
+    arcgisUtils.createMap({
+        itemData: JSON.parse(webmapJson)
+    }, "map", {
+        mapOptions: {
+            center: [-120.80566406246835, 47.41322033015946],
+            zoom: 7
         }
-    });
+    }
+    ).then(function (response) {
+        console.debug("createMap response", response);
 
-    projectFilter.form.addEventListener("submit-query", function (e) {
-        var query = new Query();
-        query.where = e.detail.where;
-        layer.selectFeatures(query, FeatureLayer.SELECTION_NEW);
+        var map = response.map;
 
-        layer.setDefinitionExpression(e.detail.where);
-    });
+        var outFields = [
+          "OBJECTID",
+          "Region",
+          "PIN",
+          "Project_Title",
+          "Improvement_Type",
+          "Program",
+          "Sub_Program",
+          "Work_Description",
+          "PE_Start_Date",
+          "Ad_date",
+          "OC_Date",
+          "Revenue_Package",
+          "Funding_Source",
+          "Congressional_District",
+          "Legislative_District",
+          "County",
+          "Route",
+          "Begin_Mile_Post",
+          "End_Mile_Post",
+          "Shape",
+          "LRS_Date"
+        ];
 
-    projectFilter.form.addEventListener("reset", function (e) {
-        layer.clearSelection();
+        var table;
 
-        layer.setDefinitionExpression(layer.defaultDefinitionExpression);
-    });
+        // Create the feature layer that will be used by the FeatureTable and to highlight selected table rows on the map.
+        var featureLayerUrl = ["http://hqolymgis98d:6080/arcgis/rest/services/TransportationProjects/SixYearPlan/MapServer", "0"].join("/");
+        var layer = new FeatureLayer(featureLayerUrl, {
+            id: "wsdotprojects",
+            mode: FeatureLayer.MODE_SELECTION,
+            outFields: outFields
+        });
+
+        map.addLayer(layer);
+
+        /**
+         * 
+         * @param {external:FeatureLayer#event:selection-complete} selEvt
+         */
+        layer.on("selection-complete", function (e) {
+            table.grid.refresh();
+        });
+
+        layer.on("selection-clear", function (e) {
+            if (table && table.grid) {
+                table.grid.refresh();
+            }
+        });
+
+        projectFilter.form.addEventListener("submit-query", function (e) {
+            var query = new Query();
+            query.where = e.detail.where;
+            layer.selectFeatures(query, FeatureLayer.SELECTION_NEW);
+
+            layer.setDefinitionExpression(e.detail.where);
+        });
+
+        projectFilter.form.addEventListener("reset", function (e) {
+            layer.clearSelection();
+
+            layer.setDefinitionExpression(layer.defaultDefinitionExpression);
+        });
 
 
-    map.on("load", function () {
         // Add the home button that allows the user to zoom to full extent.
         var homeButton = new HomeButton({
             map: map
@@ -189,22 +194,14 @@ require([
             borderContainer.resize();
         });
 
-
-
+        // Create the layer list.
+        var layerList = new LayerList({
+            map: response.map,
+            layers: arcgisUtils.getLayerList(response),
+            showLegend: true,
+            showOpacitySlider: true,
+            showSublayers: true
+        }, "layerList");
+        layerList.startup();
     });
-
-    // Create the layer list.
-    var layerList = new LayerList({
-        map: map,
-        layers: [{
-            layer: dynamicLayer,
-            id: "WSDOT Projects (6 Year Plan)"
-        }],
-        showLegend: true,
-        showOpacitySlider: true,
-        showSublayers: true
-    }, "layerList");
-    layerList.startup();
-
-
 });
