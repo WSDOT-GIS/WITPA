@@ -1,3 +1,12 @@
+/**
+ * FeatureLayer.selection-complete
+ * @external FeatureLayer#event:selection-complete
+ * @see {link:https://developers.arcgis.com/javascript/jsapi/featurelayer-amd.html#event-selection-complete}
+ * @member {Graphic[]} features - The features that were selected by a query.
+ * @member {Number} method - The selection method.
+ * @member {FeatureLayer} target - The feature layer that performed the selection.
+ */
+
 require([
   "esri/config",
   "esri/map",
@@ -9,6 +18,8 @@ require([
   "dijit/registry",
   "witpa/ProjectFilter",
   "dojo/parser",
+  "esri/tasks/query",
+
   "dijit/layout/BorderContainer",
   "dijit/layout/ContentPane",
   "dijit/layout/AccordionContainer",
@@ -23,7 +34,8 @@ require([
   HomeButton,
   registry,
   ProjectFilter,
-  parser
+  parser,
+  Query
 ) {
 
     var projectFilter = new ProjectFilter(document.forms.filterForm);
@@ -31,13 +43,11 @@ require([
 
     filterPane.appendChild(projectFilter.form);
 
-    projectFilter.form.addEventListener("submit-query", function (e) {
-        console.log("submit-query event", e.detail.where);
-    });
+
 
     ["wsdot.wa.gov", "www.wsdot.wa.gov", "data.wsdot.wa.gov", "hqolymgis98d:6080"].forEach(function (server) {
         esriConfig.defaults.io.corsEnabledServers.push(server);
-    })
+    });
 
 
     // Parse the Dojo layout widgets defined in HTML markup.
@@ -81,6 +91,8 @@ require([
       "LRS_Date"
     ];
 
+    var table;
+
     // Create the feature layer that will be used by the FeatureTable and to highlight selected table rows on the map.
     var featureLayerUrl = [mapServiceUrl, "0"].join("/");
     var layer = new FeatureLayer(featureLayerUrl, {
@@ -90,6 +102,35 @@ require([
     });
     map.addLayer(layer);
 
+    /**
+     * 
+     * @param {external:FeatureLayer#event:selection-complete} selEvt
+     */
+    layer.on("selection-complete", function (e) {
+        table.grid.refresh();
+    });
+
+    layer.on("selection-clear", function (e) {
+        if (table && table.grid) {
+            table.grid.refresh();
+        }
+    });
+
+    projectFilter.form.addEventListener("submit-query", function (e) {
+        var query = new Query();
+        query.where = e.detail.where;
+        layer.selectFeatures(query, FeatureLayer.SELECTION_NEW);
+
+        layer.setDefinitionExpression(e.detail.where);
+    });
+
+    projectFilter.form.addEventListener("reset", function (e) {
+        layer.clearSelection();
+
+        layer.setDefinitionExpression(layer.defaultDefinitionExpression);
+    });
+
+
     map.on("load", function () {
         // Add the home button that allows the user to zoom to full extent.
         var homeButton = new HomeButton({
@@ -98,7 +139,7 @@ require([
         homeButton.startup();
 
         // Create the feature table
-        var table = new FeatureTable({
+        table = new FeatureTable({
             featureLayer: layer,
             outFields: outFields,
             // Clicking on the layer won't work since the feature layer isn't displayed on the map.

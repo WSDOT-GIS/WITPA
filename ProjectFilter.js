@@ -66,17 +66,6 @@ define(["dojo/text!./Templates/ProjectFilter.html"], function (template) {
             return false;
         };
 
-        /**
-         * Form reset event
-         * 
-         * @event ProjectFilter#reset
-         * @type {external:CustomEvent}
-         */
-        _form.addEventListener("reset", function () {
-            var customEvent = new CustomEvent('reset');
-            _form.dispatchEvent(customEvent);
-        });
-
         Object.defineProperties(this, {
             /**
              * The HTML form
