@@ -9,12 +9,15 @@
                     <option value="{field} LIKE '{value}%'">Starts With</option>
                 </select>
             </span>
-            <input id="srInput" name="Route" type="text" class="form-control" pattern='\d{3}([\d[A-Z]]{2}[\d[A-Z]{0,6})?' title="Please enter a valid state route ID" />
+            <input id="srInput" name="Route" type="text" class="form-control" 
+                   pattern='\d{3}([\d[A-Z]]{2}[\d[A-Z]{0,6})?'
+                   title="Please enter a valid state route ID"
+                   placeholder="State Route ID" />
         </div>
     </div>
     <!-- Begin MP -->
     <div class="form-group">
-        <label for="beginMPInput">Begin MP</label>
+        <label for="beginMPInput">Begin Milepost</label>
         <div class="input-group">
             <span class="input-group-addon">
                 <select data-where-template-for="Begin_Mile_Post">
@@ -25,12 +28,12 @@
                     <option value="{field} &gt; {value}">&gt;</option>
                 </select>
             </span>
-            <input id="beginMPInput" name="Begin_Mile_Post" type="number" min="0" class="form-control" />
+            <input id="beginMPInput" name="Begin_Mile_Post" type="number" min="0" class="form-control" placeholder="Begin Milepost" />
         </div>
     </div>
     <!-- End MP -->
     <div class="form-group">
-        <label for="endMPInput">End MP</label>
+        <label for="endMPInput">End Milepost</label>
         <div class="input-group">
             <span class="input-group-addon">
                 <select data-where-template-for="End_Mile_Post">
@@ -41,7 +44,7 @@
                     <option value="{field} &gt; {value}">&gt;</option>
                 </select>
             </span>
-            <input id="endMPInput" name="End_Mile_Post" type="number" min="0" class="form-control" />
+            <input id="endMPInput" name="End_Mile_Post" type="number" min="0" class="form-control" placeholder="End Milepost" />
         </div>
     </div>
     <!--<div class="form-group">
@@ -63,7 +66,7 @@
         <label for="projectNoInput">Project No.</label>
         <input id="projectNoInput" name="PIN" type="text" class="form-control" 
                pattern="\d{6}[A-Za-z]" title="Project number (six digits + letter)"
-               data-where-template="{field} = '{value}'" />
+               data-where-template="{field} = '{value}'" placeholder="Project No." />
     </div>
     <div class="form-group">
         <label for="projectTitleInput">Project Title</label>
@@ -76,15 +79,16 @@
                     <option value="{field} LIKE '%{value}%'">Contains</option>
                 </select>
             </span>
-            <input id="projectTitleInput" name="Project_Title" type="text"
-                   class="form-control" />
+            <input id="projectTitleInput" name="Project_Title" type="text" title="Please enter a complete or partial project title." 
+                   placeholder="Project Title" class="form-control" />
         </div>
     </div>
     <div class="form-group">
         <label for="legDistrictInput">Legislative District</label>
         <input id="legDistrictInput" name="Legislative_District" type="text"
                inputmode="numeric"
-               pattern="\d{2}" data-where-template="{field} LIKE '%{value}%'" class="form-control" />
+               placeholder="Legislative District ID"
+               pattern="\d{2}" data-where-template="{field} LIKE '%{value}%'" class="form-control" title="Please enter a two-digit legislative district ID." />
     </div>
     <!--<div class="form-group">
         <label for="cityInput">City</label>
