@@ -59,7 +59,10 @@
     <Content Include="bower.json" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="webmap.json" />
+    <Content Include="webmap\item.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="webmap\itemdata.json" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

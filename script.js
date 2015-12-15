@@ -33,9 +33,9 @@ require([
   "dojo/parser",
   "esri/tasks/query",
   "esri/arcgis/utils",
-  "esri/geometry/Extent",
   "esri/dijit/Search",
-  "dojo/text!./webmap.json",
+  "dojo/text!./webmap/item.json",
+  "dojo/text!./webmap/itemdata.json",
 
   "dijit/layout/BorderContainer",
   "dijit/layout/ContentPane",
@@ -54,9 +54,9 @@ require([
   parser,
   Query,
   arcgisUtils,
-  Extent,
   Search,
-  webmapJson
+  webmapItem,
+  webmapItemData
 ) {
 
     var projectFilter = new ProjectFilter(document.forms.filterForm);
@@ -76,7 +76,8 @@ require([
 
     // Create the map using JSON webmap definition.
     arcgisUtils.createMap({
-        itemData: JSON.parse(webmapJson)
+        item: JSON.parse(webmapItem),
+        itemData: JSON.parse(webmapItemData)
     }, "map", {
         mapOptions: {
             center: [-120.80566406246835, 47.41322033015946],
@@ -95,11 +96,11 @@ require([
         }, "search");
 
         search.on("load", function () {
-            var sources = search.get("sources");
-            var source = sources[0];
+            var sources, source;
+            sources = search.get("sources");
+            source = search.defaultSource; //or sources[0];
             source.countryCode = "US";
-            // Set the extent to WA. Values from http://epsg.io/1416-area.
-            source.searchExtent = new Extent(-116.91, 45.54, -124.79, 49.05);
+            source.searchExtent = response.map.extent;
             search.set("sources", sources);
         });
 
