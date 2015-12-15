@@ -1,7 +1,7 @@
 {
   "operationalLayers": [
     {
-      "id": "CountyBoundaries_8646",
+      "id": "CountyBoundaries",
       "layerType": "ArcGISTiledMapServiceLayer",
       "url": "http://www.wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/CountyBoundaries/MapServer",
       "visibility": false,
@@ -10,7 +10,7 @@
       "itemId": "fe229f9df5aa4289b8ccd2a99289951b"
     },
     {
-      "id": "LegislativeDistricts_6969",
+      "id": "LegislativeDistricts",
       "layerType": "ArcGISMapServiceLayer",
       "url": "http://www.wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/LegislativeDistricts/MapServer",
       "visibility": false,
@@ -19,7 +19,7 @@
       "itemId": "f6d17366bae34d5f996386c2d46263ec"
     },
     {
-      "id": "CityLimits_7517",
+      "id": "CityLimits",
       "layerType": "ArcGISTiledMapServiceLayer",
       "url": "http://www.wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/CityLimits/MapServer",
       "visibility": false,
@@ -28,7 +28,7 @@
       "itemId": "bb7c67c334be494c88cf00ebb91fe51f"
     },
     {
-      "id": "RegionalTransportationPlanning_25",
+      "id": "RegionalTransportationPlanning",
       "layerType": "ArcGISMapServiceLayer",
       "url": "http://www.wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/RegionalTransportationPlanning/MapServer",
       "visibility": false,
@@ -37,7 +37,7 @@
       "itemId": "d1de4f2d8a8348e0af97c858c7cff8ad"
     },
     {
-      "id": "RegionBoundaries_5322",
+      "id": "RegionBoundaries",
       "layerType": "ArcGISTiledMapServiceLayer",
       "url": "http://www.wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/RegionBoundaries/MapServer",
       "visibility": false,
@@ -46,7 +46,7 @@
       "itemId": "1c0845bd12944017b3bb3631bda09e0e"
     },
     {
-      "id": "SixYearPlan_5792",
+      "id": "SixYearPlan",
       "layerType": "ArcGISMapServiceLayer",
       "url": "http://hqolymgis98d:6080/arcgis/rest/services/TransportationProjects/SixYearPlan/MapServer",
       "visibility": true,
@@ -241,7 +241,7 @@
       ]
     },
     {
-      "id": "MilepostValues_3457",
+      "id": "MilepostValues",
       "layerType": "ArcGISMapServiceLayer",
       "url": "http://wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/MilepostValues/MapServer",
       "visibility": false,
@@ -253,22 +253,14 @@
   "baseMap": {
     "baseMapLayers": [
       {
-        "id": "layer0",
+        "id": "wsdotbasemap",
         "layerType": "ArcGISTiledMapServiceLayer",
         "opacity": 1,
         "visibility": true,
-        "url": "http://services.arcgisonline.com/arcgis/rest/services/Canvas/World_Dark_Gray_Base/MapServer"
-      },
-      {
-        "id": "World_Dark_Gray_Reference_2065",
-        "layerType": "ArcGISTiledMapServiceLayer",
-        "isReference": true,
-        "opacity": 1,
-        "visibility": true,
-        "url": "http://services.arcgisonline.com/arcgis/rest/services/Canvas/World_Dark_Gray_Reference/MapServer"
+        "url": "http://www.wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/WebBaseMapWebMercator/MapServer"
       }
     ],
-    "title": "Dark Gray Canvas"
+    "title": "WSDOT Basemap"
   },
   "spatialReference": {
     "wkid": 102100,
