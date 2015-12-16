@@ -20,6 +20,10 @@ The format of these files is described in [ArcGIS web map JSON format]. These fi
 imported via the [dojo/text] AMD plugin, parsed to JSON, and then the JSON is passed to
 the [esri/arcgis/utils.createMap] function.
 
+## Demo ##
+
+Test the application [here](http://wsdot-gis.github.io/WITPA/).
+
 [ArcGIS web map JSON format]:http://resources.arcgis.com/en/help/arcgis-web-map-json/
 [Bundler & Minifier]:https://visualstudiogallery.msdn.microsoft.com/9ec27da7-e24b-4d56-8064-fd7e88ac1c40
 [dojo/text]:https://dojotoolkit.org/reference-guide/dojo/text.html
