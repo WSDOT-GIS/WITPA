@@ -35,6 +35,7 @@ require([
   "esri/arcgis/utils",
   "esri/dijit/Search",
   "esri/dijit/BasemapGallery",
+  "esri/dijit/Legend",
   "dojo/text!./webmap/item.json",
   "dojo/text!./webmap/itemdata.json",
 
@@ -57,6 +58,7 @@ require([
   arcgisUtils,
   Search,
   BasemapGallery,
+  Legend,
   webmapItem,
   webmapItemData
 ) {
@@ -280,6 +282,12 @@ require([
                 basemapGallery.select(basemap.id);
             }
         });
+
+        var legend = new Legend({
+            map: response.map,
+            layerInfos: arcgisUtils.getLegendLayers(response)
+        }, "legend");
+        legend.startup();
 
     });
 });
