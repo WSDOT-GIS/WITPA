@@ -30,6 +30,8 @@
 require([
   "esri/config",
   "esri/map",
+  "esri/geometry/geometryEngineAsync",
+  "esri/tasks/query",
   "esri/layers/FeatureLayer",
   "esri/layers/ArcGISDynamicMapServiceLayer",
   "esri/dijit/FeatureTable",
@@ -52,6 +54,8 @@ require([
 ], function (
   esriConfig,
   Map,
+  geometryEngineAsync,
+  Query,
   FeatureLayer,
   ArcGISDynamicMapServiceLayer,
   FeatureTable,
@@ -257,7 +261,22 @@ require([
                 return parseInt(row.id, 10);
             });
             query.objectIds = objectIds;
-            return layer.selectFeatures(query, selectionMethod);
+            return layer.selectFeatures(query, selectionMethod).then(function () {
+                var features = layer.getSelectedFeatures();
+                var geometries;
+                if (features && features.length > 0) {
+                    if (features.length === 1) {
+                        map.setExtent(features[0].geometry.getExtent(), true);
+                    } else {
+                        geometries = features.map(function (graphic) {
+                            return graphic.geometry;
+                        });
+                        geometryEngineAsync.union(geometries).then(function (unionedGeometry) {
+                            map.setExtent(unionedGeometry.getExtent(), true);
+                        });
+                    }
+                }
+            });;
         }
 
         /**
