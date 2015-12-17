@@ -20,6 +20,13 @@
  * @member {Object.<string, Error>} itemInfo.errors
  */
 
+/**
+ * dojo/Deferred
+ * @description Deferred response from an asynchronous operation.
+ * @external dojo/Deferred
+ * @see {@link http://dojotoolkit.org/reference-guide/1.10/dojo/Deferred.html dojo/Deferred}
+ */
+
 require([
   "esri/config",
   "esri/map",
@@ -31,7 +38,6 @@ require([
   "dijit/registry",
   "witpa/ProjectFilter",
   "dojo/parser",
-  "esri/tasks/query",
   "esri/arcgis/utils",
   "esri/dijit/Search",
   "esri/dijit/BasemapGallery",
@@ -54,7 +60,6 @@ require([
   registry,
   ProjectFilter,
   parser,
-  Query,
   arcgisUtils,
   Search,
   BasemapGallery,
@@ -62,7 +67,7 @@ require([
   webmapItem,
   webmapItemData
 ) {
-
+    "use strict";
     var projectFilter = new ProjectFilter(document.forms.filterForm);
     var filterPane = document.getElementById("filterPane");
 
@@ -116,6 +121,8 @@ require([
     ).then(function (response) {
         var map = response.map;
 
+        var dynamicLayer = map.getLayer("SixYearPlan");
+
         var search = new Search({
             map: response.map
         }, "search");
@@ -158,8 +165,7 @@ require([
         var table;
 
         // Create the feature layer that will be used by the FeatureTable and to highlight selected table rows on the map.
-        // TODO: get this URL from itemdata.json
-        var featureLayerUrl = ["http://hqolymgis98d:6080/arcgis/rest/services/TransportationProjects/SixYearPlan/MapServer", "0"].join("/");
+        var featureLayerUrl = [dynamicLayer.url, "0"].join("/");
         var layer = new FeatureLayer(featureLayerUrl, {
             id: "wsdotprojects",
             mode: FeatureLayer.MODE_SELECTION,
@@ -168,32 +174,24 @@ require([
 
         map.addLayer(layer);
 
-        /**
-         * 
-         * @param {external:FeatureLayer#event:selection-complete} selEvt
-         */
-        layer.on("selection-complete", function (e) {
-            table.grid.refresh();
-        });
-
-        layer.on("selection-clear", function (e) {
-            if (table && table.grid) {
-                table.grid.refresh();
-            }
-        });
-
+        // When the user submits a query, set the feature layer's definition expression 
+        // so that only those rows are shown in the table.
         projectFilter.form.addEventListener("submit-query", function (e) {
-            var query = new Query();
-            query.where = e.detail.where;
-            layer.selectFeatures(query, FeatureLayer.SELECTION_NEW);
-
+            layer.clearSelection();
             layer.setDefinitionExpression(e.detail.where);
+            dynamicLayer.setLayerDefinitions([
+                e.detail.where
+            ]);
+            table.grid.refresh();
+
         });
 
+        // Reset the definition expression to show all rows.
         projectFilter.form.addEventListener("reset", function (e) {
             layer.clearSelection();
-
+            dynamicLayer.setDefaultLayerDefinitions();
             layer.setDefinitionExpression(layer.defaultDefinitionExpression);
+            table.grid.refresh();
         });
 
 
@@ -210,7 +208,7 @@ require([
             // Clicking on the layer won't work since the feature layer isn't displayed on the map.
             // The feature layer only displays its selected features.
             enableLayerClick: false,
-            enableLayerSelection: true,
+            enableLayerSelection: false,
             // The dateOptions are not actually honored: https://geonet.esri.com/message/520158
             /*
             dateOptions: {
@@ -236,6 +234,43 @@ require([
             map: map
         }, "table");
         table.startup();
+
+        /**
+         * @typedef {Object} DGridRow
+         * @property {Object} data
+         * @property {number} data.OBJECTID
+         * @property {HTMLElement} element
+         * @property {string} id - A string containing the corresponding feature's Object ID.
+         */
+
+        /**
+         * Selects or deselects features corresponding to row selected in the feature table.
+         * @param {DGridRow[]} rows - An array of rows either selected or deselected from the feature table dGrid.
+         * @param {Boolean} [deselect=false] - True to subtract the features associated with the rows to the feature layer selection, false to add them.
+         * @returns {external:dojo/Deferred} Returns the promise from the selectFeatures function.
+         */
+        function selectOrDeselectFeatures(rows, deselect) {
+            var selectionMethod = deselect ? FeatureLayer.SELECTION_SUBTRACT : FeatureLayer.SELECTION_ADD;
+            var query = new Query();
+            // Convert the array of rows into an array of corresponding object IDs.
+            var objectIds = rows.map(function (row) {
+                return parseInt(row.id, 10);
+            });
+            query.objectIds = objectIds;
+            return layer.selectFeatures(query, selectionMethod);
+        }
+
+        /**
+         * 
+         * @param {DGridRow} rows
+         */
+        table.on("dgrid-select", function (rows) {
+            selectOrDeselectFeatures(rows);
+        });
+
+        table.on("dgrid-deselect", function (rows) {
+            selectOrDeselectFeatures(rows, true);
+        });
 
         // resize panel when table close is toggled.
         table.tableCloseButton.addEventListener("click", function (e) {
