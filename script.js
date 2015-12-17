@@ -50,7 +50,8 @@ require([
   "dijit/layout/BorderContainer",
   "dijit/layout/ContentPane",
   "dijit/layout/AccordionContainer",
-  "dijit/layout/AccordionPane"
+  "dijit/layout/AccordionPane",
+  "dijit/Dialog"
 ], function (
   esriConfig,
   Map,
@@ -276,7 +277,7 @@ require([
                         });
                     }
                 }
-            });;
+            });
         }
 
         /**
@@ -344,4 +345,12 @@ require([
         legend.startup();
 
     });
+
+    // Show the disclaimer dialog.
+    var disclaimerDialog = registry.byId("disclaimerDialog");
+    disclaimerDialog.domNode.querySelector("button").onclick = function () {
+        // Hide and then destroy the dialog.
+        disclaimerDialog.hide();
+    };
+    disclaimerDialog.show();
 });
