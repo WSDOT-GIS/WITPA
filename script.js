@@ -40,6 +40,7 @@ require([
   "dijit/registry",
   "witpa/ProjectFilter",
   "dojo/parser",
+  "dojo/dnd/Moveable",
   "esri/arcgis/utils",
   "esri/dijit/Search",
   "esri/dijit/BasemapGallery",
@@ -65,6 +66,7 @@ require([
   registry,
   ProjectFilter,
   parser,
+  Moveable,
   arcgisUtils,
   Search,
   BasemapGallery,
@@ -84,6 +86,27 @@ require([
 
     // Parse the Dojo layout widgets defined in HTML markup.
     parser.parse();
+
+    /**
+     * Makes an InfoWindow draggable.
+     * @param {esri/InfoWindow} map - An ArcGIS Map object.
+     */
+    function makeInfoWindowDraggable(infoWindow) {
+        var handle = infoWindow.domNode.querySelector(".title"); //query(".title", map.infoWindow.domNode)[0];
+        var dnd = new Moveable(infoWindow.domNode, {
+            handle: handle
+        });
+        
+        // when the infoWindow is moved, hide the arrow:
+        dnd.on('FirstMove', function() {
+            // hide pointer and outerpointer (used depending on where the pointer is shown)
+            var arrowNode =  infoWindow.domNode.querySelector(".outerPointer");
+            arrowNode.classList.add("hidden");
+            
+            arrowNode =  infoWindow.domNode.querySelector(".pointer");
+            arrowNode.classList.add("hidden");
+        }.bind(this));
+    }
 
     // Create the map using JSON webmap definition.
     arcgisUtils.createMap({
@@ -125,6 +148,8 @@ require([
      */
     ).then(function (response) {
         var map = response.map;
+
+        makeInfoWindowDraggable(response.map.infoWindow);
 
         var dynamicLayer = map.getLayer("SixYearPlan");
 
