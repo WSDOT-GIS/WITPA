@@ -51,27 +51,18 @@
       "url": "http://hqolymgis98d:6080/arcgis/rest/services/TransportationProjects/SixYearPlan/MapServer",
       "visibility": true,
       "opacity": 1,
-      "title": "WSDOT Projects (Six Year Plan)",
+      "title": "WSDOT Projects (6 Year Plan)",
       "layers": [
         {
           "id": 0,
           "popupInfo": {
-            "title": "WSDOT Projects (6 Year Plan): {PIN}",
+            "title": "{PIN} - {Project_Title}",
             "fieldInfos": [
               {
                 "fieldName": "OBJECTID",
                 "label": "OBJECTID",
                 "tooltip": "",
                 "visible": false,
-                "format": null,
-                "stringFieldOption": "textbox"
-              },
-              {
-                "fieldName": "Region",
-                "label": "Region",
-                "tooltip": "",
-                "visible": true,
-                "format": null,
                 "stringFieldOption": "textbox"
               },
               {
@@ -79,7 +70,6 @@
                 "label": "Project Number",
                 "tooltip": "",
                 "visible": true,
-                "format": null,
                 "stringFieldOption": "textbox"
               },
               {
@@ -87,7 +77,13 @@
                 "label": "Project Title",
                 "tooltip": "",
                 "visible": true,
-                "format": null,
+                "stringFieldOption": "textbox"
+              },
+              {
+                "fieldName": "Region",
+                "label": "Region",
+                "tooltip": "",
+                "visible": true,
                 "stringFieldOption": "textbox"
               },
               {
@@ -95,7 +91,6 @@
                 "label": "Improvement Type",
                 "tooltip": "",
                 "visible": true,
-                "format": null,
                 "stringFieldOption": "textbox"
               },
               {
@@ -103,7 +98,6 @@
                 "label": "Program",
                 "tooltip": "",
                 "visible": true,
-                "format": null,
                 "stringFieldOption": "textbox"
               },
               {
@@ -111,7 +105,6 @@
                 "label": "Sub Program",
                 "tooltip": "",
                 "visible": true,
-                "format": null,
                 "stringFieldOption": "textbox"
               },
               {
@@ -119,7 +112,6 @@
                 "label": "Work Description",
                 "tooltip": "",
                 "visible": true,
-                "format": null,
                 "stringFieldOption": "textbox"
               },
               {
@@ -127,15 +119,19 @@
                 "label": "Preliminary Engineering Start",
                 "tooltip": "",
                 "visible": true,
-                "format": null,
+                "format": {
+                  "dateFormat": "longMonthDayYear"
+                },
                 "stringFieldOption": "textbox"
               },
               {
-                "fieldName": "Ad_date",
+                "fieldName": "Ad_Date",
                 "label": "Advertisement",
                 "tooltip": "",
                 "visible": true,
-                "format": null,
+                "format": {
+                  "dateFormat": "longMonthDayYear"
+                },
                 "stringFieldOption": "textbox"
               },
               {
@@ -143,7 +139,9 @@
                 "label": "Operationally Complete",
                 "tooltip": "",
                 "visible": true,
-                "format": null,
+                "format": {
+                  "dateFormat": "longMonthDayYear"
+                },
                 "stringFieldOption": "textbox"
               },
               {
@@ -151,7 +149,6 @@
                 "label": "Revenue Package",
                 "tooltip": "",
                 "visible": true,
-                "format": null,
                 "stringFieldOption": "textbox"
               },
               {
@@ -159,7 +156,6 @@
                 "label": "Funding Source",
                 "tooltip": "",
                 "visible": true,
-                "format": null,
                 "stringFieldOption": "textbox"
               },
               {
@@ -167,7 +163,6 @@
                 "label": "Congressional District",
                 "tooltip": "",
                 "visible": true,
-                "format": null,
                 "stringFieldOption": "textbox"
               },
               {
@@ -175,7 +170,6 @@
                 "label": "Legislative District",
                 "tooltip": "",
                 "visible": true,
-                "format": null,
                 "stringFieldOption": "textbox"
               },
               {
@@ -183,7 +177,6 @@
                 "label": "County",
                 "tooltip": "",
                 "visible": true,
-                "format": null,
                 "stringFieldOption": "textbox"
               },
               {
@@ -191,7 +184,6 @@
                 "label": "Route",
                 "tooltip": "",
                 "visible": true,
-                "format": null,
                 "stringFieldOption": "textbox"
               },
               {
@@ -221,15 +213,13 @@
                 "label": "Shape",
                 "tooltip": "",
                 "visible": false,
-                "format": null,
                 "stringFieldOption": "textbox"
               },
               {
                 "fieldName": "LRS_Date",
                 "label": "SRMP Date",
                 "tooltip": "",
-                "visible": true,
-                "format": null,
+                "visible": false,
                 "stringFieldOption": "textbox"
               }
             ],
@@ -257,7 +247,7 @@
         "layerType": "ArcGISTiledMapServiceLayer",
         "opacity": 1,
         "visibility": true,
-        "url": "http://www.wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/WebBaseMapWebMercator/MapServer"
+        "url": "http://wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/WebBaseMapWebMercator/MapServer"
       }
     ],
     "title": "WSDOT Basemap"
@@ -268,5 +258,24 @@
   },
   "authoringApp": "WebMapViewer",
   "authoringAppVersion": "3.10",
-  "version": "2.3"
+  "version": "2.3",
+  "applicationProperties": {
+    "viewing": {
+      "routing": {
+        "enabled": true
+      },
+      "measure": {
+        "enabled": true
+      },
+      "basemapGallery": {
+        "enabled": true
+      },
+      "search": {
+        "enabled": true,
+        "disablePlaceFinder": false,
+        "hintText": "Place or Address",
+        "layers": [ ]
+      }
+    }
+  }
 }
