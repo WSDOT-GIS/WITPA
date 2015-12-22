@@ -29,25 +29,45 @@ define(["dojo/text!./Templates/ProjectFilter.html"], function (template) {
 
         // Create a where clause from the values the user has entered into the _form.
         _form.onsubmit = function () {
+            // Get all of the input boxes that have values entered into them.
             var inputs = _form.querySelectorAll("[name]");
 
+            // Initialize the array that will hold field queries.
             var values = [];
 
-            Array.from(inputs, function (input) {
-                return input;
-            }).forEach(function (input) {
+            // Loop through all of the input elements and create the queries, adding them to the array.
+            Array.from(inputs, function (input) { return input; }).forEach(function (input) {
                 var whereTemplate;
                 if (input.value) {
+                    // Get the value of the data-where-template attribute, if available.
                     whereTemplate = input.dataset.whereTemplate;
+                    // If there is no data-where-template attribute, get the corresponding select element that will have the query template.
                     if (!whereTemplate) {
                         whereTemplate = _form.querySelector("[data-where-template-for='" + input.name + "']");
                         whereTemplate = whereTemplate ? whereTemplate.value : null;
                     }
+                    // If the template was found, use the string template to create the where clause and
+                    // add it to the array.
                     if (whereTemplate) {
                         values.push(whereTemplate.replace("{field}", input.name).replace("{value}", input.value));
                     }
                 }
             });
+
+            // Handle the "IS NULL" queries
+            // Get all of the selected null option elements that are selected.
+            var nullOptions = _form.querySelectorAll("option:checked[value$='IS NULL']");
+            console.debug("null options", nullOptions);
+            // If any are selected, convert them to queries and add to the values array.
+            if (nullOptions) {
+                Array.from(nullOptions, function (/**{HTMLOptionElement}*/ option) {
+                    var whereTemplate = option.value;
+                    var select = option.parentElement;
+                    var fieldName = select.dataset.whereTemplateFor;
+                    var query = whereTemplate.replace('{field}', fieldName);
+                    values.push(query);
+                });
+            }
             
             values = values.length > 0 ? values.join(" AND ") : null;
 

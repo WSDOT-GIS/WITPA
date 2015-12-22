@@ -33,5 +33,5 @@ define([
 
     return {
         makeInfoWindowDraggable: makeInfoWindowDraggable
-    }
+    };
 });
