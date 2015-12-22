@@ -233,11 +233,11 @@
     {
       "id": "MilepostValues",
       "layerType": "ArcGISMapServiceLayer",
-      "url": "http://wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/MilepostValues/MapServer",
-      "visibility": false,
+      "url": "http://www.wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/MilepostValues/MapServer",
+      "visibility": true,
       "opacity": 1,
-      "title": "Milepost Values",
-      "itemId": "03ec5ff3609f45caa849d5afa4d92e9e"
+      "minScale": 433000,
+      "title": "Milepost Values"
     }
   ],
   "baseMap": {
@@ -247,7 +247,7 @@
         "layerType": "ArcGISTiledMapServiceLayer",
         "opacity": 1,
         "visibility": true,
-        "url": "http://wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/WebBaseMapWebMercator/MapServer"
+        "url": "http://www.wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/WebBaseMapWebMercator/MapServer"
       }
     ],
     "title": "WSDOT Basemap"
