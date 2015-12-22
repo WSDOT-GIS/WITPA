@@ -315,10 +315,12 @@ require([
             borderContainer.resize();
         });
 
+        var layerListItems = arcgisUtils.getLayerList(response);
+
         // Create the layer list.
         var layerList = new LayerList({
             map: response.map,
-            layers: arcgisUtils.getLayerList(response),
+            layers: layerListItems,
             showLegend: true,
             showOpacitySlider: true,
             showSublayers: true

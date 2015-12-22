@@ -85,3 +85,7 @@ html, body {
 .esriPopup .pointer.hidden, .esriPopup .outerPointer.hidden {
     display: none;
 }
+
+.esriLayerList > .esriContainer > .esriList > .esriLayer:nth-child(2) .esriLabel {
+    font-weight: bold;
+}
