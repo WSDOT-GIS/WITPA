@@ -48,21 +48,51 @@
             <input id="endMPInput" name="End_Mile_Post" type="number" min="0" class="form-control" placeholder="End Milepost" />
         </div>
     </div>
-    <!--<div class="form-group">
-        <label for="constructionYearInput">Construction Year</label>
+    <div class="form-group">
+        <label for="peStartDateInput">Preliminary Engineering Start Date</label>
         <div class="input-group">
             <span class="input-group-addon">
-                <select>
-                    <option>&lt;</option>
-                    <option>&le;</option>
-                    <option selected="selected">=</option>
-                    <option>&ge;</option>
-                    <option>&gt;</option>
+                <select data-where-template-for="PE_Start_Date">
+                    <option value="{field} &lt; date '{value}'">&lt;</option>
+                    <option value="{field} &lt;= date '{value}''">&le;</option>
+                    <option value="{field} = date '{value}''" selected="selected">=</option>
+                    <option value="{field} &gt;= date '{value}'">&ge;</option>
+                    <option value="{field} &gt; date '{value}''">&gt;</option>
                 </select>
             </span>
-            <input id="constructionYearInput" name="constructionYear" type="text" pattern="\d{4}" class="form-control" title="Please enter a valid year." />
+            <input id="peStartDateInput" name="PE_Start_Date" type="date" class="form-control" />
         </div>
-    </div>-->
+    </div>
+    <div class="form-group">
+        <label for="adDateInput">Advertisement Date</label>
+        <div class="input-group">
+            <span class="input-group-addon">
+                <select data-where-template-for="Ad_Date">
+                    <option value="{field} &lt; date '{value}'">&lt;</option>
+                    <option value="{field} &lt;= date '{value}''">&le;</option>
+                    <option value="{field} = date '{value}''" selected="selected">=</option>
+                    <option value="{field} &gt;= date '{value}'">&ge;</option>
+                    <option value="{field} &gt; date '{value}''">&gt;</option>
+                </select>
+            </span>
+            <input id="adDateInput" name="Ad_Date" type="date" class="form-control" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="ocDateInput">Operationally Complete Date</label>
+        <div class="input-group">
+            <span class="input-group-addon">
+                <select data-where-template-for="OC_Date">
+                    <option value="{field} &lt; date '{value}'">&lt;</option>
+                    <option value="{field} &lt;= date '{value}''">&le;</option>
+                    <option value="{field} = date '{value}''" selected="selected">=</option>
+                    <option value="{field} &gt;= date '{value}'">&ge;</option>
+                    <option value="{field} &gt; date '{value}''">&gt;</option>
+                </select>
+            </span>
+            <input id="ocDateInput" name="OC_Date" type="date" class="form-control" />
+        </div>
+    </div>
     <div class="form-group">
         <label for="projectNoInput">Project No.</label>
         <input id="projectNoInput" name="PIN" type="text" class="form-control" 
