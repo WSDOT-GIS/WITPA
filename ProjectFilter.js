@@ -57,7 +57,6 @@ define(["dojo/text!./Templates/ProjectFilter.html"], function (template) {
             // Handle the "IS NULL" queries
             // Get all of the selected null option elements that are selected.
             var nullOptions = _form.querySelectorAll("option:checked[value$='IS NULL']");
-            console.debug("null options", nullOptions);
             // If any are selected, convert them to queries and add to the values array.
             if (nullOptions) {
                 Array.from(nullOptions, function (/**{HTMLOptionElement}*/ option) {

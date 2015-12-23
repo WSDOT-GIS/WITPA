@@ -86,6 +86,18 @@ html, body {
     display: none;
 }
 
-.esriLayerList > .esriContainer > .esriList > .esriLayer:nth-child(2) .esriLabel {
+.esriLayerList .esriList > li:before {
     font-weight: bold;
+}
+
+.esriLayerList .esriList > li:first-child:before {
+    content: 'Project Layers';
+}
+
+.esriLayerList .esriList > li:nth-child(2) {
+    margin-top: 1em;
+}
+
+.esriLayerList .esriList > li:nth-child(2):before {
+    content: 'Other Layers';
 }

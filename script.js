@@ -159,7 +159,7 @@ require([
           "Sub_Program",
           "Work_Description",
           "PE_Start_Date",
-          "Ad_date",
+          "Ad_Date",
           "OC_Date",
           "Revenue_Package",
           "Funding_Source",
@@ -316,6 +316,22 @@ require([
         });
 
         var layerListItems = arcgisUtils.getLayerList(response);
+
+        // Custom sort the layer list items array so that the item with the 
+        // title containing "WSDOT Projects" is last in the array. Other
+        // items will remain in their original order.
+        layerListItems.sort(function (a, b) {
+            var re = /WSDOT Projects/i;
+            var output;
+            if (re.test(a.title)) {
+                output = 1;
+            } else if (re.test(b.title)) {
+                output = -1;
+            } else {
+                output = 0;
+            }
+            return output;
+        });
 
         // Create the layer list.
         var layerList = new LayerList({
