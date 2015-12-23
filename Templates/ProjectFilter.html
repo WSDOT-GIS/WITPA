@@ -59,6 +59,7 @@
                     <option value="{field} &gt;= date '{value}'">&ge;</option>
                     <option value="{field} &gt; date '{value}''">&gt;</option>
                     <option value="{field} IS NULL">NULL</option>
+                    <option value="{field} IS NOT NULL">NOT NULL</option>
                 </select>
             </span>
             <input id="peStartDateInput" name="PE_Start_Date" type="date" class="form-control" />
@@ -75,6 +76,7 @@
                     <option value="{field} &gt;= date '{value}'">&ge;</option>
                     <option value="{field} &gt; date '{value}''">&gt;</option>
                     <option value="{field} IS NULL">NULL</option>
+                    <option value="{field} IS NOT NULL">NOT NULL</option>
                 </select>
             </span>
             <input id="adDateInput" name="Ad_Date" type="date" class="form-control" />
@@ -91,6 +93,7 @@
                     <option value="{field} &gt;= date '{value}'">&ge;</option>
                     <option value="{field} &gt; date '{value}''">&gt;</option>
                     <option value="{field} IS NULL">NULL</option>
+                    <option value="{field} IS NOT NULL">NOT NULL</option>
                 </select>
             </span>
             <input id="ocDateInput" name="OC_Date" type="date" class="form-control" />
@@ -100,17 +103,25 @@
         <label for="projectNoInput">Project No.</label>
         <input id="projectNoInput" name="PIN" type="text" class="form-control" 
                pattern="\d{6}[A-Za-z]" title="Project number (six digits + letter)"
-               data-where-template="{field} = '{value}'" placeholder="Project No." />
+               data-where-template="LOWER({field}) = LOWER('{value}')" placeholder="Project No." />
     </div>
     <div class="form-group">
         <label for="projectTitleInput">Project Title</label>
         <div class="input-group">
             <span class="input-group-addon">
                 <select data-where-template-for="Project_Title">
-                    <option value="{field} = '{value}'">=</option>
-                    <option value="{field} LIKE '{value}%'">Starts with</option>
-                    <option value="{field} LIKE '%{value}'">Ends with</option>
-                    <option value="{field} LIKE '%{value}%'">Contains</option>
+                    <optgroup label="Case-insensitive">
+                        <option value="LOWER({field}) = LOWER('{value}')">=</option>
+                        <option value="LOWER({field}) LIKE LOWER('{value}%')">Starts with</option>
+                        <option value="LOWER({field}) LIKE LOWER('%{value}')">Ends with</option>
+                        <option value="LOWER({field}) LIKE LOWER('%{value}%')">Contains</option>
+                    </optgroup>
+                    <optgroup label="Case-sensitive">
+                        <option value="{field} = '{value}'">=</option>
+                        <option value="{field} LIKE '{value}%'">Starts with</option>
+                        <option value="{field} LIKE '%{value}'">Ends with</option>
+                        <option value="{field} LIKE '%{value}%'">Contains</option>
+                    </optgroup>
                 </select>
             </span>
             <input id="projectTitleInput" name="Project_Title" type="text" title="Please enter a complete or partial project title." 
