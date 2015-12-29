@@ -48,6 +48,7 @@
     <Content Include="images\no-image2.svg" />
     <Content Include="README.md" />
     <Content Include="infoWindowUtils.js" />
+    <Content Include="QueryWorker.js" />
     <Content Include="Templates\ProjectFilter.html" />
     <Content Include="UNLICENSE" />
   </ItemGroup>

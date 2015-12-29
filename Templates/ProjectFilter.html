@@ -103,7 +103,10 @@
         <label for="projectNoInput">Project No.</label>
         <input id="projectNoInput" name="PIN" type="text" class="form-control" 
                pattern="\d{6}[A-Za-z]" title="Project number (six digits + letter)"
-               data-where-template="LOWER({field}) = LOWER('{value}')" placeholder="Project No." />
+               data-where-template="LOWER({field}) = LOWER('{value}')" placeholder="Project No." list="pinList" />
+        <datalist id="pinList" data-field-name="PIN">
+
+        </datalist>
     </div>
     <div class="form-group">
         <label for="projectTitleInput">Project Title</label>
