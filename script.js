@@ -45,6 +45,8 @@ require([
   "esri/dijit/Search",
   "esri/dijit/BasemapGallery",
   "esri/dijit/Legend",
+  "esri/tasks/QueryTask",
+  "esri/tasks/StatisticDefinition",
   "witpa/infoWindowUtils",
   "dojo/text!./webmap/item.json",
   "dojo/text!./webmap/itemdata.json",
@@ -72,6 +74,8 @@ require([
   Search,
   BasemapGallery,
   Legend,
+  QueryTask,
+  StatisticDefinition,
   infoWindowUtils,
   webmapItem,
   webmapItemData
@@ -89,10 +93,13 @@ require([
     // Parse the Dojo layout widgets defined in HTML markup.
     parser.parse();
 
+    webmapItem = JSON.parse(webmapItem);
+    webmapItemData = JSON.parse(webmapItemData);
+
     // Create the map using JSON webmap definition.
     arcgisUtils.createMap({
-        item: JSON.parse(webmapItem),
-        itemData: JSON.parse(webmapItemData)
+        item: webmapItem,
+        itemData: webmapItemData
     }, "map", {
         mapOptions: {
             center: [-120.80566406246835, 47.41322033015946],
@@ -372,9 +379,117 @@ require([
 
     // Show the disclaimer dialog.
     var disclaimerDialog = registry.byId("disclaimerDialog");
-    disclaimerDialog.domNode.querySelector("button").onclick = function () {
+    var disclaimerOkButton = registry.byId("disclaimerButtonOk");
+    disclaimerOkButton.on("click", function () {
         // Hide and then destroy the dialog.
         disclaimerDialog.hide();
-    };
+    });
     disclaimerDialog.show();
+
+    // Get date ranges.
+    // TODO: Use background worker process.
+    function getOperationalLayer(webMapData, opLayerId) {
+        var opLayers = webMapData.operationalLayers;
+        var opLayer;
+        for (var i = 0; i < opLayers.length; i++) {
+            if (opLayers[i].id === opLayerId) {
+                opLayer = opLayers[i];
+                break;
+            }
+        }
+        return opLayer;
+    }
+    
+    /**
+     * Execute a query for min and max values for date fields, 
+     * then add min and max attributes to date input elements
+     * upon query completion.
+     * @param {string} url - The URL for the QueryTask constructor.
+     */
+    (function (url) {
+        var queryTask = new QueryTask(url);
+        var query = new Query();
+
+        query.where = "Ad_Date IS NOT NULL";
+        query.f = "json";
+        // Create array of objects, then convert them to StatisticsDefinition objects.
+        query.outStatistics = [
+            {
+                statisticType: "min",
+                onStatisticField: "Ad_Date",
+                outStatisticFieldName: "Min_Ad_Date"
+            },
+            {
+                statisticType: "min",
+                onStatisticField: "OC_Date",
+                outStatisticFieldName: "Min_OC_Date"
+            },
+            {
+                statisticType: "min",
+                onStatisticField: "PE_Start_Date",
+                outStatisticFieldName: "Min_PE_Start_Date"
+            },
+            {
+                statisticType: "max",
+                onStatisticField: "Ad_Date",
+                outStatisticFieldName: "Max_Ad_Date"
+            },
+            {
+                statisticType: "max",
+                onStatisticField: "OC_Date",
+                outStatisticFieldName: "Max_OC_Date"
+            },
+            {
+                statisticType: "max",
+                onStatisticField: "PE_Start_Date",
+                outStatisticFieldName: "Max_PE_Start_Date"
+            }
+        ].map(function (item) {
+            var stat = new StatisticDefinition();
+            stat.statisticType = item.statisticType;
+            stat.onStatisticField = item.onStatisticField;
+            stat.outStatisticFieldName = item.outStatisticFieldName;
+            return stat;
+        });
+
+
+
+        queryTask.execute(query).then(function (response) {
+            // Check the response for expected properties.
+            if (!(response && response.features && response.features.length > 0 && response.features[0].attributes)) {
+                throw new Error("Query did not return results in expected format", response);
+            }
+            // There should only be a single feature and we only care about it's attributes, since there's no geometry involved.
+            var values = response.features[0].attributes;
+
+            /**
+             * Converts an integer into a string representation of a date suitable for date input element attributes.
+             * @param {number} n - An integer representation of a date.
+             * @returns {string} string representation of the input date value.
+             */
+            function toDateString(n) {
+                var date = new Date(n);
+                date = date.toISOString().replace(/T.+$/i, "");
+                return date;
+            }
+
+            // Create a list of field ranges.
+            var ranges = {
+                Ad_Date: [values.Min_Ad_Date, values.Max_Ad_Date].map(toDateString),
+                OC_Date: [values.Min_OC_Date, values.Max_OC_Date].map(toDateString),
+                PE_Start_Date: [values.Min_PE_Start_Date, values.Max_PE_Start_Date].map(toDateString)
+            }
+
+            var node, rangeArray, fieldName;
+
+            for (fieldName in ranges) {
+                // Get the select element corresponding to the field name.
+                node = document.querySelector("[name='" + fieldName + "']");
+                // Set the min and max attributes of the select element.
+                rangeArray = ranges[fieldName];
+                node.setAttribute("min", rangeArray[0]);
+                node.setAttribute("max", rangeArray[1]);
+            }
+        });
+    }(getOperationalLayer(webmapItemData, "SixYearPlan").url + "/0/query"));
 });
