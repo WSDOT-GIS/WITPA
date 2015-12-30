@@ -385,9 +385,8 @@ require([
         disclaimerDialog.hide();
     });
     disclaimerDialog.show();
+    disclaimerDialog.resize();
 
-    // Get date ranges.
-    // TODO: Use background worker process.
     function getOperationalLayer(webMapData, opLayerId) {
         var opLayers = webMapData.operationalLayers;
         var opLayer;
