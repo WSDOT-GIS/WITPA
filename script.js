@@ -192,7 +192,7 @@ require([
 
         map.addLayer(layer);
 
-        // When the user submits a query, set the feature layer's definition expression 
+        // When the user submits a query, set the feature layer's definition expression
         // so that only those rows are shown in the table.
         projectFilter.form.addEventListener("submit-query", function (e) {
             layer.clearSelection();
@@ -294,7 +294,7 @@ require([
         }
 
         /**
-         * 
+         *
          * @param {DGridRow} rows
          */
         table.on("dgrid-select", function (rows) {
@@ -324,7 +324,7 @@ require([
 
         var layerListItems = arcgisUtils.getLayerList(response);
 
-        // Custom sort the layer list items array so that the item with the 
+        // Custom sort the layer list items array so that the item with the
         // title containing "WSDOT Projects" is last in the array. Other
         // items will remain in their original order.
         layerListItems.sort(function (a, b) {
@@ -398,9 +398,9 @@ require([
         }
         return opLayer;
     }
-    
+
     /**
-     * Execute a query for min and max values for date fields, 
+     * Execute a query for min and max values for date fields,
      * then add min and max attributes to date input elements
      * upon query completion.
      * @param {string} url - The URL for the QueryTask constructor.
@@ -408,23 +408,63 @@ require([
     (function (url) {
         var worker = new Worker("QueryWorker.js");
 
+        /**
+         * Handles messages from web worker.
+         * @param {Event} e - worker message event
+         * @param {Object} e.data - Data passed from worker.
+         */
         worker.addEventListener("message", function (e) {
-            console.log("message received", e.data);
+
+            /**
+             * Adds values to the datalist corresponding to the given field name.
+             * @param {string} fieldName - The name of a field in a map service layer.
+             * @param {string[]} values - Values to be added to the datalist.
+             */
+            function addToDataList(fieldName, values) {
+                var datalist, docFrag;
+                datalist = document.querySelector("datalist[data-field-name='" + fieldName + "']");
+                if (datalist) {
+                    docFrag = document.createDocumentFragment();
+                    values.forEach(function (value) {
+                        var option = document.createElement("option");
+                        option.value = value;
+                        docFrag.appendChild(option);
+                    });
+                    datalist.appendChild(docFrag);
+                }
+            }
+
+            /**
+             * Adds attributes to input elements.
+             * @param {Object.<string, Object.<string, string>>} values - Object containing objects containing date representation strings.
+             */
+            function addAttributes(values) {
+                var fieldName, value, input, selector;
+                for (fieldName in values) {
+                    if (values.hasOwnProperty(fieldName)) {
+                        value = values[fieldName];
+                        selector = "input[type=date][name=" + fieldName + "]";
+                        input = document.querySelector(selector);
+                        if (input) {
+                            for (var attrName in value) {
+                                if (value.hasOwnProperty(attrName)) {
+                                    input.setAttribute(attrName, value[attrName]);
+                                }
+                            }
+                        } else {
+                            console.error("Expected input element not found.", selector);
+                        }
+                    }
+                }
+            }
 
             var data = e.data;
-            var datalist, docFrag;
             if (data.fieldName) {
-                datalist = document.querySelector("datalist[data-field-name='" + data.fieldName + "']");
+                addToDataList(data.fieldName, data.values);
+            } else if (data.ranges) {
+                addAttributes(data.ranges);
             }
-            if (datalist) {
-                docFrag = document.createDocumentFragment();
-                data.values.forEach(function (value) {
-                    var option = document.createElement("option");
-                    option.value = value;
-                    docFrag.appendChild(option);
-                });
-                datalist.appendChild(docFrag);
-            }
+
         });
 
         worker.addEventListener("error", function (e) {

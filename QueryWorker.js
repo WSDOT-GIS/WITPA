@@ -77,6 +77,7 @@ function submitQueryForUniqueValues(fieldName, resultOffset) {
         });
 
         self.postMessage({
+            type: "datalist",
             query: query,
             values: values,
             fieldName: fieldName,
@@ -159,8 +160,8 @@ function submitDatesQuery() {
         };
 
         self.postMessage({
-            type: "query response",
-            response: ranges
+            type: "date ranges",
+            ranges: ranges
         });
     };
     request.send();
