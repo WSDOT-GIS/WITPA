@@ -91,8 +91,6 @@ function submitQueryForUniqueValues(fieldName, resultOffset) {
 
     };
     request.send();
-
-
 }
 
 function submitDatesQuery() {

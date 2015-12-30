@@ -400,12 +400,12 @@ require([
     }
 
     /**
-     * Execute a query for min and max values for date fields,
-     * then add min and max attributes to date input elements
-     * upon query completion.
-     * @param {string} url - The URL for the QueryTask constructor.
+     * Setup the background worker process for querying the 6-year project map service
+     * for input suggestions.
+     * @param {string} url - The URL for the map service layer to be queried.
      */
     (function (url) {
+        // Create the worker.
         var worker = new Worker("QueryWorker.js");
 
         /**
@@ -458,7 +458,13 @@ require([
                 }
             }
 
+            // Get the data from the worker message.
             var data = e.data;
+            // If the data contains a "fieldName" property, it is the result of
+            // a query for unique values for a single field.
+            //
+            // If the data has a "ranges" property, it is the result of a query
+            // for the min and max values of the date fields.
             if (data.fieldName) {
                 addToDataList(data.fieldName, data.values);
             } else if (data.ranges) {
@@ -467,10 +473,12 @@ require([
 
         });
 
+        // Set up worker event handler for error messages.
         worker.addEventListener("error", function (e) {
             console.error(e.data);
         });
 
-        worker.postMessage({ url: url});
+        // Send the map service layer URL to the web worker, which will start it processing.
+        worker.postMessage({ url: url });
     }(getOperationalLayer(webmapItemData, "SixYearPlan").url + "/0"));
 });
