@@ -23,7 +23,7 @@
       "layerType": "ArcGISTiledMapServiceLayer",
       "url": "http://www.wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/CityLimits/MapServer",
       "visibility": false,
-      "opacity": 1,
+      "opacity": 0.54,
       "title": "City Limits",
       "itemId": "bb7c67c334be494c88cf00ebb91fe51f"
     },
