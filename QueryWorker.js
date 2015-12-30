@@ -184,5 +184,6 @@ self.addEventListener("message", function (e) {
         submitDatesQuery();
         submitQueryForUniqueValues("PIN");
         submitQueryForUniqueValues("Project_Title");
+        submitQueryForUniqueValues("Route");
     }
 });
