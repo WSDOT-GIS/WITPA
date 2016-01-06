@@ -4,6 +4,7 @@
 var queryTask;
 var layerUrl;
 
+// Add shim for browsers that don't support Promise. (E.g., IE 11)
 if (!this.Promise) {
     self.importScripts("bower_components/es6-shim/es6-shim.min.js");
 }
@@ -36,10 +37,10 @@ function objectToQueryString(o) {
 }
 
 /**
-    * Converts an integer into a string representation of a date suitable for date input element attributes.
-    * @param {number} n - An integer representation of a date.
-    * @returns {string} string representation of the input date value (RFC 3339 format).
-    */
+ * Converts an integer into a string representation of a date suitable for date input element attributes.
+ * @param {number} n - An integer representation of a date.
+ * @returns {string} string representation of the input date value (RFC 3339 format).
+ */
 function toDateString(n) {
     var date = new Date(n);
     date = date.toISOString().replace(/T.+$/i, "");
@@ -50,6 +51,8 @@ function toDateString(n) {
  * Begins a query for unique values.
  * @param {string} fieldName - The name of a field to get unique values for
  * @param {number} [resultOffset=0] - When a query exceeds the maximum number of records that can be requested from a service, use this value to send another request and start where you left off.
+ * @param {Array.<string>} [previousValues=undefined] - When multiple queries are required to get all records, use this value to pass the previous queries' results.
+ * @returns {Promise.<Object.<string, (boolean|string[])>>} Values returned from the query.
  */
 function submitQueryForUniqueValues(fieldName, resultOffset, previousValues) {
     var query = {
@@ -94,10 +97,13 @@ function submitQueryForUniqueValues(fieldName, resultOffset, previousValues) {
             values = previousValues ? previousValues.concat(values) : values;
 
             if (exceededTransferLimit) {
+                // If the query exceeded the amount of returned records for the service, submit a new query.
                 submitQueryForUniqueValues(fieldName, resultOffset + values.length, values).then(function (resultPromise) {
                     if (resultPromise && resultPromise.complete) {
                         resolve(resultPromise);
                     }
+                }, function (err) {
+                    reject(err);
                 });
             } else {
                 resolve({

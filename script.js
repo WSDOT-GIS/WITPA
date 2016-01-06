@@ -405,6 +405,12 @@ require([
      * @param {string} url - The URL for the map service layer to be queried.
      */
     (function (url) {
+
+        if (!window.Worker) {
+            console.log("This browser doesn't support web workers. Some features are not available.");
+            return;
+        }
+
         // Create the worker.
         var worker = new Worker("QueryWorker.js");
 
