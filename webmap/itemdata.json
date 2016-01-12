@@ -20,12 +20,83 @@
     },
     {
       "id": "CityLimits",
-      "layerType": "ArcGISTiledMapServiceLayer",
-      "url": "http://www.wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/CityLimits/MapServer",
+      "layerType": "ArcGISMapServiceLayer",
+      "url": "http://data.wsdot.wa.gov/arcgis/rest/services/Shared/CityLimits/MapServer",
       "visibility": false,
-      "opacity": 0.54,
+      "opacity": 0.52,
       "title": "City Limits",
-      "itemId": "bb7c67c334be494c88cf00ebb91fe51f"
+      "layers": [
+        {
+          "id": 0,
+          "layerDefinition": {
+            "source": {
+              "type": "mapLayer",
+              "mapLayerId": 0
+            }
+          },
+          "name": "Cities",
+          "minScale": 1500000,
+          "maxScale": 750001,
+          "parentLayerId": -1,
+          "defaultVisibility": true
+        },
+        {
+          "id": 1,
+          "layerDefinition": {
+            "source": {
+              "type": "mapLayer",
+              "mapLayerId": 1
+            }
+          },
+          "name": "Major Cities",
+          "minScale": 0,
+          "maxScale": 1500001,
+          "parentLayerId": -1,
+          "defaultVisibility": true
+        },
+        {
+          "id": 2,
+          "layerDefinition": {
+            "source": {
+              "type": "mapLayer",
+              "mapLayerId": 2
+            },
+            "drawingInfo": {
+              "renderer": {
+                "type": "simple",
+                "label": "",
+                "description": "",
+                "symbol": {
+                  "color": [
+                    227,
+                    139,
+                    79,
+                    255
+                  ],
+                  "outline": {
+                    "color": [
+                      128,
+                      128,
+                      128,
+                      255
+                    ],
+                    "width": 0.4,
+                    "type": "esriSLS",
+                    "style": "esriSLSSolid"
+                  },
+                  "type": "esriSFS",
+                  "style": "esriSFSSolid"
+                }
+              }
+            }
+          },
+          "name": "Incorporated City Boundaries",
+          "minScale": 581848,
+          "maxScale": 9027,
+          "parentLayerId": -1,
+          "defaultVisibility": true
+        }
+      ]
     },
     {
       "id": "RegionalTransportationPlanning",
@@ -236,8 +307,8 @@
       "url": "http://www.wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/MilepostValues/MapServer",
       "visibility": true,
       "opacity": 1,
-      "minScale": 433000,
-      "title": "Milepost Values"
+      "title": "Milepost Values",
+      "itemId": "03ec5ff3609f45caa849d5afa4d92e9e"
     }
   ],
   "baseMap": {
@@ -253,8 +324,7 @@
     "title": "WSDOT Basemap"
   },
   "spatialReference": {
-    "wkid": 102100,
-    "latestWkid": 3857
+    "wkid": 102100
   },
   "authoringApp": "WebMapViewer",
   "authoringAppVersion": "3.10",
@@ -274,7 +344,7 @@
         "enabled": true,
         "disablePlaceFinder": false,
         "hintText": "Place or Address",
-        "layers": [ ]
+        "layers": []
       }
     }
   }
