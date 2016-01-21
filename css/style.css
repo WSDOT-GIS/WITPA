@@ -8,6 +8,10 @@ html, body, #borderContainer, #map {
   height: 100%;
 }
 
+#disclaimerDialog {
+    max-width: 500px;
+}
+
 /* Color the input text in IE */
 input:-ms-input-placeholder {
     color: lightgray;

@@ -40,6 +40,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="bower_components\es6-shim\es6-sham.js" />
+    <Content Include="bower_components\es6-shim\es6-sham.min.js" />
+    <Content Include="bower_components\es6-shim\es6-shim.js" />
+    <Content Include="bower_components\es6-shim\es6-shim.min.js" />
     <Content Include="css\bootstrap-mimic.css" />
     <Content Include="css\FeatureTable.css" />
     <Content Include="css\style.css" />
@@ -68,6 +72,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="webmap\itemdata.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bower_components\es6-shim\es6-sham.map" />
+    <Content Include="bower_components\es6-shim\es6-shim.map" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
