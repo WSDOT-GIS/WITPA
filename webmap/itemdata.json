@@ -3,20 +3,18 @@
     {
       "id": "CountyBoundaries",
       "layerType": "ArcGISTiledMapServiceLayer",
-      "url": "http://www.wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/CountyBoundaries/MapServer",
+      "url": "http://data.wsdot.wa.gov/arcgis/rest/services/Shared/CountyBoundaries/MapServer",
       "visibility": false,
       "opacity": 1,
-      "title": "County Boundaries",
-      "itemId": "fe229f9df5aa4289b8ccd2a99289951b"
+      "title": "County Boundaries"
     },
     {
       "id": "LegislativeDistricts",
       "layerType": "ArcGISMapServiceLayer",
-      "url": "http://www.wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/LegislativeDistricts/MapServer",
+      "url": "http://data.wsdot.wa.gov/arcgis/rest/services/Shared/LegislativeDistricts/MapServer",
       "visibility": false,
       "opacity": 1,
-      "title": "Legislative Districts",
-      "itemId": "f6d17366bae34d5f996386c2d46263ec"
+      "title": "Legislative Districts"
     },
     {
       "id": "CityLimits",
@@ -101,20 +99,18 @@
     {
       "id": "RegionalTransportationPlanning",
       "layerType": "ArcGISMapServiceLayer",
-      "url": "http://www.wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/RegionalTransportationPlanning/MapServer",
+      "url": "http://data.wsdot.wa.gov/arcgis/rest/services/Shared/RegionalTransportationPlanning/MapServer",
       "visibility": false,
       "opacity": 1,
-      "title": "Regional Transportation Planning Organization",
-      "itemId": "d1de4f2d8a8348e0af97c858c7cff8ad"
+      "title": "Regional Transportation Planning Organization"
     },
     {
       "id": "RegionBoundaries",
       "layerType": "ArcGISTiledMapServiceLayer",
-      "url": "http://www.wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/RegionBoundaries/MapServer",
+      "url": "http://data.wsdot.wa.gov/arcgis/rest/services/Shared/RegionBoundaries/MapServer",
       "visibility": false,
       "opacity": 1,
-      "title": "Region Boundaries",
-      "itemId": "1c0845bd12944017b3bb3631bda09e0e"
+      "title": "Region Boundaries"
     },
     {
       "id": "SixYearPlan",

@@ -61,9 +61,7 @@
     <Content Include="ProjectFilter.js" />
     <Content Include="script.js" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Properties\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="bower.json" />
   </ItemGroup>
@@ -76,6 +74,9 @@
   <ItemGroup>
     <Content Include="bower_components\es6-shim\es6-sham.map" />
     <Content Include="bower_components\es6-shim\es6-shim.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\PublishProfiles\QA %28Internal%29.pubxml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

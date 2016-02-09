@@ -8,6 +8,28 @@ html, body, #borderContainer, #map {
   height: 100%;
 }
 
+#topPane {
+    display:flex;
+}
+
+    #topPane > div:first-child {
+        -ms-flex: 0;
+        -webkit-flex: 0;
+        flex: 0;
+    }
+
+    /* Stretch page title to fill non-logo space. */
+    #topPane > div:last-child {
+        -ms-flex: auto;
+        -webkit-flex: auto;
+        flex: auto;
+    }
+
+    #topPane h1 {
+        text-align: center;
+        margin: 0;
+    }
+
 #disclaimerDialog {
     max-width: 500px;
 }
@@ -22,11 +44,6 @@ html, body {
   overflow: hidden;
 }
 
-#topPane > div, #topPane h1 {
-    display: inline;
-    vertical-align: central;
-}
-
 /* fix for Bootstrap CSS messing up table grid_menu size
 #table_gridMenu {
   height: auto;
@@ -38,12 +55,12 @@ html, body {
 }
 
 #tablePane {
-  height: 350px;
+  height: 200px;
   padding: 0;
 }
 
 #toolsPane {
-  width: 300px;
+  width: 400px;
 }
 
 #homeButton {
