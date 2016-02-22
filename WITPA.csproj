@@ -47,6 +47,7 @@
     <Content Include="css\bootstrap-mimic.css" />
     <Content Include="css\FeatureTable.css" />
     <Content Include="css\style.css" />
+    <Content Include="images\MultilevelThumbnail.png" />
     <Content Include="images\no-image.png" />
     <Content Include="images\no-image.svg" />
     <Content Include="images\no-image2.svg" />
@@ -55,6 +56,7 @@
     <Content Include="QueryWorker.js" />
     <Content Include="Templates\ProjectFilter.html" />
     <Content Include="UNLICENSE" />
+    <Content Include="wsdotMapUtils.js" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="index.html" />
