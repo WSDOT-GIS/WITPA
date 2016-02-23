@@ -332,7 +332,10 @@ require([
             },
             basemaps: [
                 wsdotMapUtils.esriBasemaps["wsdot-multilevel"]
-            ]
+            ],
+            basemapIds: wsdotMapUtils.esriBasemaps["wsdot-multilevel"].layers.map(function (layer) {
+                return layer.id;
+            })
         }, "basemapGallery");
         basemapGallery.startup();
 
