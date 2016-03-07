@@ -40,6 +40,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="bower_components\customevent-polyfill\customevent-polyfill.js" />
+    <Content Include="bower_components\customevent-polyfill\customevent-polyfill.min.js" />
     <Content Include="bower_components\es6-shim\es6-sham.js" />
     <Content Include="bower_components\es6-shim\es6-sham.min.js" />
     <Content Include="bower_components\es6-shim\es6-shim.js" />

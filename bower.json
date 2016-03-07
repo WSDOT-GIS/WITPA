@@ -25,6 +25,7 @@
     "tests"
   ],
   "dependencies": {
-    "es6-shim": "~0.34.0"
+    "es6-shim": "~0.34.0",
+    "customevent-polyfill": "^1.0.0"
   }
 }
