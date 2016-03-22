@@ -15,7 +15,7 @@
         "layers": [
           {
               "id": "wsdotMultilevel0",
-              "url": "http://wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/WebBaseMapWebMercator/MapServer",
+              "url": "http://www.wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/WebBaseMapWebMercator/MapServer",
               "displayLevels": [0, 1, 2, 3, 4, 5, 6]
           },
           {

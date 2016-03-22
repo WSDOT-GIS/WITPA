@@ -118,3 +118,7 @@ html, body {
 .esriLayerList .esriList > li:nth-child(2):before {
     content: 'Other Layers';
 }
+
+.basic-mode .advanced-filters {
+    display: none;
+}

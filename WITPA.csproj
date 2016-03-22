@@ -49,6 +49,7 @@
     <Content Include="css\bootstrap-mimic.css" />
     <Content Include="css\FeatureTable.css" />
     <Content Include="css\style.css" />
+    <Content Include="images\acronymlogo.svg" />
     <Content Include="images\MultilevelThumbnail.png" />
     <Content Include="images\no-image.png" />
     <Content Include="images\no-image.svg" />

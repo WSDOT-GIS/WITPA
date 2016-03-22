@@ -300,8 +300,8 @@
     {
       "id": "MilepostValues",
       "layerType": "ArcGISMapServiceLayer",
-      "url": "http://www.wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/MilepostValues/MapServer",
-      "visibility": true,
+      "url": "http://data.wsdot.wa.gov/arcgis/rest/services/Shared/MilepostValues/MapServer",
+      "visibility": false,
       "opacity": 1,
       "title": "Milepost Values",
       "itemId": "03ec5ff3609f45caa849d5afa4d92e9e"

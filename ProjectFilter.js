@@ -23,14 +23,27 @@ define(["dojo/text!./Templates/ProjectFilter.html"], function (template) {
      */
     function ProjectFilter() {
         var _form = document.createElement("form");
+        _form.classList.add("basic-mode");
         var self = this;
 
         _form.innerHTML = template;
 
+        _form.querySelector(".advanced-link").addEventListener("click", function (e) {
+            _form.classList.toggle("basic-mode");
+            _form.classList.toggle("advanced-mode");
+            e.preventDefault();
+        });
+
+        // Gets the appropriate input elements based on if the form is in "basic" or "advanced" mode.
+        function GetInputs() {
+            var qs = _form.classList.contains("basic-mode") ? ".basic-filters [name]" : "[name]";
+            return _form.querySelectorAll(qs);
+        }
+
         // Create a where clause from the values the user has entered into the _form.
         _form.onsubmit = function () {
             // Get all of the input boxes that have values entered into them.
-            var inputs = _form.querySelectorAll("[name]");
+            var inputs = GetInputs();
 
             // Initialize the array that will hold field queries.
             var values = [];
@@ -67,7 +80,7 @@ define(["dojo/text!./Templates/ProjectFilter.html"], function (template) {
                     values.push(query);
                 });
             }
-            
+
             values = values.length > 0 ? values.join(" AND ") : null;
 
             var customEvent;
@@ -83,12 +96,13 @@ define(["dojo/text!./Templates/ProjectFilter.html"], function (template) {
             }
 
             return false;
+
+
         };
 
         Object.defineProperties(this, {
             /**
              * The HTML form
-             * 
              * @type {external:HTMLFormElement}
              * @instance
              * @memberOf module:ProjectFilter
@@ -104,7 +118,6 @@ define(["dojo/text!./Templates/ProjectFilter.html"], function (template) {
 
 /**
  * Submit query event
- * 
  * @event module:ProjectFilter#submit-query
  * @type {CustomEvent}
  * @property {Object} detail - Details about the submitted query
