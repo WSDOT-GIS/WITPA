@@ -176,6 +176,12 @@ require([
             dynamicLayer.setLayerDefinitions([
                 e.detail.where
             ]);
+            var query = new Query();
+            query.where = e.detail.where;
+            layer.queryExtent(query).then(function (queryExtentResponse) {
+                var extent = queryExtentResponse.extent;
+                map.setExtent(extent);
+            });
             table.grid.refresh();
 
         });
@@ -217,6 +223,22 @@ require([
         }, "table");
         table.startup();
 
+        function zoomToFeatures(features) {
+            var geometries;
+            if (features && features.length > 0) {
+                if (features.length === 1) {
+                    map.setExtent(features[0].geometry.getExtent(), true);
+                } else {
+                    geometries = features.map(function (graphic) {
+                        return graphic.geometry;
+                    });
+                    geometryEngineAsync.union(geometries).then(function (unionedGeometry) {
+                        map.setExtent(unionedGeometry.getExtent(), true);
+                    });
+                }
+            }
+        }
+
         /**
          * @typedef {Object} DGridRow
          * @property {Object} data
@@ -239,33 +261,25 @@ require([
                 return parseInt(row.id, 10);
             });
             query.objectIds = objectIds;
-            return layer.selectFeatures(query, selectionMethod).then(function () {
-                var features = layer.getSelectedFeatures();
-                var geometries;
-                if (features && features.length > 0) {
-                    if (features.length === 1) {
-                        map.setExtent(features[0].geometry.getExtent(), true);
-                    } else {
-                        geometries = features.map(function (graphic) {
-                            return graphic.geometry;
-                        });
-                        geometryEngineAsync.union(geometries).then(function (unionedGeometry) {
-                            map.setExtent(unionedGeometry.getExtent(), true);
-                        });
-                    }
-                }
-            });
+            return layer.selectFeatures(query, selectionMethod);
         }
+
+        layer.on("selection-complete", function (features, selectionMethod) {
+            features = layer.getSelectedFeatures();
+            zoomToFeatures(features);
+        });
 
         /**
          *
          * @param {DGridRow} rows
          */
         table.on("row-select", function (rows) {
+            console.debug("row-select", rows);
             selectOrDeselectFeatures(rows);
         });
 
         table.on("row-deselect", function (rows) {
+            console.debug("row-deselect", rows);
             selectOrDeselectFeatures(rows, true);
         });
 
