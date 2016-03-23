@@ -88,7 +88,7 @@ require([
 
     filterPane.appendChild(projectFilter.form);
 
-    ["hqolymgis98d", "hqolymgis98d:6080"].forEach(function (server) {
+    ["hqolymgis98d"].forEach(function (server) {
         esriConfig.defaults.io.corsEnabledServers.push(server);
     });
 
@@ -162,7 +162,8 @@ require([
         var layer = new FeatureLayer(featureLayerUrl, {
             id: "wsdotprojects",
             mode: FeatureLayer.MODE_SELECTION,
-            outFields: outFields
+            outFields: outFields,
+            orderByFields: ["Project_Title"]
         });
 
         map.addLayer(layer);
@@ -198,10 +199,7 @@ require([
         table = new FeatureTable({
             featureLayer: layer,
             outFields: outFields,
-            // Clicking on the layer won't work since the feature layer isn't displayed on the map.
-            // The feature layer only displays its selected features.
-            enableLayerClick: false,
-            enableLayerSelection: false,
+            syncSelection: false,
             // The dateOptions are not actually honored: https://geonet.esri.com/message/520158
             /*
             dateOptions: {
@@ -212,18 +210,9 @@ require([
             */
             // These fields are hidden by default, but user can turn them back on.
             hiddenFields: [
-              "Direction_Ind",
-              "LSR_Date",
-              "GIS_Route",
-              "Begin_ARM",
-              "End_ARM",
-              "RRT",
-              "RRQ",
-              "SRMP_Date",
-              "Web_Page",
-              "Mid_Arm"
-
+              "LRS_Date"
             ],
+            showGridHeader: true,
             map: map
         }, "table");
         table.startup();
@@ -272,11 +261,11 @@ require([
          *
          * @param {DGridRow} rows
          */
-        table.on("dgrid-select", function (rows) {
+        table.on("row-select", function (rows) {
             selectOrDeselectFeatures(rows);
         });
 
-        table.on("dgrid-deselect", function (rows) {
+        table.on("row-deselect", function (rows) {
             selectOrDeselectFeatures(rows, true);
         });
 
