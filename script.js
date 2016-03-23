@@ -47,6 +47,8 @@ require([
   "esri/dijit/Legend",
   "esri/tasks/QueryTask",
   "esri/tasks/StatisticDefinition",
+  "esri/symbols/SimpleLineSymbol",
+  "esri/Color",
   "witpa/infoWindowUtils",
   "witpa/wsdotMapUtils",
   "dojo/text!./webmap/item.json",
@@ -77,6 +79,8 @@ require([
   Legend,
   QueryTask,
   StatisticDefinition,
+  SimpleLineSymbol,
+  Color,
   infoWindowUtils,
   wsdotMapUtils,
   webmapItem,
@@ -167,6 +171,10 @@ require([
         });
 
         map.addLayer(layer);
+
+        var selectionSymbol = new SimpleLineSymbol().setColor(new Color([0, 255, 255, 1])).setWidth(2);
+        layer.setSelectionSymbol(selectionSymbol);
+
 
         // When the user submits a query, set the feature layer's definition expression
         // so that only those rows are shown in the table.
@@ -271,15 +279,17 @@ require([
 
         /**
          *
-         * @param {DGridRow} rows
+         * @param {DGridRow[]} rows - The rows that were selected
          */
         table.on("row-select", function (rows) {
-            console.debug("row-select", rows);
             selectOrDeselectFeatures(rows);
         });
 
+        /**
+         *
+         * @param {DGridRow[]} rows - The rows that were unselected
+         */
         table.on("row-deselect", function (rows) {
-            console.debug("row-deselect", rows);
             selectOrDeselectFeatures(rows, true);
         });
 
