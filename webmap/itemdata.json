@@ -6,7 +6,8 @@
       "url": "http://data.wsdot.wa.gov/arcgis/rest/services/Shared/CountyBoundaries/MapServer",
       "visibility": false,
       "opacity": 1,
-      "title": "County Boundaries"
+      "title": "County Boundaries",
+      "itemId": "fe229f9df5aa4289b8ccd2a99289951b"
     },
     {
       "id": "LegislativeDistricts",
@@ -14,15 +15,21 @@
       "url": "http://data.wsdot.wa.gov/arcgis/rest/services/Shared/LegislativeDistricts/MapServer",
       "visibility": false,
       "opacity": 1,
-      "title": "Legislative Districts"
+      "title": "Legislative Districts",
+      "itemId": "f6d17366bae34d5f996386c2d46263ec"
     },
     {
       "id": "CityLimits",
       "layerType": "ArcGISMapServiceLayer",
       "url": "http://data.wsdot.wa.gov/arcgis/rest/services/Shared/CityLimits/MapServer",
       "visibility": false,
-      "opacity": 0.52,
+      "visibleLayers": [
+        2
+      ],
+      "opacity": 0.47,
       "title": "City Limits",
+      "minScale": 1174374,
+      "maxScale": 0,
       "layers": [
         {
           "id": 0,
@@ -62,25 +69,18 @@
             "drawingInfo": {
               "renderer": {
                 "type": "simple",
-                "label": "",
-                "description": "",
                 "symbol": {
-                  "color": [
-                    227,
-                    139,
-                    79,
-                    255
-                  ],
+                  "color": null,
                   "outline": {
                     "color": [
-                      128,
-                      128,
-                      128,
+                      168,
+                      168,
+                      0,
                       255
                     ],
-                    "width": 0.4,
+                    "width": 1.5,
                     "type": "esriSLS",
-                    "style": "esriSLSSolid"
+                    "style": "esriSLSDot"
                   },
                   "type": "esriSFS",
                   "style": "esriSFSSolid"
@@ -89,8 +89,8 @@
             }
           },
           "name": "Incorporated City Boundaries",
-          "minScale": 581848,
-          "maxScale": 9027,
+          "minScale": 1155582,
+          "maxScale": 0,
           "parentLayerId": -1,
           "defaultVisibility": true
         }
@@ -102,7 +102,8 @@
       "url": "http://data.wsdot.wa.gov/arcgis/rest/services/Shared/RegionalTransportationPlanning/MapServer",
       "visibility": false,
       "opacity": 1,
-      "title": "Regional Transportation Planning Organization"
+      "title": "Regional Transportation Planning Organization",
+      "itemId": "d1de4f2d8a8348e0af97c858c7cff8ad"
     },
     {
       "id": "RegionBoundaries",
@@ -110,20 +111,21 @@
       "url": "http://data.wsdot.wa.gov/arcgis/rest/services/Shared/RegionBoundaries/MapServer",
       "visibility": false,
       "opacity": 1,
-      "title": "Region Boundaries"
+      "title": "Region Boundaries",
+      "itemId": "1c0845bd12944017b3bb3631bda09e0e"
     },
     {
-      "id": "SixYearPlan",
+      "id": "PlannedProjects",
       "layerType": "ArcGISMapServiceLayer",
-      "url": "http://hqolymgis98d:6080/arcgis/rest/services/TransportationProjects/SixYearPlan/MapServer",
+      "url": "http://hqolymgis98d:6080/arcgis/rest/services/TransportationProjects/PlannedProjects/MapServer",
       "visibility": true,
       "opacity": 1,
-      "title": "WSDOT Projects (6 Year Plan)",
+      "title": "Planned Projects",
       "layers": [
         {
           "id": 0,
           "popupInfo": {
-            "title": "{PIN} - {Project_Title}",
+            "title": "Planned Projects: {Project_Title}",
             "fieldInfos": [
               {
                 "fieldName": "OBJECTID",
@@ -133,8 +135,8 @@
                 "stringFieldOption": "textbox"
               },
               {
-                "fieldName": "PIN",
-                "label": "Project Number",
+                "fieldName": "StateRouteNumber",
+                "label": "State Route Number",
                 "tooltip": "",
                 "visible": true,
                 "stringFieldOption": "textbox"
@@ -147,87 +149,8 @@
                 "stringFieldOption": "textbox"
               },
               {
-                "fieldName": "Region",
-                "label": "Region",
-                "tooltip": "",
-                "visible": true,
-                "stringFieldOption": "textbox"
-              },
-              {
-                "fieldName": "Improvement_Type",
-                "label": "Improvement Type",
-                "tooltip": "",
-                "visible": true,
-                "stringFieldOption": "textbox"
-              },
-              {
-                "fieldName": "Program",
-                "label": "Program",
-                "tooltip": "",
-                "visible": true,
-                "stringFieldOption": "textbox"
-              },
-              {
-                "fieldName": "Sub_Program",
-                "label": "Sub Program",
-                "tooltip": "",
-                "visible": true,
-                "stringFieldOption": "textbox"
-              },
-              {
-                "fieldName": "Work_Description",
-                "label": "Work Description",
-                "tooltip": "",
-                "visible": true,
-                "stringFieldOption": "textbox"
-              },
-              {
-                "fieldName": "PE_Start_Date",
-                "label": "Preliminary Engineering Start",
-                "tooltip": "",
-                "visible": true,
-                "format": {
-                  "dateFormat": "longMonthDayYear"
-                },
-                "stringFieldOption": "textbox"
-              },
-              {
-                "fieldName": "Ad_Date",
-                "label": "Advertisement",
-                "tooltip": "",
-                "visible": true,
-                "format": {
-                  "dateFormat": "longMonthDayYear"
-                },
-                "stringFieldOption": "textbox"
-              },
-              {
-                "fieldName": "OC_Date",
-                "label": "Operationally Complete",
-                "tooltip": "",
-                "visible": true,
-                "format": {
-                  "dateFormat": "longMonthDayYear"
-                },
-                "stringFieldOption": "textbox"
-              },
-              {
-                "fieldName": "Revenue_Package",
-                "label": "Revenue Package",
-                "tooltip": "",
-                "visible": true,
-                "stringFieldOption": "textbox"
-              },
-              {
-                "fieldName": "Funding_Source",
-                "label": "Funding Source",
-                "tooltip": "",
-                "visible": true,
-                "stringFieldOption": "textbox"
-              },
-              {
-                "fieldName": "Congressional_District",
-                "label": "Congressional District",
+                "fieldName": "County",
+                "label": "County",
                 "tooltip": "",
                 "visible": true,
                 "stringFieldOption": "textbox"
@@ -240,15 +163,94 @@
                 "stringFieldOption": "textbox"
               },
               {
-                "fieldName": "County",
-                "label": "County",
+                "fieldName": "Revenue_Package",
+                "label": "Revenue Package",
                 "tooltip": "",
                 "visible": true,
                 "stringFieldOption": "textbox"
               },
               {
-                "fieldName": "Route",
-                "label": "Route",
+                "fieldName": "Sub_Category",
+                "label": "Sub Category",
+                "tooltip": "",
+                "visible": true,
+                "stringFieldOption": "textbox"
+              },
+              {
+                "fieldName": "PIN",
+                "label": "Program Item Number",
+                "tooltip": "",
+                "visible": true,
+                "stringFieldOption": "textbox"
+              },
+              {
+                "fieldName": "Improvement_Type",
+                "label": "Improvement Type",
+                "tooltip": "",
+                "visible": true,
+                "stringFieldOption": "textbox"
+              },
+              {
+                "fieldName": "Work_Description",
+                "label": "Work Description",
+                "tooltip": "",
+                "visible": true,
+                "stringFieldOption": "textbox"
+              },
+              {
+                "fieldName": "Sub_Program",
+                "label": "Sub Program",
+                "tooltip": "",
+                "visible": true,
+                "stringFieldOption": "textbox"
+              },
+              {
+                "fieldName": "Region",
+                "label": "Region",
+                "tooltip": "",
+                "visible": true,
+                "stringFieldOption": "textbox"
+              },
+              {
+                "fieldName": "Program",
+                "label": "Program",
+                "tooltip": "",
+                "visible": true,
+                "stringFieldOption": "textbox"
+              },
+              {
+                "fieldName": "Begin_Preliminary_Engineering",
+                "label": "Begin Preliminary Engineering",
+                "tooltip": "",
+                "visible": true,
+                "format": {
+                  "dateFormat": "longMonthDayYear"
+                },
+                "stringFieldOption": "textbox"
+              },
+              {
+                "fieldName": "Advertisement_Date",
+                "label": "Advertisement Date",
+                "tooltip": "",
+                "visible": true,
+                "format": {
+                  "dateFormat": "longMonthDayYear"
+                },
+                "stringFieldOption": "textbox"
+              },
+              {
+                "fieldName": "Operationally_Complete",
+                "label": "Operationally Complete",
+                "tooltip": "",
+                "visible": true,
+                "format": {
+                  "dateFormat": "longMonthDayYear"
+                },
+                "stringFieldOption": "textbox"
+              },
+              {
+                "fieldName": "Congressional_District",
+                "label": "Congressional District",
                 "tooltip": "",
                 "visible": true,
                 "stringFieldOption": "textbox"
@@ -276,17 +278,144 @@
                 "stringFieldOption": "textbox"
               },
               {
-                "fieldName": "Shape",
-                "label": "Shape",
+                "fieldName": "Total_Dollars",
+                "label": "Total Dollars",
+                "tooltip": "",
+                "visible": true,
+                "format": {
+                  "places": 2,
+                  "digitSeparator": true
+                },
+                "stringFieldOption": "textbox"
+              },
+              {
+                "fieldName": "Direction_Ind",
+                "label": "Direction Ind",
+                "tooltip": "",
+                "visible": true,
+                "stringFieldOption": "textbox"
+              },
+              {
+                "fieldName": "RouteID",
+                "label": "Route ID",
+                "tooltip": "",
+                "visible": true,
+                "stringFieldOption": "textbox"
+              },
+              {
+                "fieldName": "Begin_ARM",
+                "label": "Begin ARM",
+                "tooltip": "",
+                "visible": true,
+                "format": {
+                  "places": 2,
+                  "digitSeparator": true
+                },
+                "stringFieldOption": "textbox"
+              },
+              {
+                "fieldName": "End_ARM",
+                "label": "End ARM",
+                "tooltip": "",
+                "visible": true,
+                "format": {
+                  "places": 2,
+                  "digitSeparator": true
+                },
+                "stringFieldOption": "textbox"
+              },
+              {
+                "fieldName": "SRMP_Begin_AB_Ind",
+                "label": "SRMP Begin AB Ind",
+                "tooltip": "",
+                "visible": true,
+                "stringFieldOption": "textbox"
+              },
+              {
+                "fieldName": "SRMP_End_AB_Ind",
+                "label": "SRMP End AB Ind",
+                "tooltip": "",
+                "visible": true,
+                "stringFieldOption": "textbox"
+              },
+              {
+                "fieldName": "SRMP_Date",
+                "label": "SRMP Date",
+                "tooltip": "",
+                "visible": true,
+                "format": {
+                  "dateFormat": "longMonthDayYear"
+                },
+                "stringFieldOption": "textbox"
+              },
+              {
+                "fieldName": "LRSDATE",
+                "label": "LRS Date",
+                "tooltip": "",
+                "visible": true,
+                "format": {
+                  "dateFormat": "longMonthDayYear"
+                },
+                "stringFieldOption": "textbox"
+              },
+              {
+                "fieldName": "RelRouteType",
+                "label": "Related Route Type",
+                "tooltip": "",
+                "visible": true,
+                "stringFieldOption": "textbox"
+              },
+              {
+                "fieldName": "RelRouteQual",
+                "label": "Related Route Qualifier",
+                "tooltip": "",
+                "visible": true,
+                "stringFieldOption": "textbox"
+              },
+              {
+                "fieldName": "Mid_Arm",
+                "label": "Mid Arm",
+                "tooltip": "",
+                "visible": true,
+                "stringFieldOption": "textbox"
+              },
+              {
+                "fieldName": "Mid_Mile_Post",
+                "label": "Mid Mile Post",
+                "tooltip": "",
+                "visible": true,
+                "stringFieldOption": "textbox"
+              },
+              {
+                "fieldName": "Project_List",
+                "label": "Project List",
+                "tooltip": "",
+                "visible": true,
+                "stringFieldOption": "textbox"
+              },
+              {
+                "fieldName": "LOC_ERROR",
+                "label": "Location Error",
+                "tooltip": "",
+                "visible": true,
+                "stringFieldOption": "textbox"
+              },
+              {
+                "fieldName": "SHAPE",
+                "label": "SHAPE",
                 "tooltip": "",
                 "visible": false,
                 "stringFieldOption": "textbox"
               },
               {
-                "fieldName": "LRS_Date",
-                "label": "SRMP Date",
+                "fieldName": "SHAPE.STLength()",
+                "label": "SHAPE.STLength()",
                 "tooltip": "",
                 "visible": false,
+                "format": {
+                  "places": 2,
+                  "digitSeparator": true
+                },
                 "stringFieldOption": "textbox"
               }
             ],
@@ -304,27 +433,40 @@
       "visibility": false,
       "opacity": 1,
       "title": "Milepost Values",
-      "itemId": "03ec5ff3609f45caa849d5afa4d92e9e"
+      "itemId": "03ec5ff3609f45caa849d5afa4d92e9e",
+      "minScale": 5249102,
+      "maxScale": 0
     }
   ],
   "baseMap": {
     "baseMapLayers": [
       {
-        "id": "wsdotbasemap",
+        "id": "World_Light_Gray_Base",
         "layerType": "ArcGISTiledMapServiceLayer",
-        "opacity": 1,
+        "url": "http://services.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer",
         "visibility": true,
-        "url": "http://www.wsdot.wa.gov/geosvcs/ArcGIS/rest/services/Shared/WebBaseMapWebMercator/MapServer"
+        "opacity": 1,
+        "title": "World_Light_Gray_Base"
+      },
+      {
+        "id": "World_Light_Gray_Reference",
+        "layerType": "ArcGISTiledMapServiceLayer",
+        "url": "http://services.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Reference/MapServer",
+        "visibility": true,
+        "opacity": 1,
+        "title": "World_Light_Gray_Reference",
+        "isReference": true
       }
     ],
-    "title": "WSDOT Basemap"
+    "title": "Light Gray Canvas"
   },
   "spatialReference": {
-    "wkid": 102100
+    "wkid": 102100,
+    "latestWkid": 3857
   },
   "authoringApp": "WebMapViewer",
-  "authoringAppVersion": "3.10",
-  "version": "2.3",
+  "authoringAppVersion": "4.1",
+  "version": "2.4",
   "applicationProperties": {
     "viewing": {
       "routing": {
@@ -340,7 +482,7 @@
         "enabled": true,
         "disablePlaceFinder": false,
         "hintText": "Place or Address",
-        "layers": []
+        "layers": [ ]
       }
     }
   }

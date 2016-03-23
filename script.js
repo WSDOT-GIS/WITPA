@@ -118,7 +118,7 @@ require([
 
         infoWindowUtils.makeInfoWindowDraggable(response.map.infoWindow);
 
-        var dynamicLayer = map.getLayer("SixYearPlan");
+        var dynamicLayer = map.getLayer("PlannedProjects");
 
         var search = new Search({
             map: response.map
@@ -136,27 +136,40 @@ require([
         search.startup();
 
         var outFields = [
-          "OBJECTID",
-          "Region",
-          "PIN",
-          "Project_Title",
-          "Improvement_Type",
-          "Program",
-          "Sub_Program",
-          "Work_Description",
-          "PE_Start_Date",
-          "Ad_Date",
-          "OC_Date",
-          "Revenue_Package",
-          "Funding_Source",
-          "Congressional_District",
-          "Legislative_District",
-          "County",
-          "Route",
-          "Begin_Mile_Post",
-          "End_Mile_Post",
-          "Shape",
-          "LRS_Date"
+            "OBJECTID",
+            "StateRouteNumber",
+            "Project_Title",
+            "County",
+            "Legislative_District",
+            "Revenue_Package",
+            "Sub_Category",
+            "PIN",
+            "Improvement_Type",
+            "Work_Description",
+            "Sub_Program",
+            "Region",
+            "Program",
+            "Begin_Preliminary_Engineering",
+            "Advertisement_Date",
+            "Operationally_Complete",
+            "Congressional_District",
+            "Begin_Mile_Post",
+            "End_Mile_Post",
+            "Total_Dollars",
+            "Direction_Ind",
+            "RouteID",
+            "Begin_ARM",
+            "End_ARM",
+            "SRMP_Begin_AB_Ind",
+            "SRMP_End_AB_Ind",
+            "SRMP_Date",
+            "LRSDATE",
+            "RelRouteType",
+            "RelRouteQual",
+            "Mid_Arm",
+            "Mid_Mile_Post",
+            "Project_List",
+            "LOC_ERROR"
         ];
 
         var table;
@@ -166,8 +179,7 @@ require([
         var layer = new FeatureLayer(featureLayerUrl, {
             id: "wsdotprojects",
             mode: FeatureLayer.MODE_SELECTION,
-            outFields: outFields,
-            orderByFields: ["Project_Title"]
+            outFields: outFields
         });
 
         map.addLayer(layer);
@@ -224,7 +236,7 @@ require([
             */
             // These fields are hidden by default, but user can turn them back on.
             hiddenFields: [
-              "LRS_Date"
+              "LRSDate"
             ],
             showGridHeader: true,
             map: map
@@ -483,5 +495,5 @@ require([
 
         // Send the map service layer URL to the web worker, which will start it processing.
         worker.postMessage({ url: url });
-    }(getOperationalLayer(webmapItemData, "SixYearPlan").url + "/0"));
+    }(getOperationalLayer(webmapItemData, "PlannedProjects").url + "/0"));
 });

@@ -1,28 +1,4 @@
 {
-  "id": "7278bb160b9044ba9779e3384e6535db",
-  "owner": "JacobsJ_WSDOT",
-  "created": 1449856283000,
-  "modified": 1450133327000,
-  "guid": null,
-  "name": null,
-  "title": "WITPA",
-  "type": "Web Map",
-  "typeKeywords": [
-    "ArcGIS Online",
-    "Explorer Web Map",
-    "Map",
-    "Online Map",
-    "Web Map"
-  ],
-  "description": null,
-  "tags": [
-    "WSDOT",
-    "transportation",
-    "planning"
-  ],
-  "snippet": null,
-  "thumbnail": null,
-  "documentation": null,
   "extent": [
     [
       -124.79,
@@ -32,28 +8,5 @@
       -116.91,
       49.05
     ]
-  ],
-  "spatialReference": null,
-  "accessInformation": null,
-  "licenseInfo": null,
-  "culture": "en-us",
-  "properties": null,
-  "url": null,
-  "access": "private",
-  "size": 233,
-  "appCategories": [ ],
-  "industries": [ ],
-  "languages": [ ],
-  "largeThumbnail": null,
-  "banner": null,
-  "screenshots": [ ],
-  "listed": false,
-  "ownerFolder": null,
-  "protected": false,
-  "commentsEnabled": true,
-  "numComments": 0,
-  "numRatings": 0,
-  "avgRating": 0,
-  "numViews": 15,
-  "itemControl": "admin"
+  ]
 }
