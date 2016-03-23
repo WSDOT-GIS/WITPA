@@ -240,7 +240,14 @@ self.addEventListener("message", function (e) {
             submitDatesQuery(),
             submitQueryForUniqueValues("PIN"),
             submitQueryForUniqueValues("Project_Title"),
-            submitQueryForUniqueValues("Route")
+            submitQueryForUniqueValues("Route"),
+            submitQueryForUniqueValues("Region"),
+            submitQueryForUniqueValues("Revenue_Package"),
+            submitQueryForUniqueValues("Improvement_Type"),
+            submitQueryForUniqueValues("Program"),
+            submitQueryForUniqueValues("Sub_Program"),
+            submitQueryForUniqueValues("Work_Description"),
+            submitQueryForUniqueValues("Congressional_District")
         ]).then(function (successResult) {
             self.close();
         }, function (errorResult) {

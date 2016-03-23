@@ -145,7 +145,12 @@
             </select>
         </div>
 
-        <!-- TODO: Add Revenue_Package -->
+        <!-- Revenue_Package -->
+        <div class="form-group">
+            <label for="revenuePackageInput">Revenue Package</label>
+            <input id="revenuePackageInput" name="Revenue_Package" data-where-template="{field} = '{value}'" list="revenuePackageList" />
+            <datalist id="revenuePackageList" data-field-name="Revenue_Package"></datalist>
+        </div>
         <!-- TODO: Add Sub_Category -->
     </div>
 
@@ -161,29 +166,41 @@
             <datalist id="pinList" data-field-name="PIN"></datalist>
         </div>
 
-        <!-- TODO Add Improvement_Type -->
-        <!-- TODO Add Work_Description -->
-        <!-- TODO: Add Sub_Program-->
+        <!-- Improvement_Type -->
+        <div class="form-group">
+            <label for="improvementTypeInput">Improvement Type</label>
+            <input id="improvementTypeInput" name="Improvement_Type" type="text" class="form-control" placeholder="Improvement Type"
+                   data-where-template="LOWER({field}) = LOWER('{value}')" list="improvementTypeList" />
+            <datalist id="improvementTypeList" data-field-name="Improvement_Type"></datalist>
+        </div>
+        <!-- Work_Description -->
+        <div class="form-group">
+            <label for="workDescriptionInput">Work Description</label>
+            <input id="workDescriptionInput" name="Work_Description" type="text" class="form-control" placeholder="Work_Description"
+                   data-where-template="LOWER({field}) = LOWER('{value}')" list="workDescList" />
+            <datalist id="workDescList" data-field-name="Work_Description"></datalist>
+        </div>
+        <!-- Sub_Program-->
+        <div class="form-group">
+            <label for="subProgramInput">Sub Program</label>
+            <input id="subProgramInput" name="Sub_Program" type="text" class="form-control" placeholder="Sub Program"
+                   data-where-template="LOWER({field}) = LOWER('{value}')" list="subProgramList" />
+            <datalist id="subProgramList" data-field-name="Sub_Program"></datalist>
+        </div>
 
         <div class="form-group">
             <label for="regionInput">Region</label>
-            <select id="regionInput" name="Region" class="form-control" data-where-template="{field} = '{value}'">
-                <option value=""></option>
-                <option value="Alaskan Way Viaduct">Alaskan Way Viaduct</option>
-                <option value="Capital Facilities">Capital Facilities</option>
-                <option value="Eastern">Eastern</option>
-                <option value="Headquarters">Headquarters</option>
-                <option value="North Central">North Central</option>
-                <option value="Northwest">Northwest</option>
-                <option value="Olympic">Olympic</option>
-                <option value="South Central">South Central</option>
-                <option value="Southwest">Southwest</option>
-                <option value="SR 520 Bridge Repl">SR 520 Bridge Repl</option>
-                <option value="Urban Corridors">Urban Corridors</option>
-            </select>
+            <input id="regionInput" name="Region" class="form-control" data-where-template="LOWER({field}) = LOWER('{value}')" list="regionList" />
+            <datalist id="regionList" data-field-name="Region"></datalist>
         </div>
 
-        <!-- TODO: Add Program -->
+        <!-- Program -->
+        <div class="form-group">
+            <label for="programInput">Program</label>
+            <input id="programInput" name="Program" type="text" class="form-control" placeholder="Program"
+                   data-where-template="LOWER({field}) = LOWER('{value}')" list="programList" />
+            <datalist id="programList" data-field-name="Program"></datalist>
+        </div>
 
         <div class="form-group">
             <label for="peStartDateInput">Preliminary Engineering Start Date</label>
@@ -237,7 +254,15 @@
             </div>
         </div>
 
-        <!-- TODO: Add Congressional_District -->
+        <!-- Congressional_District -->
+        <div class="form-group">
+            <label for="cDistInput">Congressional District</label>
+            <div class="input-group">
+                <input id="cDistInput" name="Congressional_District" type="text" pattern="\d{2}"
+                       data-where-template="{field} LIKE '%{value}%'" title="two-digit number format"
+                       class="form-control" placeholder="Congressional District" />
+            </div>
+        </div>
         <!-- Begin MP -->
         <div class="form-group">
             <label for="beginMPInput">Begin Milepost</label>
