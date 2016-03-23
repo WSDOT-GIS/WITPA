@@ -6,7 +6,7 @@ var layerUrl;
 
 // Add shim for browsers that don't support Promise. (E.g., IE 11)
 if (!this.Promise) {
-    self.importScripts("bower_components/es6-shim/es6-shim.min.js");
+    self.importScripts("bower_components/core.js/client/core.min.js");
 }
 
 

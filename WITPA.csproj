@@ -40,12 +40,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="bower_components\core.js\client\core.js" />
+    <Content Include="bower_components\core.js\client\core.min.js" />
     <Content Include="bower_components\customevent-polyfill\customevent-polyfill.js" />
     <Content Include="bower_components\customevent-polyfill\customevent-polyfill.min.js" />
-    <Content Include="bower_components\es6-shim\es6-sham.js" />
-    <Content Include="bower_components\es6-shim\es6-sham.min.js" />
-    <Content Include="bower_components\es6-shim\es6-shim.js" />
-    <Content Include="bower_components\es6-shim\es6-shim.min.js" />
     <Content Include="css\bootstrap-mimic.css" />
     <Content Include="css\FeatureTable.css" />
     <Content Include="css\style.css" />
@@ -77,10 +75,7 @@
     <Content Include="webmap\itemdata.json" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="bower_components\es6-shim\es6-sham.map" />
-    <Content Include="bower_components\es6-shim\es6-shim.map" />
-  </ItemGroup>
-  <ItemGroup>
+    <Content Include="bower_components\core.js\client\core.min.js.map" />
     <None Include="Properties\PublishProfiles\QA %28Internal%29.pubxml" />
   </ItemGroup>
   <PropertyGroup>
