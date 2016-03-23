@@ -252,7 +252,6 @@ self.addEventListener("message", function (e) {
         ]).then(function (successResult) {
             self.close();
         }, function (errorResult) {
-            console.error("query error", errorResult);
             self.close();
         });
     }
