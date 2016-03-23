@@ -131,38 +131,38 @@ function submitDatesQuery() {
     return new Promise(function (resolve, reject) {
         var query = {};
 
-        query.where = "Ad_Date IS NOT NULL";
+        query.where = "Advertisement_Date IS NOT NULL";
         query.f = "json";
         // Create array of objects, then convert them to StatisticsDefinition objects.
         query.outStatistics = [
             {
                 statisticType: "min",
-                onStatisticField: "Ad_Date",
+                onStatisticField: "Advertisement_Date",
                 outStatisticFieldName: "Min_Ad_Date"
             },
             {
                 statisticType: "min",
-                onStatisticField: "OC_Date",
+                onStatisticField: "Operationally_Complete",
                 outStatisticFieldName: "Min_OC_Date"
             },
             {
                 statisticType: "min",
-                onStatisticField: "PE_Start_Date",
+                onStatisticField: "Begin_Preliminary_Engineering",
                 outStatisticFieldName: "Min_PE_Start_Date"
             },
             {
                 statisticType: "max",
-                onStatisticField: "Ad_Date",
+                onStatisticField: "Advertisement_Date",
                 outStatisticFieldName: "Max_Ad_Date"
             },
             {
                 statisticType: "max",
-                onStatisticField: "OC_Date",
+                onStatisticField: "Operationally_Complete",
                 outStatisticFieldName: "Max_OC_Date"
             },
             {
                 statisticType: "max",
-                onStatisticField: "PE_Start_Date",
+                onStatisticField: "Begin_Preliminary_Engineering",
                 outStatisticFieldName: "Max_PE_Start_Date"
             }
         ];
@@ -204,9 +204,9 @@ function submitDatesQuery() {
 
             // Create a list of field ranges.
             var ranges = {
-                Ad_Date: { min: values.Min_Ad_Date, max: values.Max_Ad_Date },
-                OC_Date: { min: values.Min_OC_Date, max: values.Max_OC_Date },
-                PE_Start_Date: { min: values.Min_PE_Start_Date, max: values.Max_PE_Start_Date }
+                Advertisement_Date: { min: values.Min_Ad_Date, max: values.Max_Ad_Date },
+                Operationally_Complete: { min: values.Min_OC_Date, max: values.Max_OC_Date },
+                Begin_Preliminary_Engineering: { min: values.Min_PE_Start_Date, max: values.Max_PE_Start_Date }
             };
 
             self.postMessage({
@@ -238,19 +238,21 @@ self.addEventListener("message", function (e) {
         // Start the queries, then close this worker when all queries are completed (whether successful or not).
         Promise.all([
             submitDatesQuery(),
-            submitQueryForUniqueValues("PIN"),
+            submitQueryForUniqueValues("RouteID"),
             submitQueryForUniqueValues("Project_Title"),
-            submitQueryForUniqueValues("Route"),
-            submitQueryForUniqueValues("Region"),
             submitQueryForUniqueValues("Revenue_Package"),
+            submitQueryForUniqueValues("Sub_Category"),
+            submitQueryForUniqueValues("PIN"),
             submitQueryForUniqueValues("Improvement_Type"),
-            submitQueryForUniqueValues("Program"),
-            submitQueryForUniqueValues("Sub_Program"),
             submitQueryForUniqueValues("Work_Description"),
+            submitQueryForUniqueValues("Sub_Program"),
+            submitQueryForUniqueValues("Region"),
+            submitQueryForUniqueValues("Program"),
             submitQueryForUniqueValues("Congressional_District")
         ]).then(function (successResult) {
             self.close();
         }, function (errorResult) {
+            console.error("query error", errorResult);
             self.close();
         });
     }

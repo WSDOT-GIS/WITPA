@@ -485,7 +485,6 @@ require([
             } else if (data.ranges) {
                 addAttributes(data.ranges);
             }
-
         });
 
         // Set up worker event handler for error messages.

@@ -152,6 +152,11 @@
             <datalist id="revenuePackageList" data-field-name="Revenue_Package"></datalist>
         </div>
         <!-- TODO: Add Sub_Category -->
+        <div class="form-group">
+            <label for="subCategoryInput">Sub Category</label>
+            <input id="subCategoryInput" name="Sub_Category" data-where-template="{field} = '{value}'" list="subCategoryList" />
+            <datalist id="subCategoryList" data-field-name="Sub_Category"></datalist>
+        </div>
     </div>
 
     <p><a href="#" class="advanced-link">Advanced</a></p>
@@ -206,7 +211,7 @@
             <label for="peStartDateInput">Preliminary Engineering Start Date</label>
             <div class="input-group">
                 <span class="input-group-addon">
-                    <select data-where-template-for="PE_Start_Date">
+                    <select data-where-template-for="Begin_Preliminary_Engineering">
                         <option value="{field} &lt; date '{value}'">&lt;</option>
                         <option value="{field} &lt;= date '{value}'">&le;</option>
                         <option value="{field} = date '{value}'" selected="selected">=</option>
