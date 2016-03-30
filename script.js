@@ -57,8 +57,7 @@ require([
   "dijit/layout/BorderContainer",
   "dijit/layout/ContentPane",
   "dijit/layout/AccordionContainer",
-  "dijit/layout/AccordionPane",
-  "dijit/Dialog"
+  "dijit/layout/AccordionPane"
 ], function (
   esriConfig,
   Map,
@@ -385,16 +384,6 @@ require([
         legend.startup();
 
     });
-
-    // Show the disclaimer dialog.
-    var disclaimerDialog = registry.byId("disclaimerDialog");
-    var disclaimerOkButton = registry.byId("disclaimerButtonOk");
-    disclaimerOkButton.on("click", function () {
-        // Hide and then destroy the dialog.
-        disclaimerDialog.hide();
-    });
-    disclaimerDialog.show();
-    disclaimerDialog.resize();
 
     function getOperationalLayer(webMapData, opLayerId) {
         var opLayers = webMapData.operationalLayers;
