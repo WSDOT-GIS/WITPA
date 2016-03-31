@@ -70,6 +70,25 @@ html, body {
   z-index: 1;
 }
 
+#infoButton {
+    position: absolute;
+    top: 120px;
+    left: 20px;
+    height: 30px;
+    width: 30px;
+    z-index: 1;
+
+    border-radius: 5px;
+    background-color: rgba(102,102,102,0.8);
+    text-align: center;
+    font-size: 15pt;
+}
+
+    #infoButton a {
+        color: white;
+        text-decoration: none;
+    }
+
 .map progress {
   position: absolute;
   bottom: 50px;
