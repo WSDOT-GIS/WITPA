@@ -324,10 +324,10 @@ require([
         var layerListItems = arcgisUtils.getLayerList(response);
 
         // Custom sort the layer list items array so that the item with the
-        // title containing "WSDOT Projects" is last in the array. Other
+        // title containing "Planned Projects" is last in the array. Other
         // items will remain in their original order.
         layerListItems.sort(function (a, b) {
-            var re = /WSDOT Projects/i;
+            var re = /Planned\s?Projects/i;
             var output;
             if (re.test(a.title)) {
                 output = 1;
