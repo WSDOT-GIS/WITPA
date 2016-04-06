@@ -128,6 +128,13 @@
             "title": "Planned Projects: {Project_Title}",
             "fieldInfos": [
               {
+                "fieldName": "RouteID",
+                "label": "Route ID",
+                "tooltip": "",
+                "visible": true,
+                "stringFieldOption": "textbox"
+              },
+              {
                 "fieldName": "OBJECTID",
                 "label": "OBJECTID",
                 "tooltip": "",
@@ -138,7 +145,7 @@
                 "fieldName": "StateRouteNumber",
                 "label": "State Route Number",
                 "tooltip": "",
-                "visible": true,
+                "visible": false,
                 "stringFieldOption": "textbox"
               },
               {
@@ -152,21 +159,21 @@
                 "fieldName": "County",
                 "label": "County",
                 "tooltip": "",
-                "visible": true,
+                "visible": false,
                 "stringFieldOption": "textbox"
               },
               {
                 "fieldName": "Legislative_District",
                 "label": "Legislative District",
                 "tooltip": "",
-                "visible": true,
+                "visible": false,
                 "stringFieldOption": "textbox"
               },
               {
                 "fieldName": "Revenue_Package",
                 "label": "Revenue Package",
                 "tooltip": "",
-                "visible": true,
+                "visible": false,
                 "stringFieldOption": "textbox"
               },
               {
@@ -180,7 +187,7 @@
                 "fieldName": "PIN",
                 "label": "Program Item Number",
                 "tooltip": "",
-                "visible": true,
+                "visible": false,
                 "stringFieldOption": "textbox"
               },
               {
@@ -194,35 +201,35 @@
                 "fieldName": "Work_Description",
                 "label": "Work Description",
                 "tooltip": "",
-                "visible": true,
+                "visible": false,
                 "stringFieldOption": "textbox"
               },
               {
                 "fieldName": "Sub_Program",
                 "label": "Sub Program",
                 "tooltip": "",
-                "visible": true,
+                "visible": false,
                 "stringFieldOption": "textbox"
               },
               {
                 "fieldName": "Region",
                 "label": "Region",
                 "tooltip": "",
-                "visible": true,
+                "visible": false,
                 "stringFieldOption": "textbox"
               },
               {
                 "fieldName": "Program",
                 "label": "Program",
                 "tooltip": "",
-                "visible": true,
+                "visible": false,
                 "stringFieldOption": "textbox"
               },
               {
                 "fieldName": "Begin_Preliminary_Engineering",
                 "label": "Begin Preliminary Engineering",
                 "tooltip": "",
-                "visible": true,
+                "visible": false,
                 "format": {
                   "dateFormat": "longMonthDayYear"
                 },
@@ -242,7 +249,7 @@
                 "fieldName": "Operationally_Complete",
                 "label": "Operationally Complete",
                 "tooltip": "",
-                "visible": true,
+                "visible": false,
                 "format": {
                   "dateFormat": "longMonthDayYear"
                 },
@@ -252,7 +259,7 @@
                 "fieldName": "Congressional_District",
                 "label": "Congressional District",
                 "tooltip": "",
-                "visible": true,
+                "visible": false,
                 "stringFieldOption": "textbox"
               },
               {
@@ -281,7 +288,7 @@
                 "fieldName": "Total_Dollars",
                 "label": "Total Dollars",
                 "tooltip": "",
-                "visible": true,
+                "visible": false,
                 "format": {
                   "places": 2,
                   "digitSeparator": true
@@ -292,21 +299,15 @@
                 "fieldName": "Direction_Ind",
                 "label": "Direction Ind",
                 "tooltip": "",
-                "visible": true,
+                "visible": false,
                 "stringFieldOption": "textbox"
               },
-              {
-                "fieldName": "RouteID",
-                "label": "Route ID",
-                "tooltip": "",
-                "visible": true,
-                "stringFieldOption": "textbox"
-              },
+
               {
                 "fieldName": "Begin_ARM",
                 "label": "Begin ARM",
                 "tooltip": "",
-                "visible": true,
+                "visible": false,
                 "format": {
                   "places": 2,
                   "digitSeparator": true
@@ -317,7 +318,7 @@
                 "fieldName": "End_ARM",
                 "label": "End ARM",
                 "tooltip": "",
-                "visible": true,
+                "visible": false,
                 "format": {
                   "places": 2,
                   "digitSeparator": true
@@ -328,21 +329,21 @@
                 "fieldName": "SRMP_Begin_AB_Ind",
                 "label": "SRMP Begin AB Ind",
                 "tooltip": "",
-                "visible": true,
+                "visible": false,
                 "stringFieldOption": "textbox"
               },
               {
                 "fieldName": "SRMP_End_AB_Ind",
                 "label": "SRMP End AB Ind",
                 "tooltip": "",
-                "visible": true,
+                "visible": false,
                 "stringFieldOption": "textbox"
               },
               {
                 "fieldName": "SRMP_Date",
                 "label": "SRMP Date",
                 "tooltip": "",
-                "visible": true,
+                "visible": false,
                 "format": {
                   "dateFormat": "longMonthDayYear"
                 },
@@ -352,7 +353,7 @@
                 "fieldName": "LRSDATE",
                 "label": "LRS Date",
                 "tooltip": "",
-                "visible": true,
+                "visible": false,
                 "format": {
                   "dateFormat": "longMonthDayYear"
                 },
@@ -362,42 +363,42 @@
                 "fieldName": "RelRouteType",
                 "label": "Related Route Type",
                 "tooltip": "",
-                "visible": true,
+                "visible": false,
                 "stringFieldOption": "textbox"
               },
               {
                 "fieldName": "RelRouteQual",
                 "label": "Related Route Qualifier",
                 "tooltip": "",
-                "visible": true,
+                "visible": false,
                 "stringFieldOption": "textbox"
               },
               {
                 "fieldName": "Mid_Arm",
                 "label": "Mid Arm",
                 "tooltip": "",
-                "visible": true,
+                "visible": false,
                 "stringFieldOption": "textbox"
               },
               {
                 "fieldName": "Mid_Mile_Post",
                 "label": "Mid Mile Post",
                 "tooltip": "",
-                "visible": true,
+                "visible": false,
                 "stringFieldOption": "textbox"
               },
               {
                 "fieldName": "Project_List",
                 "label": "Project List",
                 "tooltip": "",
-                "visible": true,
+                "visible": false,
                 "stringFieldOption": "textbox"
               },
               {
                 "fieldName": "LOC_ERROR",
                 "label": "Location Error",
                 "tooltip": "",
-                "visible": true,
+                "visible": false,
                 "stringFieldOption": "textbox"
               },
               {

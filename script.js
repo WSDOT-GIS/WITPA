@@ -135,7 +135,7 @@ require([
         search.startup();
 
         var outFields = [
-            "OBJECTID",
+            //"OBJECTID",
             "StateRouteNumber",
             "Project_Title",
             "County",
@@ -224,7 +224,9 @@ require([
         table = new FeatureTable({
             featureLayer: layer,
             outFields: outFields,
+            editable: false,
             syncSelection: false,
+            zoomToSelection: false,
             // The dateOptions are not actually honored: https://geonet.esri.com/message/520158
             /*
             dateOptions: {
@@ -235,7 +237,20 @@ require([
             */
             // These fields are hidden by default, but user can turn them back on.
             hiddenFields: [
-              "LRSDate"
+                "Direction_Ind",
+                "RouteID",
+                "Begin_ARM",
+                "End_ARM",
+                "SRMP_Begin_AB_Ind",
+                "SRMP_End_AB_Ind",
+                "SRMP_Date",
+                "LRSDATE",
+                "RelRouteType",
+                "RelRouteQual",
+                "Mid_Arm",
+                "Mid_Mile_Post",
+                "Project_List",
+                "LOC_ERROR"
             ],
             showGridHeader: true,
             map: map
