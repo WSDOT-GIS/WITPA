@@ -135,7 +135,7 @@ require([
         search.startup();
 
         var outFields = [
-            //"OBJECTID",
+            "OBJECTID",
             "StateRouteNumber",
             "Project_Title",
             "County",
@@ -195,9 +195,8 @@ require([
             dynamicLayer.setLayerDefinitions([
                 e.detail.where
             ]);
-            var query = new Query();
-            query.where = e.detail.where;
-            layer.queryExtent(query).then(function (queryExtentResponse) {
+            // Query extent. The layer def. exp. is already applied
+            layer.queryExtent(new Query()).then(function (queryExtentResponse) {
                 var extent = queryExtentResponse.extent;
                 map.setExtent(extent);
             });
