@@ -135,7 +135,7 @@ require([
         search.startup();
 
         var outFields = [
-            "OBJECTID",
+            //"OBJECTID",
             "StateRouteNumber",
             "Project_Title",
             "County",
@@ -226,14 +226,6 @@ require([
             editable: false,
             syncSelection: false,
             zoomToSelection: false,
-            // The dateOptions are not actually honored: https://geonet.esri.com/message/520158
-            /*
-            dateOptions: {
-              datePattern: "yyyyMMdd",
-              timeEnabled: false,
-              timePattern: null
-            },
-            */
             // These fields are hidden by default, but user can turn them back on.
             hiddenFields: [
                 "Direction_Ind",
