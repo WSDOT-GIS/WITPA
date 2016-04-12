@@ -160,8 +160,18 @@
         ]
     };
 
+    /**
+     * @exports wsdotMapUtils
+     */
+
     return {
+        /**
+         * @property {Object}
+         */
         defaultMapOptions: defaultMapOptions,
+        /**
+         * @property {Object}
+         */
         esriBasemaps: esriBasemaps
     };
 });

@@ -1,0 +1,30 @@
+{
+  "name": "witpa",
+  "version": "1.0.0",
+  "description": "WA Interactive Transportation Planning Application ",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "doc": "jsdoc2md *.js > api.md"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WSDOT-GIS/WITPA.git"
+  },
+  "keywords": [
+    "Washington",
+    "WA",
+    "planning",
+    "transportation"
+  ],
+  "author": "WSDOT-GIS",
+  "license": "Unlicense",
+  "private": true,
+  "bugs": {
+    "url": "https://github.com/WSDOT-GIS/WITPA/issues"
+  },
+  "homepage": "https://github.com/WSDOT-GIS/WITPA#readme",
+  "devDependencies": {
+    "jsdoc-to-markdown": "^1.3.3"
+  }
+}

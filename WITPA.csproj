@@ -55,6 +55,7 @@
     <Content Include="README.md" />
     <Content Include="infoWindowUtils.js" />
     <Content Include="QueryWorker.js" />
+    <Content Include="externals.js" />
     <Content Include="Templates\ProjectFilter.html" />
     <Content Include="UNLICENSE" />
     <Content Include="wsdotMapUtils.js" />
@@ -76,6 +77,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="bower_components\core.js\client\core.min.js.map" />
+    <Content Include="package.json" />
+    <Content Include="api.md" />
     <None Include="Properties\PublishProfiles\QA %28Internal%29.pubxml" />
   </ItemGroup>
   <PropertyGroup>
