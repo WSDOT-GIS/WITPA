@@ -291,7 +291,7 @@ require([
 
         // resize panel when table close is toggled.
         table.tableCloseButton.addEventListener("click", function (e) {
-            var gridMenuNode = registry.byId(table._gridMenu).domNode;
+            var gridHeaderNode = registry.byId(table._gridHeaderNode).domNode;
             var tableNode = registry.byId("tablePane").domNode;
             var borderContainer = registry.byId("borderContainer");
             var isOpening = e.target.classList.contains("toggleClosed");
@@ -301,7 +301,7 @@ require([
                 // Store the old height.
                 tableNode.dataset.openHeight = tableNode.style.height || [tableNode.clientHeight, "px"].join("");
                 // Set to "closed" height.
-                tableNode.style.height = [gridMenuNode.clientHeight, "px"].join("");
+                tableNode.style.height = [gridHeaderNode.clientHeight, "px"].join("");
             }
             borderContainer.resize();
         });
