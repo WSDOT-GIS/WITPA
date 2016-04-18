@@ -62,7 +62,7 @@ require([
 
     filterPane.appendChild(projectFilter.form);
 
-    ["hqolymgis98d"].forEach(function (server) {
+    ["hqolymgis98d", "hqolymgis98d:6080"].forEach(function (server) {
         esriConfig.defaults.io.corsEnabledServers.push(server);
     });
 
@@ -219,15 +219,23 @@ require([
         }, "table");
         table.startup();
 
+        /**
+         * Zooms the map to the extent of the input features
+         * @param {external:Graphic[]} features - An array of graphic objects.
+         */
         function zoomToFeatures(features) {
             var geometries;
+            // Make sure there actually are features before proceeding.
             if (features && features.length > 0) {
                 if (features.length === 1) {
+                    // If there's only one feature, just zoom to its extent.
                     map.setExtent(features[0].geometry.getExtent(), true);
                 } else {
+                    // Create an array of geometries from the graphics' array.
                     geometries = features.map(function (graphic) {
                         return graphic.geometry;
                     });
+                    // Union the geometries into a single geometry, then zoom to unioned geometry's extent.
                     geometryEngineAsync.union(geometries).then(function (unionedGeometry) {
                         map.setExtent(unionedGeometry.getExtent(), true);
                     });
