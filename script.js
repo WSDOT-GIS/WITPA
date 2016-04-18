@@ -171,7 +171,8 @@ require([
                 var extent = queryExtentResponse.extent;
                 map.setExtent(extent);
             });
-            table.grid.refresh();
+            createTable();
+            //table.grid.refresh();
 
         });
 
@@ -180,7 +181,8 @@ require([
             layer.clearSelection();
             dynamicLayer.setDefaultLayerDefinitions();
             layer.setDefinitionExpression(layer.defaultDefinitionExpression);
-            table.grid.refresh();
+            createTable();
+            //table.grid.refresh();
         });
 
 
@@ -190,34 +192,85 @@ require([
         }, "homeButton");
         homeButton.startup();
 
-        // Create the feature table
-        table = new FeatureTable({
-            featureLayer: layer,
-            outFields: outFields,
-            editable: false,
-            syncSelection: false,
-            zoomToSelection: false,
-            // These fields are hidden by default, but user can turn them back on.
-            hiddenFields: [
-                "Direction_Ind",
-                "RouteID",
-                "Begin_ARM",
-                "End_ARM",
-                "SRMP_Begin_AB_Ind",
-                "SRMP_End_AB_Ind",
-                "SRMP_Date",
-                "LRSDATE",
-                "RelRouteType",
-                "RelRouteQual",
-                "Mid_Arm",
-                "Mid_Mile_Post",
-                "Project_List",
-                "LOC_ERROR"
-            ],
-            showGridHeader: true,
-            map: map
-        }, "table");
-        table.startup();
+        function createTable() {
+            // Destroy existing table.
+            if (table) {
+                table.destroyRecursive();
+                registry.byId("tablePane").domNode.innerHTML = '<div id="table"></div>';
+            }
+
+            /**
+             * Resizes the table panel as the table is collapsed or expanded.
+             * @param {Event} e - Table close button click event.
+             */
+            function resizeTablePanel(e) {
+                var gridHeaderNode = registry.byId(table._gridHeaderNode).domNode;
+                var tableNode = registry.byId("tablePane").domNode;
+                var borderContainer = registry.byId("borderContainer");
+                var isOpening = e.target.classList.contains("toggleClosed");
+                if (isOpening) {
+                    tableNode.style.height = tableNode.dataset.openHeight || "50%";
+                } else {
+                    // Store the old height.
+                    tableNode.dataset.openHeight = tableNode.style.height || [tableNode.clientHeight, "px"].join("");
+                    // Set to "closed" height.
+                    tableNode.style.height = [gridHeaderNode.clientHeight, "px"].join("");
+                }
+                borderContainer.resize();
+            }
+
+            // Create the feature table
+            table = new FeatureTable({
+                featureLayer: layer,
+                outFields: outFields,
+                editable: false,
+                syncSelection: false,
+                zoomToSelection: false,
+                // These fields are hidden by default, but user can turn them back on.
+                hiddenFields: [
+                    "Direction_Ind",
+                    "RouteID",
+                    "Begin_ARM",
+                    "End_ARM",
+                    "SRMP_Begin_AB_Ind",
+                    "SRMP_End_AB_Ind",
+                    "SRMP_Date",
+                    "LRSDATE",
+                    "RelRouteType",
+                    "RelRouteQual",
+                    "Mid_Arm",
+                    "Mid_Mile_Post",
+                    "Project_List",
+                    "LOC_ERROR"
+                ],
+                showGridHeader: true,
+                map: map
+            }, "table");
+            table.startup();
+
+            /**
+             *
+             * @param {DGridRow[]} rows - The rows that were selected
+             */
+            table.on("row-select", function (rows) {
+                selectOrDeselectFeatures(rows);
+            });
+
+            /**
+             *
+             * @param {DGridRow[]} rows - The rows that were unselected
+             */
+            table.on("row-deselect", function (rows) {
+                selectOrDeselectFeatures(rows, true);
+            });
+
+            // resize panel when table close is toggled.
+            table.tableCloseButton.addEventListener("click", resizeTablePanel);
+        }
+
+        createTable();
+
+
 
         /**
          * Zooms the map to the extent of the input features
@@ -273,38 +326,7 @@ require([
             zoomToFeatures(features);
         });
 
-        /**
-         *
-         * @param {DGridRow[]} rows - The rows that were selected
-         */
-        table.on("row-select", function (rows) {
-            selectOrDeselectFeatures(rows);
-        });
 
-        /**
-         *
-         * @param {DGridRow[]} rows - The rows that were unselected
-         */
-        table.on("row-deselect", function (rows) {
-            selectOrDeselectFeatures(rows, true);
-        });
-
-        // resize panel when table close is toggled.
-        table.tableCloseButton.addEventListener("click", function (e) {
-            var gridHeaderNode = registry.byId(table._gridHeaderNode).domNode;
-            var tableNode = registry.byId("tablePane").domNode;
-            var borderContainer = registry.byId("borderContainer");
-            var isOpening = e.target.classList.contains("toggleClosed");
-            if (isOpening) {
-                tableNode.style.height = tableNode.dataset.openHeight || "50%";
-            } else {
-                // Store the old height.
-                tableNode.dataset.openHeight = tableNode.style.height || [tableNode.clientHeight, "px"].join("");
-                // Set to "closed" height.
-                tableNode.style.height = [gridHeaderNode.clientHeight, "px"].join("");
-            }
-            borderContainer.resize();
-        });
 
         var layerListItems = arcgisUtils.getLayerList(response);
 
