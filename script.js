@@ -248,11 +248,13 @@ require([
             }, "table");
             table.startup();
 
+            // 3.15 event handler setup.
+
             /**
              *
              * @param {DGridRow[]} rows - The rows that were selected
              */
-            table.on("row-select", function (rows) {
+            table.on("dgrid-select", function (rows) {
                 selectOrDeselectFeatures(rows);
             });
 
@@ -260,9 +262,28 @@ require([
              *
              * @param {DGridRow[]} rows - The rows that were unselected
              */
-            table.on("row-deselect", function (rows) {
+            table.on("dgrid-deselect", function (rows) {
                 selectOrDeselectFeatures(rows, true);
             });
+
+            // 3.16 event handler setup
+
+            /////**
+            //// *
+            //// * @param {DGridRow[]} rows - The rows that were selected
+            //// */
+            ////table.on("row-select", function (rows) {
+            ////    selectOrDeselectFeatures(rows);
+            ////});
+
+            /////**
+            //// *
+            //// * @param {DGridRow[]} rows - The rows that were unselected
+            //// */
+            ////table.on("row-deselect", function (rows) {
+            ////    selectOrDeselectFeatures(rows, true);
+            ////});
+
 
             // resize panel when table close is toggled.
             table.tableCloseButton.addEventListener("click", resizeTablePanel);
