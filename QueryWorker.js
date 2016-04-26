@@ -9,6 +9,29 @@ if (!this.Promise) {
     self.importScripts("bower_components/core.js/client/core.min.js");
 }
 
+/**
+ * Converts the arrays of comma-separated number strings array of numbers.
+ * @param {string[]} response - The response from a map service layer query.
+ * @return {number[]} - An array of distinct numbers parsed from the input string.
+ * @example
+ * var input = [" ","01, 02","01, 02, 09","01, 04, 08","01, 06, 07, 09","01, 07","01, 08","01, 09","02, 06","02, 07","03, 04","03, 06","03, 06, 10","03, 08, 10","03, 10","04, 05","04, 08","06, 09","06, 09, 10","06, 10","07, 08","07, 09","08, 09","08, 09, 10","08, 10","09, 10","1","10","2","3","4","5","6","7","8","9"];
+ * var output = listStringsToNumberArray(input);
+ * // Output equals [1,2,3,4,5,6,7,8,9,10]
+ */
+function listStringsToNumberArray(values) {
+    var s = new Set();
+    values.forEach(function (str) {
+        str.split(",", true).forEach(function (item) {
+            s.add(Number(item));
+        });
+    });
+
+    var compareNumbers = function (a, b) {
+        return a === b ? 0 : a > b ? 1 : -1;
+    };
+
+    return Array.from(s).sort(compareNumbers);
+}
 
 /**
  * Converts an object into a query string.
@@ -46,6 +69,8 @@ function toDateString(n) {
     date = date.toISOString().replace(/T.+$/i, "");
     return date;
 }
+
+
 
 /**
  * Begins a query for unique values.
@@ -114,6 +139,20 @@ function submitQueryForUniqueValues(fieldName, resultOffset, previousValues) {
 
         };
         request.send();
+    });
+}
+
+function submitQueryForUniqueValuesFromCommaDelimted(fieldName) {
+    return new Promise(function (resolve, reject) {
+        submitQueryForUniqueValues(fieldName).then(function (response) {
+            response.values = listStringsToNumberArray(response.values);
+            resolve(response);
+            self.postMessage({
+                type: "datalist",
+                fieldName: fieldName,
+                values: response.values
+            })
+        });
     });
 }
 
@@ -240,7 +279,6 @@ self.addEventListener("message", function (e) {
             submitDatesQuery(),
             submitQueryForUniqueValues("RouteID"),
             submitQueryForUniqueValues("Project_Title"),
-            submitQueryForUniqueValues("Revenue_Package"),
             submitQueryForUniqueValues("Sub_Category"),
             submitQueryForUniqueValues("PIN"),
             submitQueryForUniqueValues("Improvement_Type"),
@@ -248,7 +286,7 @@ self.addEventListener("message", function (e) {
             submitQueryForUniqueValues("Sub_Program"),
             submitQueryForUniqueValues("Region"),
             submitQueryForUniqueValues("Program"),
-            submitQueryForUniqueValues("Congressional_District")
+            submitQueryForUniqueValuesFromCommaDelimted("Congressional_District"),
         ]).then(function (successResult) {
             self.close();
         }, function (errorResult) {

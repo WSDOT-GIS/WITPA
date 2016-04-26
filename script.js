@@ -463,6 +463,8 @@ require([
                         docFrag.appendChild(option);
                     });
                     datalist.appendChild(docFrag);
+                } else {
+                    console.warn("Datalist not found for " + fieldName + ".", values);
                 }
             }
 
@@ -501,6 +503,8 @@ require([
                 addToDataList(data.fieldName, data.values);
             } else if (data.ranges) {
                 addAttributes(data.ranges);
+            } else {
+                console.debug(data);
             }
         });
 

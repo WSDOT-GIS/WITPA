@@ -148,8 +148,14 @@
         <!-- Revenue_Package -->
         <div class="form-group">
             <label for="revenuePackageInput">Revenue Package</label>
-            <input id="revenuePackageInput" name="Revenue_Package" data-where-template="{field} = '{value}'" list="revenuePackageList" />
-            <datalist id="revenuePackageList" data-field-name="Revenue_Package"></datalist>
+            <select id="revenuePackageInput" name="Revenue_Package" data-where-template="{field} = '{value}'">
+                <option selected="selected"></option>
+                <option value="2003 Nickel / TPA Combined">2003 Nickel / TPA Combined</option>
+                <option value="2003 Nickel Package">2003 Nickel Package</option>
+                <option value="2005 TPA Package">2005 TPA Package</option>
+                <option value="2015 Connecting Washington Pkg">2015 Connecting Washington Pkg</option>
+                <option value="Pre Existing Funds">Pre Existing Funds</option>
+            </select>
         </div>
         <!-- TODO: Add Sub_Category -->
         <div class="form-group">
