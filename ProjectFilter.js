@@ -62,7 +62,7 @@ define(["dojo/text!./Templates/ProjectFilter.html"], function (template) {
                     // If the template was found, use the string template to create the where clause and
                     // add it to the array.
                     if (whereTemplate) {
-                        values.push(whereTemplate.replace("{field}", input.name).replace("{value}", input.value));
+                        values.push(whereTemplate.replace(/\{field\}/g, input.name).replace(/\{value\}/g, input.value));
                     }
                 }
             });
@@ -76,7 +76,7 @@ define(["dojo/text!./Templates/ProjectFilter.html"], function (template) {
                     var whereTemplate = option.value;
                     var select = option.parentElement;
                     var fieldName = select.dataset.whereTemplateFor;
-                    var query = whereTemplate.replace('{field}', fieldName);
+                    var query = whereTemplate.replace(/\{field\}/g, fieldName);
                     values.push(query);
                 });
             }
