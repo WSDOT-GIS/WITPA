@@ -1,6 +1,8 @@
 ## Modules
 
 <dl>
+<dt><a href="#module_conversionUtils">conversionUtils</a></dt>
+<dd></dd>
 <dt><a href="#module_infoWindowUtils">infoWindowUtils</a></dt>
 <dd></dd>
 <dt><a href="#module_ProjectFilter">ProjectFilter</a></dt>
@@ -23,6 +25,9 @@
 ## Functions
 
 <dl>
+<dt><a href="#listStringsToNumberArray">listStringsToNumberArray(response)</a> ⇒ <code>Array.&lt;number&gt;</code></dt>
+<dd><p>Converts the arrays of comma-separated number strings array of numbers.</p>
+</dd>
 <dt><a href="#objectToQueryString">objectToQueryString(o)</a> ⇒ <code>string</code></dt>
 <dd><p>Converts an object into a query string.</p>
 </dd>
@@ -56,6 +61,57 @@
 <dd><p>HTML Form Element</p>
 </dd>
 </dl>
+
+<a name="module_conversionUtils"></a>
+
+## conversionUtils
+
+* [conversionUtils](#module_conversionUtils)
+    * [.listStringsToNumberArray(response)](#module_conversionUtils.listStringsToNumberArray) ⇒ <code>Array.&lt;number&gt;</code>
+    * [.objectToQueryString(o)](#module_conversionUtils.objectToQueryString) ⇒ <code>string</code>
+    * [.toDateString(n)](#module_conversionUtils.toDateString) ⇒ <code>string</code>
+
+<a name="module_conversionUtils.listStringsToNumberArray"></a>
+
+### conversionUtils.listStringsToNumberArray(response) ⇒ <code>Array.&lt;number&gt;</code>
+Converts the arrays of comma-separated number strings array of numbers.
+
+**Kind**: static method of <code>[conversionUtils](#module_conversionUtils)</code>  
+**Returns**: <code>Array.&lt;number&gt;</code> - - An array of distinct numbers parsed from the input string.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| response | <code>Array.&lt;string&gt;</code> | The response from a map service layer query. |
+
+**Example**  
+```js
+var input = [" ","01, 02","01, 02, 09","01, 04, 08","01, 06, 07, 09","01, 07","01, 08","01, 09","02, 06","02, 07","03, 04","03, 06","03, 06, 10","03, 08, 10","03, 10","04, 05","04, 08","06, 09","06, 09, 10","06, 10","07, 08","07, 09","08, 09","08, 09, 10","08, 10","09, 10","1","10","2","3","4","5","6","7","8","9"];
+var output = listStringsToNumberArray(input);
+// Output equals [1,2,3,4,5,6,7,8,9,10]
+```
+<a name="module_conversionUtils.objectToQueryString"></a>
+
+### conversionUtils.objectToQueryString(o) ⇒ <code>string</code>
+Converts an object into a query string.
+
+**Kind**: static method of <code>[conversionUtils](#module_conversionUtils)</code>  
+**Returns**: <code>string</code> - Returns a query string representation of the input object.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| o | <code>Object.&lt;string, \*&gt;</code> | An object with query string parameters. |
+
+<a name="module_conversionUtils.toDateString"></a>
+
+### conversionUtils.toDateString(n) ⇒ <code>string</code>
+Converts an integer into a string representation of a date suitable for date input element attributes.
+
+**Kind**: static method of <code>[conversionUtils](#module_conversionUtils)</code>  
+**Returns**: <code>string</code> - string representation of the input date value ([RFC 3339 format](https://tools.ietf.org/html/rfc3339)).  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| n | <code>number</code> | An integer representation of a date. |
 
 <a name="module_infoWindowUtils"></a>
 
@@ -133,6 +189,24 @@ FeatureLayer.selection-complete
 | --- |
 | <code>Object</code> | 
 
+<a name="listStringsToNumberArray"></a>
+
+## listStringsToNumberArray(response) ⇒ <code>Array.&lt;number&gt;</code>
+Converts the arrays of comma-separated number strings array of numbers.
+
+**Kind**: global function  
+**Returns**: <code>Array.&lt;number&gt;</code> - - An array of distinct numbers parsed from the input string.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| response | <code>Array.&lt;string&gt;</code> | The response from a map service layer query. |
+
+**Example**  
+```js
+var input = [" ","01, 02","01, 02, 09","01, 04, 08","01, 06, 07, 09","01, 07","01, 08","01, 09","02, 06","02, 07","03, 04","03, 06","03, 06, 10","03, 08, 10","03, 10","04, 05","04, 08","06, 09","06, 09, 10","06, 10","07, 08","07, 09","08, 09","08, 09, 10","08, 10","09, 10","1","10","2","3","4","5","6","7","8","9"];
+var output = listStringsToNumberArray(input);
+// Output equals [1,2,3,4,5,6,7,8,9,10]
+```
 <a name="objectToQueryString"></a>
 
 ## objectToQueryString(o) ⇒ <code>string</code>

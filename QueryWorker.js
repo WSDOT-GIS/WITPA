@@ -9,68 +9,7 @@ if (!this.Promise) {
     self.importScripts("bower_components/core.js/client/core.min.js");
 }
 
-/**
- * Converts the arrays of comma-separated number strings array of numbers.
- * @param {string[]} response - The response from a map service layer query.
- * @return {number[]} - An array of distinct numbers parsed from the input string.
- * @example
- * var input = [" ","01, 02","01, 02, 09","01, 04, 08","01, 06, 07, 09","01, 07","01, 08","01, 09","02, 06","02, 07","03, 04","03, 06","03, 06, 10","03, 08, 10","03, 10","04, 05","04, 08","06, 09","06, 09, 10","06, 10","07, 08","07, 09","08, 09","08, 09, 10","08, 10","09, 10","1","10","2","3","4","5","6","7","8","9"];
- * var output = listStringsToNumberArray(input);
- * // Output equals [1,2,3,4,5,6,7,8,9,10]
- */
-function listStringsToNumberArray(values) {
-    var s = new Set();
-    values.forEach(function (str) {
-        str.split(",", true).forEach(function (item) {
-            s.add(Number(item));
-        });
-    });
-
-    var compareNumbers = function (a, b) {
-        return a === b ? 0 : a > b ? 1 : -1;
-    };
-
-    return Array.from(s).sort(compareNumbers);
-}
-
-/**
- * Converts an object into a query string.
- * @param {Object.<string,(string|Object)>} o - An object with query string parameters.
- * @returns {string} Returns a query string representation of the input object.
- */
-function objectToQueryString(o) {
-    if (!(o && typeof o === "object")) {
-        throw new TypeError("Input parameter should be an object.");
-    }
-
-    var output = [], value, name;
-
-    for (name in o) {
-        if (o.hasOwnProperty(name)) {
-            value = o[name];
-            if (typeof value === "object") {
-                value = JSON.stringify(value);
-            }
-            value = encodeURIComponent(value);
-            output.push([name, value].join("="));
-        }
-    }
-
-    return output.join("&");
-}
-
-/**
- * Converts an integer into a string representation of a date suitable for date input element attributes.
- * @param {number} n - An integer representation of a date.
- * @returns {string} string representation of the input date value (RFC 3339 format).
- */
-function toDateString(n) {
-    var date = new Date(n);
-    date = date.toISOString().replace(/T.+$/i, "");
-    return date;
-}
-
-
+self.importScripts("conversionUtils.js");
 
 /**
  * Begins a query for unique values.
@@ -93,7 +32,7 @@ function submitQueryForUniqueValues(fieldName, resultOffset, previousValues) {
     if (resultOffset) {
         query.resultOffset = resultOffset;
     }
-    var qs = objectToQueryString(query);
+    var qs = conversionUtils.objectToQueryString(query);
     var url = [layerUrl, qs].join("?");
 
     return new Promise(function (resolve, reject) {
@@ -145,7 +84,7 @@ function submitQueryForUniqueValues(fieldName, resultOffset, previousValues) {
 function submitQueryForUniqueValuesFromCommaDelimted(fieldName) {
     return new Promise(function (resolve, reject) {
         submitQueryForUniqueValues(fieldName).then(function (response) {
-            response.values = listStringsToNumberArray(response.values);
+            response.values = conversionUtils.listStringsToNumberArray(response.values);
             resolve(response);
             self.postMessage({
                 type: "datalist",
@@ -206,7 +145,7 @@ function submitDatesQuery() {
             }
         ];
 
-        var qs = objectToQueryString(query);
+        var qs = conversionUtils.objectToQueryString(query);
         var url = [layerUrl, qs].join("?");
 
         var request = new XMLHttpRequest();
@@ -227,7 +166,7 @@ function submitDatesQuery() {
             queryResponse = JSON.parse(queryResponse, function (k, v) {
                 var dateFieldNameRe = /Date$/i;
                 if (dateFieldNameRe.test(k) && typeof v === "number") {
-                    return toDateString(v);
+                    return conversionUtils.toDateString(v);
                 } else {
                     return v;
                 }

@@ -52,6 +52,7 @@
     <Content Include="images\no-image.png" />
     <Content Include="images\no-image.svg" />
     <Content Include="images\no-image2.svg" />
+    <Content Include="conversionUtils.js" />
     <Content Include="README.md" />
     <Content Include="infoWindowUtils.js" />
     <Content Include="QueryWorker.js" />
