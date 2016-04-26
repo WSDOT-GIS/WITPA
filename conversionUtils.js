@@ -16,6 +16,7 @@
     "use strict";
 
     /**
+     * Utility module that provides conversion functions.
      * @module conversionUtils
      */
 
@@ -51,6 +52,7 @@
      * Converts an object into a query string.
      * @param {Object.<string,*>} o - An object with query string parameters.
      * @returns {string} Returns a query string representation of the input object.
+     * @throws {external:TypeError} - Throws a type error if the input is not an object.
      */
     exports.objectToQueryString = function (o) {
         if (!(o && typeof o === "object")) {
@@ -77,7 +79,7 @@
      * Converts an integer into a string representation of a date suitable for date input element attributes.
      * @param {(Date|number)} n - An integer representation of a date.
      * @returns {string} string representation of the input date value ({@link https://tools.ietf.org/html/rfc3339|RFC 3339 format}).
-     * @throws {TypeError} - Thrown if the input parameter is not a valid Date or integer.
+     * @throws {external:TypeError} - Thrown if the input parameter is not a valid Date or integer.
      * @example
      * var d = new Date(2016, 4, 26);
      * var s = conversionUtils.toRfc3339(d);

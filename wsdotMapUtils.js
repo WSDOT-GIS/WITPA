@@ -2,6 +2,11 @@
     "esri/config",
     "esri/basemaps"
 ], function (esriConfig, esriBasemaps) {
+    /**
+     * Provides common configuration options for use in WSDOT web maps.
+     * @module wsdotMapUtils
+     */
+
     // Add WSDOT servers to CORS enabled servers.
     ["wsdot.wa.gov", "www.wsdot.wa.gov", "data.wsdot.wa.gov"].forEach(function (server) {
         esriConfig.defaults.io.corsEnabledServers.push(server);

@@ -10,12 +10,12 @@
  * @see {@link https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent}
  */
 
-/**
- * A module that creates a filter UI for projects.
- * @module ProjectFilter
- */
 define(["dojo/text!./Templates/ProjectFilter.html"], function (template) {
     "use strict";
+    /**
+     * A module that creates a filter UI for projects.
+     * @module ProjectFilter
+     */
 
     /**
      * @constructor

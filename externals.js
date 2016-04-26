@@ -1,16 +1,23 @@
 /**
+ * The TypeError object represents an error when a value is not of the expected type.
+ * @external TypeError
+ * @see {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError|TypeError}
+ */
+
+/**
  * FeatureLayer.selection-complete
  * @external FeatureLayer#event:selection-complete
+ * @event
  * @see {@link https://developers.arcgis.com/javascript/jsapi/featurelayer-amd.html#event-selection-complete}
- * @member {Graphic[]} features - The features that were selected by a query.
- * @member {Number} method - The selection method.
- * @member {FeatureLayer} target - The feature layer that performed the selection.
+ * @property {Graphic[]} features - The features that were selected by a query.
+ * @property {Number} method - The selection method.
+ * @property {FeatureLayer} target - The feature layer that performed the selection.
  */
 
 /**
  * Create map response
  * @external createMapResponse
- * @see {@link https://developers.arcgis.com/javascript/jsapi/esri.arcgis.utils-amd.html#createmap esri/arcgis/utils.createMap()
+ * @see {@link https://developers.arcgis.com/javascript/jsapi/esri.arcgis.utils-amd.html#createmap esri/arcgis/utils.createMap()}
  * @member {external:esri/Map} map
  * @member {(EventHandler|undefined)} clickEventHandle
  * @member {(Function|undefined)} clickEventListener
@@ -21,8 +28,7 @@
  */
 
 /**
- * dojo/Deferred
- * @description Deferred response from an asynchronous operation.
+ * Deferred response from an asynchronous operation.
  * @external dojo/Deferred
  * @see {@link http://dojotoolkit.org/reference-guide/1.10/dojo/Deferred.html dojo/Deferred}
  */

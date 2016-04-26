@@ -6,6 +6,7 @@ define([
     "use strict";
 
     /**
+     * Utilites for use with {@link external:esri/dijit/InfoWindow|InfoWindow} objects.
      * @exports infoWindowUtils
      */
 
