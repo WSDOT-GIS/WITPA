@@ -166,7 +166,7 @@ function submitDatesQuery() {
             queryResponse = JSON.parse(queryResponse, function (k, v) {
                 var dateFieldNameRe = /Date$/i;
                 if (dateFieldNameRe.test(k) && typeof v === "number") {
-                    return conversionUtils.toDateString(v);
+                    return conversionUtils.toRfc3339(v);
                 } else {
                     return v;
                 }

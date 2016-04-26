@@ -81,6 +81,8 @@
     <Content Include="package.json" />
     <Content Include="api.md" />
     <None Include="Properties\PublishProfiles\QA %28Internal%29.pubxml" />
+    <Content Include="spec\support\jasmine.json" />
+    <Content Include="spec\conversionUtilsSpec.js" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -4,7 +4,7 @@
   "description": "WA Interactive Transportation Planning Application ",
   "main": "index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jasmine",
     "prepublish": "jsdoc2md *.js > api.md"
   },
   "repository": {
@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/WSDOT-GIS/WITPA#readme",
   "devDependencies": {
+    "jasmine": "^2.4.1",
     "jsdoc-to-markdown": "^1.3.3"
   }
 }

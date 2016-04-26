@@ -33,8 +33,10 @@
     exports.listStringsToNumberArray = function (values) {
         var s = new Set();
         values.forEach(function (str) {
-            str.split(",", true).forEach(function (item) {
-                s.add(Number(item));
+            str.split(/\s*,\s*/g).forEach(function (item) {
+                if (/\d+/.test(item)) {
+                    s.add(Number(item));
+                }
             });
         });
 
@@ -73,11 +75,20 @@
 
     /**
      * Converts an integer into a string representation of a date suitable for date input element attributes.
-     * @param {number} n - An integer representation of a date.
+     * @param {(Date|number)} n - An integer representation of a date.
      * @returns {string} string representation of the input date value ({@link https://tools.ietf.org/html/rfc3339|RFC 3339 format}).
+     * @throws {TypeError} - Thrown if the input parameter is not a valid Date or integer.
+     * @example
+     * var d = new Date(2016, 4, 26);
+     * var s = conversionUtils.toRfc3339(d);
+     * // Jasmine test
+     * expect(s).toBe("2016-05-26");
      */
-    exports.toDateString = function(n) {
-        var date = new Date(n);
+    exports.toRfc3339 = function(n) {
+        var date = typeof n === "number" ? new Date(n) : n instanceof Date ? n : null;
+        if (date === null) {
+            throw new TypeError("The input parameter must be either a date or an integer.");
+        }
         date = date.toISOString().replace(/T.+$/i, "");
         return date;
     }

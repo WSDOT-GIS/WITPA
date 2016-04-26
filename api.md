@@ -25,15 +25,6 @@
 ## Functions
 
 <dl>
-<dt><a href="#listStringsToNumberArray">listStringsToNumberArray(response)</a> ⇒ <code>Array.&lt;number&gt;</code></dt>
-<dd><p>Converts the arrays of comma-separated number strings array of numbers.</p>
-</dd>
-<dt><a href="#objectToQueryString">objectToQueryString(o)</a> ⇒ <code>string</code></dt>
-<dd><p>Converts an object into a query string.</p>
-</dd>
-<dt><a href="#toDateString">toDateString(n)</a> ⇒ <code>string</code></dt>
-<dd><p>Converts an integer into a string representation of a date suitable for date input element attributes.</p>
-</dd>
 <dt><a href="#submitQueryForUniqueValues">submitQueryForUniqueValues(fieldName, [resultOffset], [previousValues])</a> ⇒ <code>Promise.&lt;Object.&lt;string, (boolean|Array.&lt;string&gt;)&gt;&gt;</code></dt>
 <dd><p>Begins a query for unique values.</p>
 </dd>
@@ -69,7 +60,7 @@
 * [conversionUtils](#module_conversionUtils)
     * [.listStringsToNumberArray(response)](#module_conversionUtils.listStringsToNumberArray) ⇒ <code>Array.&lt;number&gt;</code>
     * [.objectToQueryString(o)](#module_conversionUtils.objectToQueryString) ⇒ <code>string</code>
-    * [.toDateString(n)](#module_conversionUtils.toDateString) ⇒ <code>string</code>
+    * [.toRfc3339(n)](#module_conversionUtils.toRfc3339) ⇒ <code>string</code>
 
 <a name="module_conversionUtils.listStringsToNumberArray"></a>
 
@@ -85,9 +76,7 @@ Converts the arrays of comma-separated number strings array of numbers.
 
 **Example**  
 ```js
-var input = [" ","01, 02","01, 02, 09","01, 04, 08","01, 06, 07, 09","01, 07","01, 08","01, 09","02, 06","02, 07","03, 04","03, 06","03, 06, 10","03, 08, 10","03, 10","04, 05","04, 08","06, 09","06, 09, 10","06, 10","07, 08","07, 09","08, 09","08, 09, 10","08, 10","09, 10","1","10","2","3","4","5","6","7","8","9"];
-var output = listStringsToNumberArray(input);
-// Output equals [1,2,3,4,5,6,7,8,9,10]
+var input = [" ","01, 02","01, 02, 09","01, 04, 08","01, 06, 07, 09","01, 07","01, 08","01, 09","02, 06","02, 07","03, 04","03, 06","03, 06, 10","03, 08, 10","03, 10","04, 05","04, 08","06, 09","06, 09, 10","06, 10","07, 08","07, 09","08, 09","08, 09, 10","08, 10","09, 10","1","10","2","3","4","5","6","7","8","9"];var output = listStringsToNumberArray(input);// Output equals [1,2,3,4,5,6,7,8,9,10]
 ```
 <a name="module_conversionUtils.objectToQueryString"></a>
 
@@ -101,18 +90,26 @@ Converts an object into a query string.
 | --- | --- | --- |
 | o | <code>Object.&lt;string, \*&gt;</code> | An object with query string parameters. |
 
-<a name="module_conversionUtils.toDateString"></a>
+<a name="module_conversionUtils.toRfc3339"></a>
 
-### conversionUtils.toDateString(n) ⇒ <code>string</code>
+### conversionUtils.toRfc3339(n) ⇒ <code>string</code>
 Converts an integer into a string representation of a date suitable for date input element attributes.
 
 **Kind**: static method of <code>[conversionUtils](#module_conversionUtils)</code>  
 **Returns**: <code>string</code> - string representation of the input date value ([RFC 3339 format](https://tools.ietf.org/html/rfc3339)).  
+**Throws**:
+
+- <code>TypeError</code> - Thrown if the input parameter is not a valid Date or integer.
+
 
 | Param | Type | Description |
 | --- | --- | --- |
-| n | <code>number</code> | An integer representation of a date. |
+| n | <code>Date</code> &#124; <code>number</code> | An integer representation of a date. |
 
+**Example**  
+```js
+var d = new Date(2016, 4, 26);var s = conversionUtils.toRfc3339(d);// Jasmine testexpect(s).toBe("2016-05-26");
+```
 <a name="module_infoWindowUtils"></a>
 
 ## infoWindowUtils
@@ -188,48 +185,6 @@ FeatureLayer.selection-complete
 | Type |
 | --- |
 | <code>Object</code> | 
-
-<a name="listStringsToNumberArray"></a>
-
-## listStringsToNumberArray(response) ⇒ <code>Array.&lt;number&gt;</code>
-Converts the arrays of comma-separated number strings array of numbers.
-
-**Kind**: global function  
-**Returns**: <code>Array.&lt;number&gt;</code> - - An array of distinct numbers parsed from the input string.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| response | <code>Array.&lt;string&gt;</code> | The response from a map service layer query. |
-
-**Example**  
-```js
-var input = [" ","01, 02","01, 02, 09","01, 04, 08","01, 06, 07, 09","01, 07","01, 08","01, 09","02, 06","02, 07","03, 04","03, 06","03, 06, 10","03, 08, 10","03, 10","04, 05","04, 08","06, 09","06, 09, 10","06, 10","07, 08","07, 09","08, 09","08, 09, 10","08, 10","09, 10","1","10","2","3","4","5","6","7","8","9"];
-var output = listStringsToNumberArray(input);
-// Output equals [1,2,3,4,5,6,7,8,9,10]
-```
-<a name="objectToQueryString"></a>
-
-## objectToQueryString(o) ⇒ <code>string</code>
-Converts an object into a query string.
-
-**Kind**: global function  
-**Returns**: <code>string</code> - Returns a query string representation of the input object.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| o | <code>Object.&lt;string, (string\|Object)&gt;</code> | An object with query string parameters. |
-
-<a name="toDateString"></a>
-
-## toDateString(n) ⇒ <code>string</code>
-Converts an integer into a string representation of a date suitable for date input element attributes.
-
-**Kind**: global function  
-**Returns**: <code>string</code> - string representation of the input date value (RFC 3339 format).  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| n | <code>number</code> | An integer representation of a date. |
 
 <a name="submitQueryForUniqueValues"></a>
 
