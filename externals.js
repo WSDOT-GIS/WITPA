@@ -5,6 +5,24 @@
  */
 
 /**
+ * ArcGIS API InfoWindow
+ * @external esri/dijit/InfoWindow
+ * @see {@link https://developers.arcgis.com/javascript/jsapi/infowindow-amd.html|InfoWindow}
+ */
+
+/**
+ * HTML Form Element
+ * @external HTMLFormElement
+ * @see {@link https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement|HTMLFormElement}
+ */
+
+/**
+ * CustomEvent
+ * @external CustomEvent
+ * @see {@link https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent|CustomEvent}
+ */
+
+/**
  * FeatureLayer.selection-complete
  * @external FeatureLayer#event:selection-complete
  * @event
@@ -27,25 +45,3 @@
  * @member {Object.<string, Error>} itemInfo.errors
  */
 
-/**
- * Deferred response from an asynchronous operation.
- * @external dojo/Deferred
- * @see {@link http://dojotoolkit.org/reference-guide/1.10/dojo/Deferred.html dojo/Deferred}
- */
-
-/*
- * @external esri/dijit/InfoWindow
- * @see {@link https://developers.arcgis.com/javascript/jsapi/infowindow-amd.html InfoWindow}
- */
-
-/**
- * HTML Form Element
- * @external HTMLFormElement
- * @see {@link https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement HTMLFormElement}
- */
-
-/*
- * CustomEvent
- * @external CustomEvent
- * @see {@link https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent CustomEvent}
- */

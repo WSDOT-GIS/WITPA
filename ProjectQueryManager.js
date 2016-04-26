@@ -1,5 +1,5 @@
 /**
- * @typedef DateRange
+ * @typedef {Object.<string, Date>} DateRange
  * @property {Date} min - Minimum date
  * @property {Date} max - Maximum date
  */

@@ -11,7 +11,7 @@
 <dd><p>Utility module that provides conversion functions.</p>
 </dd>
 <dt><a href="#module_infoWindowUtils">infoWindowUtils</a></dt>
-<dd><p>Utilites for use with <a href="external:esri/dijit/InfoWindow">InfoWindow</a> objects.</p>
+<dd><p>Utilites for use with <a href="#external_esri/dijit/InfoWindow">esri/dijit/InfoWindow</a> objects.</p>
 </dd>
 <dt><a href="#module_wsdotMapUtils">wsdotMapUtils</a></dt>
 <dd><p>Provides common configuration options for use in WSDOT web maps.</p>
@@ -21,7 +21,7 @@
 ## Typedefs
 
 <dl>
-<dt><a href="#DateRange">DateRange</a></dt>
+<dt><a href="#DateRange">DateRange</a> : <code>Object.&lt;string, Date&gt;</code></dt>
 <dd></dd>
 <dt><a href="#DateRangeResponse">DateRangeResponse</a> : <code>Object.&lt;string, DateRange&gt;</code></dt>
 <dd></dd>
@@ -35,11 +35,14 @@
 <dt><a href="#external_TypeError">TypeError</a></dt>
 <dd><p>The TypeError object represents an error when a value is not of the expected type.</p>
 </dd>
-<dt><a href="#external_dojo/Deferred">dojo/Deferred</a></dt>
-<dd><p>Deferred response from an asynchronous operation.</p>
+<dt><a href="#external_esri/dijit/InfoWindow">esri/dijit/InfoWindow</a></dt>
+<dd><p>ArcGIS API InfoWindow</p>
 </dd>
 <dt><a href="#external_HTMLFormElement">HTMLFormElement</a></dt>
 <dd><p>HTML Form Element</p>
+</dd>
+<dt><a href="#external_CustomEvent">CustomEvent</a></dt>
+<dd><p>CustomEvent</p>
 </dd>
 </dl>
 
@@ -218,18 +221,18 @@ expect(s).toBe("2016-05-26");
 <a name="module_infoWindowUtils"></a>
 
 ## infoWindowUtils
-Utilites for use with [InfoWindow](external:esri/dijit/InfoWindow) objects.
+Utilites for use with [esri/dijit/InfoWindow](#external_esri/dijit/InfoWindow) objects.
 
-<a name="exp_module_infoWindowUtils--makeInfoWindowDraggable"></a>
+<a name="module_infoWindowUtils.makeInfoWindowDraggable"></a>
 
-### makeInfoWindowDraggable ⏏
+### infoWindowUtils.makeInfoWindowDraggable(infoWindow)
 Makes an InfoWindow draggable.
 
-**Kind**: Exported member  
+**Kind**: static method of <code>[infoWindowUtils](#module_infoWindowUtils)</code>  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| infoWindow | <code>external:esri/dijit/InfoWindow</code> | An info window. |
+| infoWindow | <code>[esri/dijit/InfoWindow](#external_esri/dijit/InfoWindow)</code> | An info window. |
 
 <a name="module_wsdotMapUtils"></a>
 
@@ -263,7 +266,7 @@ Provides common configuration options for use in WSDOT web maps.
 
 <a name="DateRange"></a>
 
-## DateRange
+## DateRange : <code>Object.&lt;string, Date&gt;</code>
 **Kind**: global typedef  
 **Properties**
 
@@ -303,13 +306,13 @@ The TypeError object represents an error when a value is not of the expected typ
 
 **Kind**: global external  
 **See**: [TypeError](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError)  
-<a name="external_dojo/Deferred"></a>
+<a name="external_esri/dijit/InfoWindow"></a>
 
-## dojo/Deferred
-Deferred response from an asynchronous operation.
+## esri/dijit/InfoWindow
+ArcGIS API InfoWindow
 
 **Kind**: global external  
-**See**: [dojo/Deferred](http://dojotoolkit.org/reference-guide/1.10/dojo/Deferred.html)  
+**See**: [InfoWindow](https://developers.arcgis.com/javascript/jsapi/infowindow-amd.html)  
 <a name="external_HTMLFormElement"></a>
 
 ## HTMLFormElement
@@ -317,3 +320,10 @@ HTML Form Element
 
 **Kind**: global external  
 **See**: [HTMLFormElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement)  
+<a name="external_CustomEvent"></a>
+
+## CustomEvent
+CustomEvent
+
+**Kind**: global external  
+**See**: [CustomEvent](https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent)  
