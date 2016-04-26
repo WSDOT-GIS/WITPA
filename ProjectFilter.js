@@ -1,15 +1,3 @@
-/**
- * HTML Form Element
- * @external HTMLFormElement
- * @see {@link https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement}
- */
-
-/*
- * CustomEvent
- * @external CustomEvent
- * @see {@link https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent}
- */
-
 define(["dojo/text!./Templates/ProjectFilter.html"], function (template) {
     "use strict";
     /**
@@ -103,9 +91,8 @@ define(["dojo/text!./Templates/ProjectFilter.html"], function (template) {
         Object.defineProperties(this, {
             /**
              * The HTML form
-             * @type {external:HTMLFormElement}
+             * @member {external:HTMLFormElement}
              * @instance
-             * @memberOf module:ProjectFilter
              * @fires {module:ProjectFilter#submit-query}
              */
             form: {

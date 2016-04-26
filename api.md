@@ -1,17 +1,17 @@
 ## Modules
 
 <dl>
-<dt><a href="#module_conversionUtils">conversionUtils</a></dt>
-<dd><p>Utility module that provides conversion functions.</p>
-</dd>
-<dt><a href="#module_infoWindowUtils">infoWindowUtils</a></dt>
-<dd><p>Utilites for use with <a href="external:esri/dijit/InfoWindow">InfoWindow</a> objects.</p>
-</dd>
 <dt><a href="#module_ProjectFilter">ProjectFilter</a></dt>
 <dd><p>A module that creates a filter UI for projects.</p>
 </dd>
 <dt><a href="#module_ProjectQueryManager">ProjectQueryManager</a></dt>
 <dd><p>Manages queries to the projects layer.</p>
+</dd>
+<dt><a href="#module_conversionUtils">conversionUtils</a></dt>
+<dd><p>Utility module that provides conversion functions.</p>
+</dd>
+<dt><a href="#module_infoWindowUtils">infoWindowUtils</a></dt>
+<dd><p>Utilites for use with <a href="external:esri/dijit/InfoWindow">InfoWindow</a> objects.</p>
 </dd>
 <dt><a href="#module_wsdotMapUtils">wsdotMapUtils</a></dt>
 <dd><p>Provides common configuration options for use in WSDOT web maps.</p>
@@ -26,8 +26,6 @@
 <dt><a href="#DateRangeResponse">DateRangeResponse</a> : <code>Object.&lt;string, DateRange&gt;</code></dt>
 <dd></dd>
 <dt><a href="#UniqueValuesQueryResponse">UniqueValuesQueryResponse</a> : <code>Object</code></dt>
-<dd></dd>
-<dt><a href="#DGridRow">DGridRow</a> : <code>Object</code></dt>
 <dd></dd>
 </dl>
 
@@ -44,90 +42,6 @@
 <dd><p>HTML Form Element</p>
 </dd>
 </dl>
-
-<a name="module_conversionUtils"></a>
-
-## conversionUtils
-Utility module that provides conversion functions.
-
-
-* [conversionUtils](#module_conversionUtils)
-    * [.listStringsToNumberArray(response)](#module_conversionUtils.listStringsToNumberArray) ⇒ <code>Array.&lt;number&gt;</code>
-    * [.objectToQueryString(o)](#module_conversionUtils.objectToQueryString) ⇒ <code>string</code>
-    * [.toRfc3339(n)](#module_conversionUtils.toRfc3339) ⇒ <code>string</code>
-
-<a name="module_conversionUtils.listStringsToNumberArray"></a>
-
-### conversionUtils.listStringsToNumberArray(response) ⇒ <code>Array.&lt;number&gt;</code>
-Converts the arrays of comma-separated number strings array of numbers.
-
-**Kind**: static method of <code>[conversionUtils](#module_conversionUtils)</code>  
-**Returns**: <code>Array.&lt;number&gt;</code> - - An array of distinct numbers parsed from the input string.  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| response | <code>Array.&lt;string&gt;</code> | The response from a map service layer query. |
-
-**Example**  
-```js
-var input = [" ","01, 02","01, 02, 09","01, 04, 08","01, 06, 07, 09","01, 07","01, 08","01, 09","02, 06","02, 07","03, 04","03, 06","03, 06, 10","03, 08, 10","03, 10","04, 05","04, 08","06, 09","06, 09, 10","06, 10","07, 08","07, 09","08, 09","08, 09, 10","08, 10","09, 10","1","10","2","3","4","5","6","7","8","9"];
-var output = listStringsToNumberArray(input);
-// Output equals [1,2,3,4,5,6,7,8,9,10]
-```
-<a name="module_conversionUtils.objectToQueryString"></a>
-
-### conversionUtils.objectToQueryString(o) ⇒ <code>string</code>
-Converts an object into a query string.
-
-**Kind**: static method of <code>[conversionUtils](#module_conversionUtils)</code>  
-**Returns**: <code>string</code> - Returns a query string representation of the input object.  
-**Throws**:
-
-- <code>[TypeError](#external_TypeError)</code> - Throws a type error if the input is not an object.
-
-
-| Param | Type | Description |
-| --- | --- | --- |
-| o | <code>Object.&lt;string, \*&gt;</code> | An object with query string parameters. |
-
-<a name="module_conversionUtils.toRfc3339"></a>
-
-### conversionUtils.toRfc3339(n) ⇒ <code>string</code>
-Converts an integer into a string representation of a date suitable for date input element attributes.
-
-**Kind**: static method of <code>[conversionUtils](#module_conversionUtils)</code>  
-**Returns**: <code>string</code> - string representation of the input date value ([RFC 3339 format](https://tools.ietf.org/html/rfc3339)).  
-**Throws**:
-
-- <code>[TypeError](#external_TypeError)</code> - Thrown if the input parameter is not a valid Date or integer.
-
-
-| Param | Type | Description |
-| --- | --- | --- |
-| n | <code>Date</code> &#124; <code>number</code> | An integer representation of a date. |
-
-**Example**  
-```js
-var d = new Date(2016, 4, 26);
-var s = conversionUtils.toRfc3339(d);
-// Jasmine test
-expect(s).toBe("2016-05-26");
-```
-<a name="module_infoWindowUtils"></a>
-
-## infoWindowUtils
-Utilites for use with [InfoWindow](external:esri/dijit/InfoWindow) objects.
-
-<a name="exp_module_infoWindowUtils--makeInfoWindowDraggable"></a>
-
-### makeInfoWindowDraggable ⏏
-Makes an InfoWindow draggable.
-
-**Kind**: Exported member  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| infoWindow | <code>external:esri/dijit/InfoWindow</code> | An info window. |
 
 <a name="module_ProjectFilter"></a>
 
@@ -233,6 +147,90 @@ The URL to the feature layer.
 
 **Kind**: inner property of <code>[ProjectQueryManager](#exp_module_ProjectQueryManager--ProjectQueryManager)</code>  
 **Read only**: true  
+<a name="module_conversionUtils"></a>
+
+## conversionUtils
+Utility module that provides conversion functions.
+
+
+* [conversionUtils](#module_conversionUtils)
+    * [.listStringsToNumberArray(response)](#module_conversionUtils.listStringsToNumberArray) ⇒ <code>Array.&lt;number&gt;</code>
+    * [.objectToQueryString(o)](#module_conversionUtils.objectToQueryString) ⇒ <code>string</code>
+    * [.toRfc3339(date)](#module_conversionUtils.toRfc3339) ⇒ <code>string</code>
+
+<a name="module_conversionUtils.listStringsToNumberArray"></a>
+
+### conversionUtils.listStringsToNumberArray(response) ⇒ <code>Array.&lt;number&gt;</code>
+Converts the arrays of comma-separated number strings array of numbers.
+
+**Kind**: static method of <code>[conversionUtils](#module_conversionUtils)</code>  
+**Returns**: <code>Array.&lt;number&gt;</code> - - An array of distinct numbers parsed from the input string.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| response | <code>Array.&lt;string&gt;</code> | The response from a map service layer query. |
+
+**Example**  
+```js
+var input = [" ","01, 02","01, 02, 09","01, 04, 08","01, 06, 07, 09","01, 07","01, 08","01, 09","02, 06","02, 07","03, 04","03, 06","03, 06, 10","03, 08, 10","03, 10","04, 05","04, 08","06, 09","06, 09, 10","06, 10","07, 08","07, 09","08, 09","08, 09, 10","08, 10","09, 10","1","10","2","3","4","5","6","7","8","9"];
+var output = listStringsToNumberArray(input);
+// Output equals [1,2,3,4,5,6,7,8,9,10]
+```
+<a name="module_conversionUtils.objectToQueryString"></a>
+
+### conversionUtils.objectToQueryString(o) ⇒ <code>string</code>
+Converts an object into a query string.
+
+**Kind**: static method of <code>[conversionUtils](#module_conversionUtils)</code>  
+**Returns**: <code>string</code> - Returns a query string representation of the input object.  
+**Throws**:
+
+- <code>[TypeError](#external_TypeError)</code> - Throws a type error if the input is not an object.
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| o | <code>Object.&lt;string, \*&gt;</code> | An object with query string parameters. |
+
+<a name="module_conversionUtils.toRfc3339"></a>
+
+### conversionUtils.toRfc3339(date) ⇒ <code>string</code>
+Converts an integer into a string representation of a date suitable for date input element attributes.
+
+**Kind**: static method of <code>[conversionUtils](#module_conversionUtils)</code>  
+**Returns**: <code>string</code> - string representation of the input date value ([RFC 3339 format](https://tools.ietf.org/html/rfc3339)).  
+**Throws**:
+
+- <code>[TypeError](#external_TypeError)</code> - Thrown if the input parameter is not a valid Date or integer.
+
+
+| Param | Type | Description |
+| --- | --- | --- |
+| date | <code>Date</code> &#124; <code>number</code> | An integer representation of a date. |
+
+**Example**  
+```js
+var d = new Date(2016, 4, 26);
+var s = conversionUtils.toRfc3339(d);
+// Jasmine test
+expect(s).toBe("2016-05-26");
+```
+<a name="module_infoWindowUtils"></a>
+
+## infoWindowUtils
+Utilites for use with [InfoWindow](external:esri/dijit/InfoWindow) objects.
+
+<a name="exp_module_infoWindowUtils--makeInfoWindowDraggable"></a>
+
+### makeInfoWindowDraggable ⏏
+Makes an InfoWindow draggable.
+
+**Kind**: Exported member  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| infoWindow | <code>external:esri/dijit/InfoWindow</code> | An info window. |
+
 <a name="module_wsdotMapUtils"></a>
 
 ## wsdotMapUtils
@@ -298,19 +296,6 @@ Provides common configuration options for use in WSDOT web maps.
 | values | <code>Array.&lt;string&gt;</code> &#124; <code>Array.&lt;number&gt;</code> | An array of either string or number values. |
 | complete | <code>Boolean</code> | Indicates that the values list is complete. Used by recursive calls for when the number of features that is allowed to be returned is less than the total number of unique features. |
 
-<a name="DGridRow"></a>
-
-## DGridRow : <code>Object</code>
-**Kind**: global typedef  
-**Properties**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| data | <code>Object</code> |  |
-| data.OBJECTID | <code>number</code> |  |
-| element | <code>HTMLElement</code> |  |
-| id | <code>string</code> | A string containing the corresponding feature's Object ID. |
-
 <a name="external_TypeError"></a>
 
 ## TypeError
@@ -331,4 +316,4 @@ Deferred response from an asynchronous operation.
 HTML Form Element
 
 **Kind**: global external  
-**See**: [https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement)  
+**See**: [HTMLFormElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement)  

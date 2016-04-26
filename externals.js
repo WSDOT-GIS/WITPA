@@ -37,3 +37,15 @@
  * @external esri/dijit/InfoWindow
  * @see {@link https://developers.arcgis.com/javascript/jsapi/infowindow-amd.html InfoWindow}
  */
+
+/**
+ * HTML Form Element
+ * @external HTMLFormElement
+ * @see {@link https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement HTMLFormElement}
+ */
+
+/*
+ * CustomEvent
+ * @external CustomEvent
+ * @see {@link https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent CustomEvent}
+ */

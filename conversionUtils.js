@@ -77,7 +77,7 @@
 
     /**
      * Converts an integer into a string representation of a date suitable for date input element attributes.
-     * @param {(Date|number)} n - An integer representation of a date.
+     * @param {(Date|number)} date - An integer representation of a date.
      * @returns {string} string representation of the input date value ({@link https://tools.ietf.org/html/rfc3339|RFC 3339 format}).
      * @throws {external:TypeError} - Thrown if the input parameter is not a valid Date or integer.
      * @example
@@ -86,8 +86,8 @@
      * // Jasmine test
      * expect(s).toBe("2016-05-26");
      */
-    exports.toRfc3339 = function(n) {
-        var date = typeof n === "number" ? new Date(n) : n instanceof Date ? n : null;
+    exports.toRfc3339 = function(date) {
+        var date = typeof date === "number" ? new Date(date) : date instanceof Date ? date : null;
         if (date === null) {
             throw new TypeError("The input parameter must be either a date or an integer.");
         }
