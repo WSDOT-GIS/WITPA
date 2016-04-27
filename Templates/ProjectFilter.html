@@ -193,22 +193,18 @@
         <!-- Sub_Program-->
         <div class="form-group">
             <label for="subProgramInput">Sub Program</label>
-            <input id="subProgramInput" name="Sub_Program" type="text" class="form-control" placeholder="Sub Program"
-                   data-where-template="LOWER({field}) = LOWER('{value}')" list="subProgramList" />
-            <datalist id="subProgramList" data-field-name="Sub_Program"></datalist>
+            <select id="subProgramInput" name="Sub_Program" class="form-control" data-where-template="LOWER({field}) = LOWER('{value}')"></select>
         </div>
 
         <div class="form-group">
             <label for="regionInput">Region</label>
-            <select id="regionInput" name="Region" class="form-control" data-where-template="LOWER({field}) = LOWER('{value}')">
-            </select>
+            <select id="regionInput" name="Region" class="form-control" data-where-template="LOWER({field}) = LOWER('{value}')"></select>
         </div>
 
         <!-- Program -->
         <div class="form-group">
             <label for="programInput">Program</label>
-            <select id="programInput" name="Program" class="form-control" data-where-template="LOWER({field}) = LOWER('{value}')">
-            </select>
+            <select id="programInput" name="Program" class="form-control" data-where-template="LOWER({field}) = LOWER('{value}')"></select>
         </div>
 
         <div class="form-group">
