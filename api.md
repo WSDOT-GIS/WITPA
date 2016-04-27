@@ -67,7 +67,7 @@ A module that creates a filter UI for projects.
 The HTML form
 
 **Kind**: instance property of <code>[ProjectFilter](#exp_module_ProjectFilter--ProjectFilter)</code>  
-**Emits**: <code>{module:ProjectFilter#event:submit-query}</code>  
+**Emits**: <code>[submit-query](#module_ProjectFilter--ProjectFilter+event_submit-query)</code>  
 <a name="module_ProjectFilter--ProjectFilter+event_submit-query"></a>
 
 #### "submit-query"

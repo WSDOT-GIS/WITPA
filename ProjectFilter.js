@@ -6,8 +6,8 @@ define(["dojo/text!./Templates/ProjectFilter.html"], function (template) {
      */
 
     /**
-     * @constructor
      * @alias module:ProjectFilter
+     * @class
      */
     function ProjectFilter() {
         var _form = document.createElement("form");
@@ -80,6 +80,13 @@ define(["dojo/text!./Templates/ProjectFilter.html"], function (template) {
                     }
                 });
 
+                /**
+                 * Submit query event
+                 * @event module:ProjectFilter#submit-query
+                 * @type {external:CustomEvent}
+                 * @property {Object} detail - Details about the submitted query
+                 * @property {string} detail.where - The where clause to use with a filter
+                 */
                 _form.dispatchEvent(customEvent);
             }
 
@@ -93,7 +100,7 @@ define(["dojo/text!./Templates/ProjectFilter.html"], function (template) {
              * The HTML form
              * @member {external:HTMLFormElement}
              * @instance
-             * @fires {module:ProjectFilter#submit-query}
+             * @fires module:ProjectFilter#submit-query
              */
             form: {
                 get: function () {
@@ -103,13 +110,7 @@ define(["dojo/text!./Templates/ProjectFilter.html"], function (template) {
         });
     }
 
-/**
- * Submit query event
- * @event module:ProjectFilter#submit-query
- * @type {CustomEvent}
- * @property {Object} detail - Details about the submitted query
- * @property {string} detail.where - The where clause to use with a filter
- */
+
 
     return ProjectFilter;
 });
