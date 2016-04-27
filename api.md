@@ -129,8 +129,7 @@ Begins a query for unique values.
 <a name="module_ProjectQueryManager--ProjectQueryManager+queryForUniqueValuesFromCommaDelimted"></a>
 
 #### projectQueryManager.queryForUniqueValuesFromCommaDelimted(fieldName) ⇒ <code>[Promise.&lt;UniqueValuesQueryResponse&gt;](#UniqueValuesQueryResponse)</code>
-Queries a layer for all of the unique integer values contained in a field which contains
-comma-delmited lists of integers.
+Queries a layer for all of the unique integer values contained in a field which containscomma-delmited lists of integers.
 
 **Kind**: instance method of <code>[ProjectQueryManager](#exp_module_ProjectQueryManager--ProjectQueryManager)</code>  
 **Returns**: <code>[Promise.&lt;UniqueValuesQueryResponse&gt;](#UniqueValuesQueryResponse)</code> - Values returned from the query.  
@@ -178,9 +177,7 @@ Converts the arrays of comma-separated number strings array of numbers.
 
 **Example**  
 ```js
-var input = [" ","01, 02","01, 02, 09","01, 04, 08","01, 06, 07, 09","01, 07","01, 08","01, 09","02, 06","02, 07","03, 04","03, 06","03, 06, 10","03, 08, 10","03, 10","04, 05","04, 08","06, 09","06, 09, 10","06, 10","07, 08","07, 09","08, 09","08, 09, 10","08, 10","09, 10","1","10","2","3","4","5","6","7","8","9"];
-var output = listStringsToNumberArray(input);
-// Output equals [1,2,3,4,5,6,7,8,9,10]
+var input = [" ","01, 02","01, 02, 09","01, 04, 08","01, 06, 07, 09","01, 07","01, 08","01, 09","02, 06","02, 07","03, 04","03, 06","03, 06, 10","03, 08, 10","03, 10","04, 05","04, 08","06, 09","06, 09, 10","06, 10","07, 08","07, 09","08, 09","08, 09, 10","08, 10","09, 10","1","10","2","3","4","5","6","7","8","9"];var output = listStringsToNumberArray(input);// Output equals [1,2,3,4,5,6,7,8,9,10]
 ```
 <a name="module_conversionUtils.objectToQueryString"></a>
 
@@ -216,10 +213,7 @@ Converts an integer into a string representation of a date suitable for date inp
 
 **Example**  
 ```js
-var d = new Date(2016, 4, 26);
-var s = conversionUtils.toRfc3339(d);
-// Jasmine test
-expect(s).toBe("2016-05-26");
+var d = new Date(2016, 4, 26);var s = conversionUtils.toRfc3339(d);// Jasmine testexpect(s).toBe("2016-05-26");
 ```
 <a name="module_infoWindowUtils"></a>
 
@@ -240,12 +234,7 @@ Makes an InfoWindow draggable.
 <a name="module_wsdotMapUtils"></a>
 
 ## wsdotMapUtils
-Provides common configuration options for use in WSDOT web maps.
-
-Adds "wsdot.wa.gov", "www.wsdot.wa.gov", and "data.wsdot.wa.gov"
-to the ArcGIS API's list of [CORS enabled servers](https://developers.arcgis.com/javascript/jshelp/inside_defaults.html#corsEnabledServers).
-
-Adds the WSDOT Multilevel basemap.
+Provides common configuration options for use in WSDOT web maps.Adds "wsdot.wa.gov", "www.wsdot.wa.gov", and "data.wsdot.wa.gov"to the ArcGIS API's list of [CORS enabled servers](https://developers.arcgis.com/javascript/jshelp/inside_defaults.html#corsEnabledServers).Adds the WSDOT Multilevel basemap.
 
 
 * [wsdotMapUtils](#module_wsdotMapUtils)

@@ -19,48 +19,45 @@ function postUniqueValuesMessage(response) {
 }
 
 self.addEventListener("message", function (e) {
-    var queryManager, queryRe = /query\/?$/, match;
+    var queryManager, queryRe = /query\/?$/, match, promises, datePromise, fieldPromises, numberListPromises;
+    var uniqueValueFieldNames = [
+        "RouteID",
+        "Project_Title",
+        "Sub_Category", "PIN",
+        "Improvement_Type",
+        "Work_Description",
+        "Sub_Program",
+        "Region",
+        "Program"
+    ];
+    var numberListFieldNames = [
+        "Congressional_District"
+    ];
     if (e.data.url) {
-        queryManager = new ProjectQueryManager(e.data.url);
-
-
-        self.postMessage({ type: "queryTaskCreated", url: queryManager.url });
         // Start the queries, then close this worker when all queries are completed (whether successful or not).
-        Promise.all([
-            queryManager.queryForDates().then(function (dateRanges) {
-                self.postMessage({ ranges: dateRanges });
-            }),
-            queryManager.queryForUniqueValues("RouteID").then(function (values) {
+
+        queryManager = new ProjectQueryManager(e.data.url);
+        self.postMessage({ type: "queryTaskCreated", url: queryManager.url });
+        datePromise = queryManager.queryForDates();
+        datePromise.then(function (dateRanges) {
+            self.postMessage({ ranges: dateRanges });
+        });
+
+        numberListPromises = numberListFieldNames.map(function (fieldName) {
+            return queryManager.queryForUniqueValuesFromCommaDelimted(fieldName).then(function (values) {
                 postUniqueValuesMessage(values);
-            }),
-            queryManager.queryForUniqueValues("Project_Title").then(function (values) {
-                postUniqueValuesMessage(values);
-            }),
-            queryManager.queryForUniqueValues("Sub_Category").then(function (values) {
-                postUniqueValuesMessage(values);
-            }),
-            queryManager.queryForUniqueValues("PIN").then(function (values) {
-                postUniqueValuesMessage(values);
-            }),
-            queryManager.queryForUniqueValues("Improvement_Type").then(function (values) {
-                postUniqueValuesMessage(values);
-            }),
-            queryManager.queryForUniqueValues("Work_Description").then(function (values) {
-                postUniqueValuesMessage(values);
-            }),
-            queryManager.queryForUniqueValues("Sub_Program").then(function (values) {
-                postUniqueValuesMessage(values);
-            }),
-            queryManager.queryForUniqueValues("Region").then(function (values) {
-                postUniqueValuesMessage(values);
-            }),
-            queryManager.queryForUniqueValues("Program").then(function (values) {
-                postUniqueValuesMessage(values);
-            }),
-            queryManager.queryForUniqueValuesFromCommaDelimted("Congressional_District").then(function (values) {
+            });
+        });
+
+        fieldPromises = uniqueValueFieldNames.map(function (fieldName) {
+            return queryManager.queryForUniqueValues(fieldName).then(function (values) {
                 postUniqueValuesMessage(values);
             })
-        ]).then(function (successResult) {
+        });
+
+        promises = [datePromise].concat(numberListPromises).concat(fieldPromises);
+
+        Promise.all(promises).then(function (successResult) {
             self.close();
         }, function (errorResult) {
             self.close();
