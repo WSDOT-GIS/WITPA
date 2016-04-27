@@ -453,18 +453,26 @@ require([
              * @param {string[]} values - Values to be added to the datalist.
              */
             function addToDataList(fieldName, values) {
-                var datalist, docFrag;
-                datalist = document.querySelector("datalist[data-field-name='" + fieldName + "']");
+                var datalist, docFrag, option;
+                var selector = "select[name={fieldName}], datalist[data-field-name='{fieldName}']".replace(/\{fieldName\}/g, fieldName);
+                datalist = document.querySelector(selector);
                 if (datalist) {
                     docFrag = document.createDocumentFragment();
+                    // For select element, add empty element to beginning of options list.
+                    if (datalist instanceof HTMLSelectElement) {
+                        option = document.createElement("option");
+                        option.selected = true;
+                        docFrag.appendChild(option);
+                    }
                     values.forEach(function (value) {
-                        var option = document.createElement("option");
+                        option = document.createElement("option");
                         option.value = value;
+                        option.textContent = value.toString();
                         docFrag.appendChild(option);
                     });
                     datalist.appendChild(docFrag);
                 } else {
-                    console.warn("Datalist not found for " + fieldName + ".", values);
+                    console.warn("Neither <datalist> nor <select> found for " + fieldName + ".", values);
                 }
             }
 
@@ -503,8 +511,6 @@ require([
                 addToDataList(data.fieldName, data.values);
             } else if (data.ranges) {
                 addAttributes(data.ranges);
-            } else {
-                console.debug(data);
             }
         });
 

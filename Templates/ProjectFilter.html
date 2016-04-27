@@ -157,11 +157,10 @@
                 <option value="Pre Existing Funds">Pre Existing Funds</option>
             </select>
         </div>
-        <!-- TODO: Add Sub_Category -->
+        <!-- Sub_Category -->
         <div class="form-group">
             <label for="subCategoryInput">Sub Category</label>
-            <input id="subCategoryInput" name="Sub_Category" data-where-template="{field} = '{value}'" list="subCategoryList" />
-            <datalist id="subCategoryList" data-field-name="Sub_Category"></datalist>
+            <select id="subCategoryInput" name="Sub_Category" data-where-template="{field} = '{value}'" list="subCategoryList"></select>
         </div>
     </div>
 
@@ -201,16 +200,15 @@
 
         <div class="form-group">
             <label for="regionInput">Region</label>
-            <input id="regionInput" name="Region" class="form-control" data-where-template="LOWER({field}) = LOWER('{value}')" list="regionList" />
-            <datalist id="regionList" data-field-name="Region"></datalist>
+            <select id="regionInput" name="Region" class="form-control" data-where-template="LOWER({field}) = LOWER('{value}')">
+            </select>
         </div>
 
         <!-- Program -->
         <div class="form-group">
             <label for="programInput">Program</label>
-            <input id="programInput" name="Program" type="text" class="form-control" placeholder="Program"
-                   data-where-template="LOWER({field}) = LOWER('{value}')" list="programList" />
-            <datalist id="programList" data-field-name="Program"></datalist>
+            <select id="programInput" name="Program" class="form-control" data-where-template="LOWER({field}) = LOWER('{value}')">
+            </select>
         </div>
 
         <div class="form-group">
@@ -269,9 +267,8 @@
         <div class="form-group">
             <label for="cDistInput">Congressional District</label>
             <div class="input-group">
-                <input id="cDistInput" name="Congressional_District" type="text" pattern="\d{2}"
-                       data-where-template="{field} LIKE '%{value}%'" title="two-digit number format"
-                       class="form-control" placeholder="Congressional District" />
+                <select id="cDistInput" name="Congressional_District" data-where-template="{field} LIKE '%{value}%'" class="form-control">
+                </select>
             </div>
         </div>
         <!-- Begin MP -->

@@ -15,6 +15,9 @@
 </dd>
 <dt><a href="#module_wsdotMapUtils">wsdotMapUtils</a></dt>
 <dd><p>Provides common configuration options for use in WSDOT web maps.</p>
+<p>Adds &quot;wsdot.wa.gov&quot;, &quot;www.wsdot.wa.gov&quot;, and &quot;data.wsdot.wa.gov&quot;
+to the ArcGIS API&#39;s list of <a href="https://developers.arcgis.com/javascript/jshelp/inside_defaults.html#corsEnabledServers">CORS enabled servers</a>.</p>
+<p>Adds the WSDOT Multilevel basemap.</p>
 </dd>
 </dl>
 
@@ -239,31 +242,25 @@ Makes an InfoWindow draggable.
 ## wsdotMapUtils
 Provides common configuration options for use in WSDOT web maps.
 
+Adds "wsdot.wa.gov", "www.wsdot.wa.gov", and "data.wsdot.wa.gov"
+to the ArcGIS API's list of [CORS enabled servers](https://developers.arcgis.com/javascript/jshelp/inside_defaults.html#corsEnabledServers).
+
+Adds the WSDOT Multilevel basemap.
+
 
 * [wsdotMapUtils](#module_wsdotMapUtils)
-    * [~defaultMapOptions](#module_wsdotMapUtils..defaultMapOptions)
-    * [~esriBasemaps](#module_wsdotMapUtils..esriBasemaps)
+    * [.esriBasemaps](#module_wsdotMapUtils.esriBasemaps) : <code>[esri/basemaps](https://developers.arcgis.com/javascript/jsapi/esri.basemaps-amd.html)</code>
+    * [.defaultMapOptions](#module_wsdotMapUtils.defaultMapOptions) : <code>Object</code>
 
-<a name="module_wsdotMapUtils..defaultMapOptions"></a>
+<a name="module_wsdotMapUtils.esriBasemaps"></a>
 
-### wsdotMapUtils~defaultMapOptions
-**Kind**: inner property of <code>[wsdotMapUtils](#module_wsdotMapUtils)</code>  
-**Properties**
+### wsdotMapUtils.esriBasemaps : <code>[esri/basemaps](https://developers.arcgis.com/javascript/jsapi/esri.basemaps-amd.html)</code>
+**Kind**: static property of <code>[wsdotMapUtils](#module_wsdotMapUtils)</code>  
+<a name="module_wsdotMapUtils.defaultMapOptions"></a>
 
-| Type |
-| --- |
-| <code>Object</code> | 
-
-<a name="module_wsdotMapUtils..esriBasemaps"></a>
-
-### wsdotMapUtils~esriBasemaps
-**Kind**: inner property of <code>[wsdotMapUtils](#module_wsdotMapUtils)</code>  
-**Properties**
-
-| Type |
-| --- |
-| <code>Object</code> | 
-
+### wsdotMapUtils.defaultMapOptions : <code>Object</code>
+**Kind**: static property of <code>[wsdotMapUtils](#module_wsdotMapUtils)</code>  
+**See**: [esri/Map constructor options](https://developers.arcgis.com/javascript/jsapi/map-amd.html#map1)  
 <a name="DateRange"></a>
 
 ## DateRange : <code>Object.&lt;string, Date&gt;</code>

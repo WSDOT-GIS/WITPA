@@ -4,13 +4,21 @@
 ], function (esriConfig, esriBasemaps) {
     /**
      * Provides common configuration options for use in WSDOT web maps.
+     *
+     * Adds "wsdot.wa.gov", "www.wsdot.wa.gov", and "data.wsdot.wa.gov"
+     * to the ArcGIS API's list of {@link https://developers.arcgis.com/javascript/jshelp/inside_defaults.html#corsEnabledServers CORS enabled servers}.
+     *
+     * Adds the WSDOT Multilevel basemap.
      * @module wsdotMapUtils
      */
+
+    var exports = {};
 
     // Add WSDOT servers to CORS enabled servers.
     ["wsdot.wa.gov", "www.wsdot.wa.gov", "data.wsdot.wa.gov"].forEach(function (server) {
         esriConfig.defaults.io.corsEnabledServers.push(server);
     });
+
 
     // Add WSDOT basemap
     esriBasemaps["wsdot-multilevel"] = {
@@ -35,7 +43,21 @@
         ]
     };
 
-    var defaultMapOptions = {
+    /**
+     * @external esri/basemaps
+     * @see {@link https://developers.arcgis.com/javascript/jsapi/esri.basemaps-amd.html esri/basemaps}
+     */
+
+    /**
+     * @member {external:esri/basemaps}
+     */
+    exports.esriBasemaps = esriBasemaps;
+
+    /**
+     * @member {Object}
+     * @see {@link https://developers.arcgis.com/javascript/jsapi/map-amd.html#map1 esri/Map constructor options}
+     */
+    exports.defaultMapOptions = {
         center: [-120.80566406246835, 47.41322033015946],
         zoom: 7,
         minZoom: 0,
@@ -165,18 +187,5 @@
         ]
     };
 
-    /**
-     * @exports wsdotMapUtils
-     */
-
-    return {
-        /**
-         * @property {Object}
-         */
-        defaultMapOptions: defaultMapOptions,
-        /**
-         * @property {Object}
-         */
-        esriBasemaps: esriBasemaps
-    };
+    return exports;
 });
