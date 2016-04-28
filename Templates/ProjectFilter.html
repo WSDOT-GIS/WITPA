@@ -86,18 +86,18 @@
         </div>
         <div class="form-group">
             <label for="legDistrictInput">Legislative District</label>
-            <select id="legDistrictInput" name="Legislative_District" data-where-template="{field} LIKE '%{value}%'">
+            <select id="legDistrictInput" name="Legislative_District" data-where-template="{field} = '{value}' OR (CHAR_LENGTH('{value}') = 1 AND {field} LIKE '%0' + '{value}' + '%') OR (CHAR_LENGTH('{value}') &gt; 1 AND {field} LIKE '%' + '{value}' + '%')">
                 <option value=""></option>
-                <option value='00'>00: Statewide and Regionwide </option>
-                <option value='01'>01: Northeast King County and South Snohomish County </option>
-                <option value='02'>02: Pierce County including McKenna, Roy, Ft. Lewis, and DuPont </option>
-                <option value='03'>03: Downtown Spokane including the North Side and South Hill </option>
-                <option value='04'>04: Eastern parts of Spokane County </option>
-                <option value='05'>05: Southeast King County including North Bend, Snoqualmie, and Issaquah </option>
-                <option value='06'>06: Parts of Spokane, the Spokane Valley, and Southwest Spokane County </option>
-                <option value='07'>07: Pend Oreille County, Stevens County, Ferry County, Lincoln County, and parts of Okanogan and Spokane counties </option>
-                <option value='08'>08: Most of Benton County including Richland and Kennewick </option>
-                <option value='09'>09: Adams County, Whitman County, and parts of Asotin and Spokane counties </option>
+                <option value='0'>00: Statewide and Regionwide </option>
+                <option value='1'>01: Northeast King County and South Snohomish County </option>
+                <option value='2'>02: Pierce County including McKenna, Roy, Ft. Lewis, and DuPont </option>
+                <option value='3'>03: Downtown Spokane including the North Side and South Hill </option>
+                <option value='4'>04: Eastern parts of Spokane County </option>
+                <option value='5'>05: Southeast King County including North Bend, Snoqualmie, and Issaquah </option>
+                <option value='6'>06: Parts of Spokane, the Spokane Valley, and Southwest Spokane County </option>
+                <option value='7'>07: Pend Oreille County, Stevens County, Ferry County, Lincoln County, and parts of Okanogan and Spokane counties </option>
+                <option value='8'>08: Most of Benton County including Richland and Kennewick </option>
+                <option value='9'>09: Adams County, Whitman County, and parts of Asotin and Spokane counties </option>
                 <option value='10'>10: All of Island County and parts of Skagit and Snohomish counties </option>
                 <option value='11'>11: South Seattle, part of West Seattle, and parts of Renton and Tukwila </option>
                 <option value='12'>12: Chelan County, Douglas County, and parts of Grant and Okanagon counties </option>
@@ -259,7 +259,8 @@
         <div class="form-group">
             <label for="cDistInput">Congressional District</label>
             <div class="input-group">
-                <select id="cDistInput" name="Congressional_District" data-where-template="{field} LIKE '%{value}%'" class="form-control">
+                <select id="cDistInput" name="Congressional_District" class="form-control"
+                        data-where-template="{field} = '{value}' OR (CHAR_LENGTH('{value}') = 1 AND {field} LIKE '%0' + '{value}' + '%') OR (CHAR_LENGTH('{value}') &gt; 1 AND {field} LIKE '%' + '{value}' + '%')" >
                 </select>
             </div>
         </div>

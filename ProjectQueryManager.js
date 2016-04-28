@@ -139,13 +139,7 @@
         return new Promise(function (resolve, reject) {
             self.queryForUniqueValues(fieldName).then(function (response) {
                 // Get destinct array of integers. Convert to two-digit strings.
-                response.values = conversionUtils.listStringsToNumberArray(response.values).map(function (n) {
-                    var s = n.toString();
-                    if (s.length < 2) {
-                        s = '0' + s;
-                    }
-                    return s;
-                });
+                response.values = conversionUtils.listStringsToNumberArray(response.values);
                 resolve(response);
             });
         });
