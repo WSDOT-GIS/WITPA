@@ -10,11 +10,7 @@
                         <option value="{field} LIKE '{value}%'">Starts With</option>
                     </select>
                 </span>
-                <input id="srInput" name="RouteID" type="text" class="form-control"
-                       pattern='\d{3}([\d[A-Z]]{2}[\d[A-Z]{0,6})?'
-                       inputmode="numeric"
-                       title="Please enter a valid state route ID"
-                       placeholder="State Route ID" list="routeList" />
+                <select id="srInput" name="RouteID" class="form-control"></select>
                 <datalist id="routeList" data-field-name="RouteID"></datalist>
             </div>
         </div>
