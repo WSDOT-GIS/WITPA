@@ -166,10 +166,18 @@ require([
             dynamicLayer.setLayerDefinitions([
                 e.detail.where
             ]);
-            // Query extent. The layer def. exp. is already applied
+
+            /**
+             * Set the map extent to the extent of the currently selected features (if any).
+             * @param {Object} queryExtentRespnonse - Response from the extent query.
+             * @param {number} queryExtentRespnonse.count - Number of features selected.
+             * @param {Extent} queryExtentRespnonse.extent - The extent of the selected features.
+             */
             layer.queryExtent(new Query()).then(function (queryExtentResponse) {
                 var extent = queryExtentResponse.extent;
-                map.setExtent(extent);
+                if (queryExtentResponse.count && queryExtentResponse.count > 0) {
+                    map.setExtent(extent);
+                }
             });
             createTable();
             //table.grid.refresh();
