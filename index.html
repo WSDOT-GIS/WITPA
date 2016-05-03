@@ -13,6 +13,28 @@
     <link href="css/FeatureTable.css" rel="stylesheet" async="async"/>
     <link href="css/bootstrap-mimic.css" rel="stylesheet" async="async" />
     <link rel="shortcut icon" href="http://www.wsdot.wa.gov/favicon.ico" async="async" />
+    <!-- Google Analytics -->
+    <script>
+        // Setup Google Analytics, but not if user has specified that they don't want to be tracked.
+        (function (dnt, cookieDomain) {
+            var scriptTag, hostRe = new RegExp(cookieDomain.replace(".", "\\.") + "$");
+            if (dnt !== "yes" && dnt !== "1") {
+                window.ga = window.ga || function () { (ga.q = ga.q || []).push(arguments) }; ga.l = +new Date;
+                ga('create', 'UA-970887-21', hostRe.test(location.host) ? cookieDomain : "auto");
+                ga(function (tracker) {
+                    tracker.set("appName", "WITPA");
+                    tracker.send('pageview');
+                });
+
+                // Add the script tag.
+                scriptTag = document.createElement("script");
+                scriptTag.src = "//www.google-analytics.com/analytics.js";
+                scriptTag.async = true;
+                document.head.appendChild(scriptTag);
+            }
+        }(navigator.doNotTrack || navigator.msDoNotTrack || null, "wsdot.wa.gov"));
+    </script>
+    <!-- End Google Analytics -->
 </head>
 <body class="claro">
     <div data-dojo-type="dijit/layout/BorderContainer" data-dojo-props="gutters:false, design:'headline'" id="borderContainer">
