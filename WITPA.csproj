@@ -58,6 +58,7 @@
     <Content Include="infoWindowUtils.js" />
     <Content Include="QueryWorker.js" />
     <Content Include="externals.js" />
+    <Content Include="fixFeatureTableBugs.js" />
     <Content Include="Templates\ProjectFilter.html" />
     <Content Include="UNLICENSE" />
     <Content Include="wsdotMapUtils.js" />

@@ -45,7 +45,7 @@
 
     /**
      * @external esri/basemaps
-     * @see {@link https://developers.arcgis.com/javascript/jsapi/esri.basemaps-amd.html esri/basemaps}
+     * @see {@link https://developers.arcgis.com/javascript/3/jsapi/esri.basemaps-amd.html esri/basemaps}
      */
 
     /**
@@ -55,7 +55,7 @@
 
     /**
      * @member {Object}
-     * @see {@link https://developers.arcgis.com/javascript/jsapi/map-amd.html#map1 esri/Map constructor options}
+     * @see {@link https://developers.arcgis.com/javascript/3/jsapi/map-amd.html#map1 esri/Map constructor options}
      */
     exports.defaultMapOptions = {
         center: [-120.80566406246835, 47.41322033015946],

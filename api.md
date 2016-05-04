@@ -19,6 +19,9 @@
 to the ArcGIS API&#39;s list of <a href="https://developers.arcgis.com/javascript/jshelp/inside_defaults.html#corsEnabledServers">CORS enabled servers</a>.</p>
 <p>Adds the WSDOT Multilevel basemap.</p>
 </dd>
+<dt><a href="#module_fixFeatureTableBugs">fixFeatureTableBugs</a></dt>
+<dd><p>Module to fix issues with <a href="#external_FeatureTable">FeatureTable</a>.</p>
+</dd>
 </dl>
 
 ## Typedefs
@@ -46,6 +49,9 @@ to the ArcGIS API&#39;s list of <a href="https://developers.arcgis.com/javascrip
 </dd>
 <dt><a href="#external_CustomEvent">CustomEvent</a></dt>
 <dd><p>CustomEvent</p>
+</dd>
+<dt><a href="#external_FeatureTable">FeatureTable</a></dt>
+<dd><p>Feature Table</p>
 </dd>
 </dl>
 
@@ -238,18 +244,23 @@ Provides common configuration options for use in WSDOT web maps.Adds "wsdot.wa
 
 
 * [wsdotMapUtils](#module_wsdotMapUtils)
-    * [.esriBasemaps](#module_wsdotMapUtils.esriBasemaps) : <code>[esri/basemaps](https://developers.arcgis.com/javascript/jsapi/esri.basemaps-amd.html)</code>
+    * [.esriBasemaps](#module_wsdotMapUtils.esriBasemaps) : <code>[esri/basemaps](https://developers.arcgis.com/javascript/3/jsapi/esri.basemaps-amd.html)</code>
     * [.defaultMapOptions](#module_wsdotMapUtils.defaultMapOptions) : <code>Object</code>
 
 <a name="module_wsdotMapUtils.esriBasemaps"></a>
 
-### wsdotMapUtils.esriBasemaps : <code>[esri/basemaps](https://developers.arcgis.com/javascript/jsapi/esri.basemaps-amd.html)</code>
+### wsdotMapUtils.esriBasemaps : <code>[esri/basemaps](https://developers.arcgis.com/javascript/3/jsapi/esri.basemaps-amd.html)</code>
 **Kind**: static property of <code>[wsdotMapUtils](#module_wsdotMapUtils)</code>  
 <a name="module_wsdotMapUtils.defaultMapOptions"></a>
 
 ### wsdotMapUtils.defaultMapOptions : <code>Object</code>
 **Kind**: static property of <code>[wsdotMapUtils](#module_wsdotMapUtils)</code>  
-**See**: [esri/Map constructor options](https://developers.arcgis.com/javascript/jsapi/map-amd.html#map1)  
+**See**: [esri/Map constructor options](https://developers.arcgis.com/javascript/3/jsapi/map-amd.html#map1)  
+<a name="module_fixFeatureTableBugs"></a>
+
+## fixFeatureTableBugs
+Module to fix issues with [FeatureTable](#external_FeatureTable).
+
 <a name="DateRange"></a>
 
 ## DateRange : <code>Object.&lt;string, Date&gt;</code>
@@ -298,7 +309,7 @@ The TypeError object represents an error when a value is not of the expected typ
 ArcGIS API InfoWindow
 
 **Kind**: global external  
-**See**: [InfoWindow](https://developers.arcgis.com/javascript/jsapi/infowindow-amd.html)  
+**See**: [InfoWindow](https://developers.arcgis.com/javascript/3/jsapi/infowindow-amd.html)  
 <a name="external_HTMLFormElement"></a>
 
 ## HTMLFormElement
@@ -313,3 +324,10 @@ CustomEvent
 
 **Kind**: global external  
 **See**: [CustomEvent](https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent)  
+<a name="external_FeatureTable"></a>
+
+## FeatureTable
+Feature Table
+
+**Kind**: global external  
+**See**: [FeatureTable](https://developers.arcgis.com/javascript/3/jsapi/featuretable-amd.html)  
