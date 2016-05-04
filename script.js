@@ -57,6 +57,21 @@ require([
   webmapItemData
 ) {
     "use strict";
+
+    /**
+     * Checks a table cell to see if it contains 1970-01-01 (UTC).
+     * If it does, the text content of the cell is cleared.
+     * @param {HTMLElement} cell - Table cell.
+     */
+    function replaceUtc0(cell) {
+        if (cell.textContent.match(/19(?:(?:69)|(?:70))/)) {
+            var date = Date.parse(cell.textContent);
+            if (!isNaN(date) && date <= 0) {
+                cell.textContent = "";
+            }
+        }
+    }
+
     var projectFilter = new ProjectFilter(document.forms.filterForm);
     var filterPane = document.getElementById("filterPane");
 
@@ -200,6 +215,37 @@ require([
         }, "homeButton");
         homeButton.startup();
 
+        /**
+         * At ArcGIS API v3.15, FeatureTable shows null date values as 1970-01-01 UTC.
+         * This function will correct these table cells so that they will be blank instead.
+         * @param {MutationRecord[]} mutations - Mutation records that were performed on the table.
+         * @param {MutationObserver} mutationObserver - The MutationObserver that called this function.
+         */
+        function fixDates(mutations, mutationObserver) {
+            mutations.forEach(function (mr) {
+                // Continue to the next record if this is not a node add.
+                if (!(mr.type === "childList" && mr.addedNodes.length > 0)) {
+                    return;
+                }
+
+                // Clear the text from all cells that have 0 UTC date displayed.
+                Array.from(mr.addedNodes, function (node) {
+                    var cells;
+                    if (node.classList && node.classList.contains("dgrid-row")) {
+                        cells = node.querySelectorAll(".dgrid-cell");
+                        Array.from(cells, replaceUtc0);
+                    }
+                });
+            });
+        }
+
+        var tableMutationObserver = new MutationObserver(fixDates);
+        tableMutationObserver.observe(document.getElementById("tablePane"), {
+            childList: true,
+            subtree: true
+        });
+
+
         function createTable() {
             // Destroy existing table.
             if (table) {
@@ -291,6 +337,19 @@ require([
             ////table.on("row-deselect", function (rows) {
             ////    selectOrDeselectFeatures(rows, true);
             ////});
+
+            // Setup handler for events when content is added to the table.
+            ////table.on("load", function () {
+            ////    console.debug("table load");
+
+            ////});
+
+            ////["dgrid-refresh-complete", "dgrid-scroll"].forEach(function (eventName) {
+            ////    table.on(eventName, function (e) {
+            ////        console.log(eventName, e);
+            ////    });
+            ////});
+
 
 
             // resize panel when table close is toggled.
