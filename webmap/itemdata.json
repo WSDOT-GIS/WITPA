@@ -444,19 +444,10 @@
       {
         "id": "World_Light_Gray_Base",
         "layerType": "ArcGISTiledMapServiceLayer",
-        "url": "http://services.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer",
+        "url": "http://data.wsdot.wa.gov/arcgis/rest/services/Shared/WebBaseMapWebMercator/MapServer",
         "visibility": true,
         "opacity": 1,
         "title": "World_Light_Gray_Base"
-      },
-      {
-        "id": "World_Light_Gray_Reference",
-        "layerType": "ArcGISTiledMapServiceLayer",
-        "url": "http://services.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Reference/MapServer",
-        "visibility": true,
-        "opacity": 1,
-        "title": "World_Light_Gray_Reference",
-        "isReference": true
       }
     ],
     "title": "Light Gray Canvas"
