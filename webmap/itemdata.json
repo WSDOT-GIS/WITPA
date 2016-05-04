@@ -442,15 +442,15 @@
   "baseMap": {
     "baseMapLayers": [
       {
-        "id": "World_Light_Gray_Base",
+        "id": "WSDOT_Basemap",
         "layerType": "ArcGISTiledMapServiceLayer",
         "url": "http://data.wsdot.wa.gov/arcgis/rest/services/Shared/WebBaseMapWebMercator/MapServer",
         "visibility": true,
         "opacity": 1,
-        "title": "World_Light_Gray_Base"
+        "title": "WSDOT_Basemap"
       }
     ],
-    "title": "Light Gray Canvas"
+    "title": "WSDOT Basemap"
   },
   "spatialReference": {
     "wkid": 102100,
