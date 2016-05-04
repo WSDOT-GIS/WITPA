@@ -212,7 +212,7 @@ require([
              * @param {Event} e - Table close button click event.
              */
             function resizeTablePanel(e) {
-                var gridHeaderNode = registry.byId(table._gridHeaderNode || table._gridMenu).domNode;
+                var gridHeaderNode = table._gridHeaderNode || table._gridMenu;
                 var tableNode = registry.byId("tablePane").domNode;
                 var borderContainer = registry.byId("borderContainer");
                 var isOpening = e.target.classList.contains("toggleClosed");
