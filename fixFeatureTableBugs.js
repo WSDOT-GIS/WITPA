@@ -1,6 +1,11 @@
 /**
  * Module to fix issues with {@link external:FeatureTable}.
  * @module fixFeatureTableBugs
+ * @example
+ * require(["fixFeatureTableBugs", "esri/dijit/FeatureTable"], function(fixFeatureTableBugs, FeatureTable) {
+ *      // #tablePane is a div that will contain the feature table.
+ *      fixFeatureTableBugs(document.getElementById("tablePane"));
+ * });
  */
 define(function () {
     "use strict";

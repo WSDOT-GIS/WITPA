@@ -261,6 +261,10 @@ Provides common configuration options for use in WSDOT web maps.Adds "wsdot.wa
 ## fixFeatureTableBugs
 Module to fix issues with [FeatureTable](#external_FeatureTable).
 
+**Example**  
+```js
+require(["fixFeatureTableBugs", "esri/dijit/FeatureTable"], function(fixFeatureTableBugs, FeatureTable) {     // #tablePane is a div that will contain the feature table.     fixFeatureTableBugs(document.getElementById("tablePane"));});
+```
 <a name="DateRange"></a>
 
 ## DateRange : <code>Object.&lt;string, Date&gt;</code>
