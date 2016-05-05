@@ -13,6 +13,13 @@
     <link href="css/FeatureTable.css" rel="stylesheet" async="async"/>
     <link href="css/bootstrap-mimic.css" rel="stylesheet" async="async" />
     <link rel="shortcut icon" href="http://www.wsdot.wa.gov/favicon.ico" async="async" />
+    <script>
+        var dialogPolyfillRequired = (function () {
+            return !window.HTMLDialogElement;
+        }());
+    </script>
+    <script src="bower_components/dialog-polyfill/dialog-polyfill.js"></script>
+    <link href="bower_components/dialog-polyfill/dialog-polyfill.css" rel="stylesheet" />
     <!-- Google Analytics -->
     <script>
         // Setup Google Analytics, but not if user has specified that they don't want to be tracked.
@@ -72,6 +79,12 @@
             <div id="table"></div>
         </div>
     </div>
+    <dialog id="noDataDialog">
+        <p>The filter parameters you have selected have excluded all data. Please ensure your filter criteria is accurate.</p>
+        <div>
+            <button type="button" value="close">OK</button>
+        </div>
+    </dialog>
     <script>
         // Detect old browsers' unsupported functions.
         (function () {
@@ -79,6 +92,7 @@
                 alert("Unsupported browser. Please try a newer browser.");
             }
         }());
+
     </script>
     <script src="bower_components/core.js/client/core.min.js"></script>
     <script src="bower_components/customevent-polyfill/customevent-polyfill.min.js"></script>

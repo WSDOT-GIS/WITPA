@@ -62,6 +62,28 @@ require([
 
     fixFeatureTableBugs(document.getElementById("tablePane"));
 
+
+    // Register the dialog with the dialog polyfill
+    // if the browser does not natively support
+    // the dialog element.
+    if (dialogPolyfillRequired) {
+        (function (dialogs) {
+            Array.from(dialogs, function (d) {
+                dialogPolyfill.registerDialog(d);
+            });
+        }(document.querySelectorAll("dialog")));
+    }
+
+    // Setup dialog close button.
+    Array.from(document.querySelectorAll("dialog"), function (d) {
+        var closeButton = d.querySelector("button[value='close']");
+        if (closeButton) {
+            closeButton.addEventListener("click", function (e) {
+                d.close();
+            });
+        }
+    });
+
     var projectFilter = new ProjectFilter(document.forms.filterForm);
     var filterPane = document.getElementById("filterPane");
 
@@ -280,7 +302,6 @@ require([
             });
 
             // 3.16 event handler setup
-
             /////**
             //// *
             //// * @param {DGridRow[]} rows - The rows that were selected
@@ -297,13 +318,19 @@ require([
             ////    selectOrDeselectFeatures(rows, true);
             ////});
 
+            table.on("dgrid-refresh-complete", function (e) {
+                var dialog;
+                if (e.results && e.results.length <= 0) {
+                    dialog = document.getElementById("noDataDialog");
+                    dialog.showModal();
+                }
+            });
+
             // resize panel when table close is toggled.
             table.tableCloseButton.addEventListener("click", resizeTablePanel);
         }
 
         createTable();
-
-
 
         /**
          * Zooms the map to the extent of the input features
