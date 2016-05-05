@@ -319,6 +319,8 @@ require([
             ////});
 
             table.on("dgrid-refresh-complete", function (e) {
+                // Show a modal dialog if all records have been
+                // filtered out by the user.
                 var dialog;
                 if (e.results && e.results.length <= 0) {
                     dialog = document.getElementById("noDataDialog");
