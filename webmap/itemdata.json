@@ -441,7 +441,7 @@
       "id": "ConnectingWashington",
       "layerType": "ArcGISMapServiceLayer",
       "url": "http://data.wsdot.wa.gov/arcgis/rest/services/TransportationProjects/ConnectingWashington/MapServer",
-      "visibility": true,
+      "visibility": false,
       "opacity": 1,
       "title": "Connecting Washington",
       "layers": [

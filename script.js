@@ -89,10 +89,6 @@ require([
 
     filterPane.appendChild(projectFilter.form);
 
-    ["hqolymgis98d", "hqolymgis98d:6080"].forEach(function (server) {
-        esriConfig.defaults.io.corsEnabledServers.push(server);
-    });
-
     // Parse the Dojo layout widgets defined in HTML markup.
     parser.parse();
 
