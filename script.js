@@ -189,6 +189,10 @@ require([
         // so that only those rows are shown in the table.
         projectFilter.form.addEventListener("submit-query", function (e) {
             layer.clearSelection();
+            // Google analytics
+            if (window.ga) {
+                window.ga('send', 'event', "filter", "select", "where", e.detail.where);
+            }
             layer.setDefinitionExpression(e.detail.where);
             dynamicLayer.setLayerDefinitions([
                 e.detail.where
@@ -396,11 +400,11 @@ require([
         // title containing "Planned Projects" is last in the array. Other
         // items will remain in their original order.
         layerListItems.sort(function (a, b) {
-            var re = /Planned\s?Projects/i;
+            var re = /(?:(?:Planned\s?Projects)|(?:Six-Year\sPlan))/i;
             var output;
-            if (re.test(a.title)) {
+            if (re.test(a.title) && !re.test(b.title)) {
                 output = 1;
-            } else if (re.test(b.title)) {
+            } else if (re.test(b.title) && !re.test(a.title)) {
                 output = -1;
             } else {
                 output = 0;

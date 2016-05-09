@@ -74,6 +74,7 @@
      * @returns {Promise.<UniqueValuesQueryResponse>} Values returned from the query.
      */
     ProjectQueryManager.prototype.queryForUniqueValues = function (fieldName, resultOffset, previousValues) {
+        var self = this;
         var query = {
             where: fieldName + " IS NOT NULL",
             returnGeometry: false,
@@ -108,7 +109,7 @@
 
                 if (exceededTransferLimit) {
                     // If the query exceeded the amount of returned records for the service, submit a new query.
-                    queryForUniqueValues(fieldName, resultOffset + values.length, values).then(function (resultPromise) {
+                    self.queryForUniqueValues(fieldName, resultOffset + values.length, values).then(function (resultPromise) {
                         if (resultPromise && resultPromise.complete) {
                             resolve(resultPromise);
                         }

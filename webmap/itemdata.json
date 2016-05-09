@@ -2,7 +2,7 @@
   "operationalLayers": [
     {
       "id": "CountyBoundaries",
-      "layerType": "ArcGISTiledMapServiceLayer",
+      "layerType": "ArcGISMapServiceLayer",
       "url": "http://data.wsdot.wa.gov/arcgis/rest/services/Shared/CountyBoundaries/MapServer",
       "visibility": false,
       "opacity": 1,
@@ -107,7 +107,7 @@
     },
     {
       "id": "RegionBoundaries",
-      "layerType": "ArcGISTiledMapServiceLayer",
+      "layerType": "ArcGISMapServiceLayer",
       "url": "http://data.wsdot.wa.gov/arcgis/rest/services/Shared/RegionBoundaries/MapServer",
       "visibility": false,
       "opacity": 1,
@@ -120,12 +120,12 @@
       "url": "http://hqolymgis98d:6080/arcgis/rest/services/TransportationProjects/PlannedProjects/MapServer",
       "visibility": true,
       "opacity": 1,
-      "title": "Six-Year Plan (2015)",
+      "title": "Planned Projects",
       "layers": [
         {
           "id": 0,
           "popupInfo": {
-            "title": "Six-Year Plan (2015): {Project_Title}",
+            "title": "Planned Projects: {Project_Title}",
             "fieldInfos": [
               {
                 "fieldName": "RouteID",
@@ -302,7 +302,6 @@
                 "visible": false,
                 "stringFieldOption": "textbox"
               },
-
               {
                 "fieldName": "Begin_ARM",
                 "label": "Begin ARM",
@@ -437,20 +436,97 @@
       "itemId": "03ec5ff3609f45caa849d5afa4d92e9e",
       "minScale": 5249102,
       "maxScale": 0
+    },
+    {
+      "id": "ConnectingWashington",
+      "layerType": "ArcGISMapServiceLayer",
+      "url": "http://data.wsdot.wa.gov/arcgis/rest/services/TransportationProjects/ConnectingWashington/MapServer",
+      "visibility": true,
+      "opacity": 1,
+      "title": "Connecting Washington",
+      "layers": [
+        {
+          "id": 0,
+          "popupInfo": {
+            "title": "Connecting Washington Investments: {Title}",
+            "fieldInfos": [
+              {
+                "fieldName": "OBJECTID",
+                "label": "OBJECTID",
+                "tooltip": "",
+                "visible": false,
+                "format": null,
+                "stringFieldOption": "textbox"
+              },
+              {
+                "fieldName": "Shape",
+                "label": "Shape",
+                "tooltip": "",
+                "visible": false,
+                "format": null,
+                "stringFieldOption": "textbox"
+              },
+              {
+                "fieldName": "PIN",
+                "label": "Project ID No",
+                "tooltip": "",
+                "visible": true,
+                "format": null,
+                "stringFieldOption": "textbox"
+              },
+              {
+                "fieldName": "Timeline",
+                "label": "Funding Timeline",
+                "tooltip": "",
+                "visible": true,
+                "format": null,
+                "stringFieldOption": "textbox"
+              },
+              {
+                "fieldName": "Project_Type",
+                "label": "Project Type",
+                "tooltip": "",
+                "visible": true,
+                "format": null,
+                "stringFieldOption": "textbox"
+              },
+              {
+                "fieldName": "Title",
+                "label": "Title",
+                "tooltip": "",
+                "visible": true,
+                "format": null,
+                "stringFieldOption": "textbox"
+              },
+              {
+                "fieldName": "Identified_Deficiency",
+                "label": "Identified_Deficiency",
+                "tooltip": "",
+                "visible": true,
+                "format": null,
+                "stringFieldOption": "textbox"
+              }
+            ],
+            "description": null,
+            "showAttachments": true,
+            "mediaInfos": [ ]
+          }
+        }
+      ]
     }
   ],
   "baseMap": {
     "baseMapLayers": [
       {
-        "id": "WSDOT_Basemap",
+        "id": "WebBaseMapWebMercator_731",
         "layerType": "ArcGISTiledMapServiceLayer",
         "url": "http://data.wsdot.wa.gov/arcgis/rest/services/Shared/WebBaseMapWebMercator/MapServer",
         "visibility": true,
         "opacity": 1,
-        "title": "WSDOT_Basemap"
+        "title": "WebBaseMapWebMercator"
       }
     ],
-    "title": "WSDOT Basemap"
+    "title": "WSDOT Base Map"
   },
   "spatialReference": {
     "wkid": 102100,

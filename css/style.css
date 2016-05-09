@@ -70,13 +70,17 @@ html, body {
   z-index: 1;
 }
 
-#infoButton {
+#infoButtons {
     position: absolute;
     top: 120px;
     left: 20px;
+    z-index: 1;
+    display: block;
+}
+
+#infoButtons > div {
     height: 30px;
     width: 30px;
-    z-index: 1;
 
     border-radius: 5px;
     background-color: rgba(102,102,102,0.8);
@@ -84,7 +88,7 @@ html, body {
     font-size: 15pt;
 }
 
-    #infoButton a {
+    #infoButtons > div > a {
         color: white;
         text-decoration: none;
     }
@@ -130,11 +134,11 @@ html, body {
     content: 'Project Layers';
 }
 
-.esriLayerList .esriList > li:nth-child(2) {
+.esriLayerList .esriList > li:nth-child(3) {
     margin-top: 1em;
 }
 
-.esriLayerList .esriList > li:nth-child(2):before {
+.esriLayerList .esriList > li:nth-child(3):before {
     content: 'Other Layers';
 }
 
