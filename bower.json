@@ -28,6 +28,7 @@
   "dependencies": {
     "customevent-polyfill": "^1.0.0",
     "core.js": "^2.2.1",
-    "dialog-polyfill": "^0.4.3"
+    "dialog-polyfill": "^0.4.3",
+    "fetch": "^1.0.0"
   }
 }

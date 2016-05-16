@@ -193,51 +193,35 @@
         var qs = conversionUtils.objectToQueryString(query);
         var url = [this.url, qs].join("?");
 
-        return new Promise(function (resolve, reject) {
-            var request = new XMLHttpRequest();
-            request.open("get", url);
-            request.onloadend = function (e) {
-                var queryResponse;
-
-                if (e.target.status !== 200) {
-                    reject({ response: e.target.response, status: e.target.status });
-                    return;
+        return fetch(url).then(function (response) {
+            return response.text();
+        }).then(function (queryResponse) {
+            // Convert date values to
+            queryResponse = JSON.parse(queryResponse, function (k, v) {
+                var dateFieldNameRe = /Date$/i;
+                if (dateFieldNameRe.test(k) && typeof v === "number") {
+                    return conversionUtils.toRfc3339(v);
+                } else {
+                    return v;
                 }
+            });
 
-                // Get the HTTP response.
-                queryResponse = e.target.response;
+            if (queryResponse.error) {
+                reject(queryResponse);
+                return;
+            }
 
-                // Convert the response text into an object.
-                // Convert date values to
-                queryResponse = JSON.parse(queryResponse, function (k, v) {
-                    var dateFieldNameRe = /Date$/i;
-                    if (dateFieldNameRe.test(k) && typeof v === "number") {
-                        return conversionUtils.toRfc3339(v);
-                    } else {
-                        return v;
-                    }
-                });
-
-                if (queryResponse.error) {
-                    reject(queryResponse);
-                    return;
-                }
-
-                var values = queryResponse.features[0].attributes;
+            var values = queryResponse.features[0].attributes;
 
 
-                // Create a list of field ranges.
-                var ranges = {
-                    Advertisement_Date: { min: values.Min_Ad_Date, max: values.Max_Ad_Date },
-                    Operationally_Complete: { min: values.Min_OC_Date, max: values.Max_OC_Date },
-                    Begin_Preliminary_Engineering: { min: values.Min_PE_Start_Date, max: values.Max_PE_Start_Date }
-                };
-
-                resolve(ranges);
+            // Create a list of field ranges.
+            var ranges = {
+                Advertisement_Date: { min: values.Min_Ad_Date, max: values.Max_Ad_Date },
+                Operationally_Complete: { min: values.Min_OC_Date, max: values.Max_OC_Date },
+                Begin_Preliminary_Engineering: { min: values.Min_PE_Start_Date, max: values.Max_PE_Start_Date }
             };
-            request.send();
+            return ranges;
         });
-
     };
 
     return ProjectQueryManager;

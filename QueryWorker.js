@@ -6,6 +6,10 @@ if (!this.Promise) {
     self.importScripts("bower_components/core.js/client/core.min.js");
 }
 
+if (!this.fetch) {
+    self.importScripts("bower_components/fetch/fetch.js")
+}
+
 self.importScripts("conversionUtils.js");
 self.importScripts("ProjectQueryManager.js");
 
