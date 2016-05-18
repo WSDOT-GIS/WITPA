@@ -1,5 +1,5 @@
 /**
- * Module to fix issues with {@link external:FeatureTable}.
+ * Module to fix issues with {@link external:FeatureTable} in ArcGIS API v3.15.
  * @module fixFeatureTableBugs
  * @example
  * require(["fixFeatureTableBugs", "esri/dijit/FeatureTable"], function(fixFeatureTableBugs, FeatureTable) {

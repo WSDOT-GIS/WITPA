@@ -22,7 +22,6 @@ require([
   "esri/Color",
   "witpa/infoWindowUtils",
   "witpa/wsdotMapUtils",
-  "witpa/fixFeatureTableBugs",
   "dojo/text!./webmap/item.json",
   "dojo/text!./webmap/itemdata.json",
 
@@ -54,14 +53,10 @@ require([
   Color,
   infoWindowUtils,
   wsdotMapUtils,
-  fixFeatureTableBugs,
   webmapItem,
   webmapItemData
 ) {
     "use strict";
-
-    fixFeatureTableBugs(document.getElementById("tablePane"));
-
 
     // Register the dialog with the dialog polyfill
     // if the browser does not natively support
