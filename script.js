@@ -329,7 +329,9 @@ require([
             });
 
             // resize panel when table close is toggled.
-            table.tableCloseButton.addEventListener("click", resizeTablePanel);
+            if (table.tableCloseButton) {
+                table.tableCloseButton.addEventListener("click", resizeTablePanel);
+            }
         }
 
         createTable();
