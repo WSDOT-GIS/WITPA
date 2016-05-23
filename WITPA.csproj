@@ -85,6 +85,7 @@
     <Content Include="bower_components\core.js\client\core.min.js.map" />
     <Content Include="package.json" />
     <Content Include="api.md" />
+    <Content Include="project-map.pdf" />
     <None Include="Properties\PublishProfiles\QA %28Internal%29.pubxml" />
     <Content Include="spec\support\jasmine.json" />
     <Content Include="spec\conversionUtilsSpec.js" />
