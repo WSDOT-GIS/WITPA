@@ -86,9 +86,11 @@
     <Content Include="package.json" />
     <Content Include="api.md" />
     <Content Include="project-map.pdf" />
+    <None Include="Properties\PublishProfiles\Production.pubxml" />
     <None Include="Properties\PublishProfiles\QA %28Internal%29.pubxml" />
     <Content Include="spec\support\jasmine.json" />
     <Content Include="spec\conversionUtilsSpec.js" />
+    <None Include="Properties\PublishProfiles\QA %28Public%29.pubxml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
