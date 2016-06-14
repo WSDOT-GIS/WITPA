@@ -95,12 +95,15 @@ require([
     webmapItem = JSON.parse(webmapItem);
     webmapItemData = JSON.parse(webmapItemData);
 
+    var mapOptions = wsdotMapUtils.defaultMapOptions;
+    mapOptions.minZoom = 7;
+
     // Create the map using JSON webmap definition.
     arcgisUtils.createMap({
         item: webmapItem,
         itemData: webmapItemData
     }, "map", {
-        mapOptions: wsdotMapUtils.defaultMapOptions
+        mapOptions: mapOptions
     }
     /**
      * Post map creation tasks.
