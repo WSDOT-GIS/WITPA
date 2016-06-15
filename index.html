@@ -9,6 +9,7 @@
     <link href='//fonts.googleapis.com/css?family=Open+Sans:400,700|Pragati+Narrow' rel='stylesheet' type='text/css' />
     <link rel="stylesheet" href="//js.arcgis.com//3.15/esri/css/esri.css" integrity="sha384-lzjbO8L17qrnzpWlfLz1b6oa8CZm+Rgg8fJ0giZ+ojxBdlXvHtI5lQZqTs/8fclX" crossorigin="anonymous" />
     <link rel="stylesheet" href="//js.arcgis.com//3.15/dijit/themes/claro/claro.css" integrity="sha384-EwqWQ9Ix1ytOCiOF9pIBMwHHpxdHVtMKUPdWSjoIIl1qpWrcCLl7YgCjb9d4AgVW" crossorigin="anonymous" />
+    <link href="bower_components/jquery-ui/themes/base/all.css" rel="stylesheet" />
     <link href="css/style.css" rel="stylesheet" async="async" />
     <link href="css/FeatureTable.css" rel="stylesheet" async="async"/>
     <link href="css/bootstrap-mimic.css" rel="stylesheet" async="async" />
@@ -105,10 +106,18 @@
         (function (root) {
             window.dojoConfig = {
                 async: true,
+                paths: {
+                    "jquery-ui": "/bower_components/jquery-ui/ui"
+                },
                 packages: [
                     {
                         name: "witpa",
                         location: root
+                    },
+                    {
+                        name: "jquery",
+                        location: root + "/bower_components/jquery/dist",
+                        main: "jquery" // jquery.slim not compatible with jquery-ui autocomplete.
                     }
                 ]
             }
