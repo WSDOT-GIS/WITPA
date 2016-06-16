@@ -25,6 +25,7 @@ require([
   "witpa/fixFeatureTableBugs",
   "dojo/text!./webmap/item.json",
   "dojo/text!./webmap/itemdata.json",
+  "jquery-ui/autocomplete",
 
   "dijit/layout/BorderContainer",
   "dijit/layout/ContentPane",
@@ -56,7 +57,9 @@ require([
   wsdotMapUtils,
   fixFeatureTableBugs,
   webmapItem,
-  webmapItemData
+  webmapItemData,
+
+  autocomplete
 ) {
     "use strict";
 
@@ -84,7 +87,7 @@ require([
         }
     });
 
-    var projectFilter = new ProjectFilter(document.forms.filterForm);
+    var projectFilter = new ProjectFilter();
     var filterPane = document.getElementById("filterPane");
 
     filterPane.appendChild(projectFilter.form);
@@ -498,25 +501,33 @@ require([
              */
             function addToDataList(fieldName, values) {
                 var datalist, docFrag, option;
-                var selector = "select[name={fieldName}], datalist[data-field-name='{fieldName}']".replace(/\{fieldName\}/g, fieldName);
+                //var selector = "select[name={fieldName}], datalist[data-field-name='{fieldName}']".replace(/\{fieldName\}/g, fieldName);
+                var selector = "select[name={fieldName}], input[name='{fieldName}']".replace(/\{fieldName\}/g, fieldName);
+
+                var input;
                 datalist = document.querySelector(selector);
                 if (datalist) {
-                    docFrag = document.createDocumentFragment();
                     // For select element, add empty element to beginning of options list.
                     if (datalist instanceof HTMLSelectElement) {
+                        docFrag = document.createDocumentFragment();
                         option = document.createElement("option");
                         option.selected = true;
                         docFrag.appendChild(option);
+                        values.forEach(function (value) {
+                            option = document.createElement("option");
+                            option.value = value;
+                            option.textContent = value.toString();
+                            docFrag.appendChild(option);
+                        });
+                        datalist.appendChild(docFrag);
+                    } else if (datalist instanceof HTMLInputElement) {
+                        datalist.dataset.list = null;
+                        autocomplete({
+                            source: values
+                        }, datalist);
                     }
-                    values.forEach(function (value) {
-                        option = document.createElement("option");
-                        option.value = value;
-                        option.textContent = value.toString();
-                        docFrag.appendChild(option);
-                    });
-                    datalist.appendChild(docFrag);
                 } else {
-                    console.warn("Neither <datalist> nor <select> found for " + fieldName + ".", values);
+                    console.warn("Neither <input> nor <select> found for " + fieldName + ".", values);
                 }
             }
 

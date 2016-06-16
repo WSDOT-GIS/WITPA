@@ -29,6 +29,8 @@
     "customevent-polyfill": "^1.0.0",
     "core.js": "^2.4.0",
     "dialog-polyfill": "^0.4.3",
-    "fetch": "^1.0.0"
+    "fetch": "^1.0.0",
+    "jquery": "2.1.4",
+    "jquery-ui": "jquery.ui#^1.11.4"
   }
 }
