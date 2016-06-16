@@ -523,8 +523,7 @@ require([
                     } else if (datalist instanceof HTMLInputElement) {
                         datalist.dataset.list = null;
                         autocomplete({
-                            source: values,
-                            minLength: 3
+                            source: values
                         }, datalist);
                     }
                 } else {
