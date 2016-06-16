@@ -102,29 +102,7 @@
     <script src="bower_components/core.js/client/core.min.js"></script>
     <script src="bower_components/customevent-polyfill/customevent-polyfill.min.js"></script>
     <script src="bower_components/fetch/fetch.js"></script>
-    <script>
-        (function (root) {
-            window.dojoConfig = {
-                async: true,
-                packages: [
-                    {
-                        name: "witpa",
-                        location: root
-                    },
-                    {
-                        name: "jquery",
-                        location: root + "/bower_components/jquery/dist",
-                        main: "jquery" // jquery.slim not compatible with jquery-ui autocomplete.
-                    },
-                    {
-                        name: "jquery-ui",
-                        location: root + "/bower_components/jquery-ui/ui",
-                        main: "core"
-                    }
-                ]
-            }
-        }(location.href.replace(/\/[^\/]*$/, "")));
-    </script>
+    <script src="amd-config.js"></script>
     <script src="//js.arcgis.com//3.15/init.js" integrity="sha384-Zh5j59HJOGOiN5XDH9/HC98zIsqw49J3XxWeTgN7gsTUzGjKlPaXGs5ufnVngSAX" crossorigin="anonymous"></script>
     <script src="script.js"></script>
 </body>
