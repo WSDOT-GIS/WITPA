@@ -194,11 +194,8 @@
     <Content Include="bower_components\jquery-ui\ui\tabs.js" />
     <Content Include="bower_components\jquery-ui\ui\tooltip.js" />
     <Content Include="bower_components\jquery-ui\ui\widget.js" />
-    <Content Include="bower_components\jquery\dist\core.js" />
     <Content Include="bower_components\jquery\dist\jquery.js" />
     <Content Include="bower_components\jquery\dist\jquery.min.js" />
-    <Content Include="bower_components\jquery\dist\jquery.slim.js" />
-    <Content Include="bower_components\jquery\dist\jquery.slim.min.js" />
     <Content Include="css\bootstrap-mimic.css" />
     <Content Include="css\FeatureTable.css" />
     <Content Include="css\style.css" />
@@ -239,7 +236,6 @@
     <Content Include="api.md" />
     <Content Include="project-map.pdf" />
     <Content Include="bower_components\jquery\dist\jquery.min.map" />
-    <Content Include="bower_components\jquery\dist\jquery.slim.min.map" />
     <Content Include="bower_components\jquery-ui\.bower.json" />
     <Content Include="bower_components\jquery-ui\bower.json" />
     <Content Include="bower_components\jquery-ui\CONTRIBUTING.md" />
