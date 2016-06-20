@@ -40,6 +40,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="amd-config.js" />
     <Content Include="bower_components\core.js\client\core.js" />
     <Content Include="bower_components\core.js\client\core.min.js" />
     <Content Include="bower_components\customevent-polyfill\customevent-polyfill.js" />
