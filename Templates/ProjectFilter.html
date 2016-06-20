@@ -86,7 +86,8 @@
         </div>
         <div class="form-group">
             <label for="legDistrictInput">Legislative District</label>
-            <select id="legDistrictInput" name="Legislative_District" data-where-template="{field} = '{value}' OR (CHAR_LENGTH('{value}') = 1 AND {field} LIKE '%0' + '{value}' + '%') OR (CHAR_LENGTH('{value}') &gt; 1 AND {field} LIKE '%' + '{value}' + '%')">
+            <select id="legDistrictInput" name="Legislative_District"
+                    data-where-template="({field} = '{value}' OR (CHAR_LENGTH('{value}') = 1 AND {field} LIKE '%0' + '{value}' + '%') OR (CHAR_LENGTH('{value}') &gt; 1 AND {field} LIKE '%' + '{value}' + '%'))">
                 <option value=""></option>
                 <option value='0'>00: Statewide and Regionwide </option>
                 <option value='1'>01: Northeast King County and South Snohomish County </option>
@@ -156,7 +157,7 @@
         <!-- Sub_Category -->
         <div class="form-group">
             <label for="subCategoryInput">Sub Category</label>
-            <select id="subCategoryInput" name="Sub_Category" data-where-template="{field} = '{value}'" list="subCategoryList"></select>
+            <select id="subCategoryInput" name="Sub_Category" data-where-template="{field} = '{value}'"></select>
         </div>
     </div>
 
@@ -260,7 +261,7 @@
             <label for="cDistInput">Congressional District</label>
             <div class="input-group">
                 <select id="cDistInput" name="Congressional_District" class="form-control"
-                        data-where-template="{field} = '{value}' OR (CHAR_LENGTH('{value}') = 1 AND {field} LIKE '%0' + '{value}' + '%') OR (CHAR_LENGTH('{value}') &gt; 1 AND {field} LIKE '%' + '{value}' + '%')" >
+                        data-where-template="({field} = '{value}' OR (CHAR_LENGTH('{value}') = 1 AND {field} LIKE '%0' + '{value}' + '%') OR (CHAR_LENGTH('{value}') &gt; 1 AND {field} LIKE '%' + '{value}' + '%'))" >
                 </select>
             </div>
         </div>

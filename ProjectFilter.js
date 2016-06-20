@@ -1,4 +1,6 @@
-define(["dojo/text!./Templates/ProjectFilter.html"], function (template) {
+define([
+    "dojo/text!./Templates/ProjectFilter.html"
+], function (template) {
     "use strict";
     /**
      * A module that creates a filter UI for projects.
