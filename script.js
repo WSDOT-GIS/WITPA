@@ -304,7 +304,7 @@ require([
                 selectOrDeselectFeatures(rows, true);
             });
 
-            table.on("dgrid-refresh-complete", function (e) {
+            table.on("refresh", function (e) {
                 // Show a modal dialog if all records have been
                 // filtered out by the user.
                 var dialog;
