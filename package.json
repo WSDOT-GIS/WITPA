@@ -5,7 +5,8 @@
   "main": "index.html",
   "scripts": {
     "test": "jasmine",
-    "prepublish": "jsdoc2md ProjectFilter.js ProjectQueryManager.js conversionUtils.js infoWindowUtils.js wsdotMapUtils.js fixFeatureTableBugs.js externals.js > api.md"
+    "prepublish": "bower install --force",
+    "doc": "jsdoc2md ProjectFilter.js ProjectQueryManager.js conversionUtils.js infoWindowUtils.js wsdotMapUtils.js fixFeatureTableBugs.js externals.js > api.md"
   },
   "repository": {
     "type": "git",

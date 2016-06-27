@@ -22,7 +22,6 @@ require([
   "esri/Color",
   "witpa/infoWindowUtils",
   "witpa/wsdotMapUtils",
-  "witpa/fixFeatureTableBugs",
   "dojo/text!./webmap/item.json",
   "dojo/text!./webmap/itemdata.json",
   "jquery-ui/autocomplete",
@@ -55,16 +54,12 @@ require([
   Color,
   infoWindowUtils,
   wsdotMapUtils,
-  fixFeatureTableBugs,
   webmapItem,
   webmapItemData,
 
   autocomplete
 ) {
     "use strict";
-
-    fixFeatureTableBugs(document.getElementById("tablePane"));
-
 
     // Register the dialog with the dialog polyfill
     // if the browser does not natively support
@@ -262,6 +257,7 @@ require([
 
             // Create the feature table
             table = new FeatureTable({
+                map: map,
                 featureLayer: layer,
                 outFields: outFields,
                 editable: false,
@@ -285,17 +281,18 @@ require([
                     "LOC_ERROR"
                 ],
                 showGridHeader: true,
-                map: map
+                gridOptions: {
+                    cellNavigation: false
+                }
             }, "table");
             table.startup();
 
-            // 3.15 event handler setup.
-
+            // event handler setup
             /**
              *
              * @param {DGridRow[]} rows - The rows that were selected
              */
-            table.on("dgrid-select", function (rows) {
+            table.on("row-select", function (rows) {
                 selectOrDeselectFeatures(rows);
             });
 
@@ -303,26 +300,9 @@ require([
              *
              * @param {DGridRow[]} rows - The rows that were unselected
              */
-            table.on("dgrid-deselect", function (rows) {
+            table.on("row-deselect", function (rows) {
                 selectOrDeselectFeatures(rows, true);
             });
-
-            // 3.16 event handler setup
-            /////**
-            //// *
-            //// * @param {DGridRow[]} rows - The rows that were selected
-            //// */
-            ////table.on("row-select", function (rows) {
-            ////    selectOrDeselectFeatures(rows);
-            ////});
-
-            /////**
-            //// *
-            //// * @param {DGridRow[]} rows - The rows that were unselected
-            //// */
-            ////table.on("row-deselect", function (rows) {
-            ////    selectOrDeselectFeatures(rows, true);
-            ////});
 
             table.on("dgrid-refresh-complete", function (e) {
                 // Show a modal dialog if all records have been
@@ -335,7 +315,9 @@ require([
             });
 
             // resize panel when table close is toggled.
-            table.tableCloseButton.addEventListener("click", resizeTablePanel);
+            if (table.tableCloseButton) {
+                table.tableCloseButton.addEventListener("click", resizeTablePanel);
+            }
         }
 
         createTable();
