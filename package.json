@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jasmine",
     "prepublish": "bower install --force",
-    "doc": "jsdoc2md ProjectFilter.js ProjectQueryManager.js conversionUtils.js infoWindowUtils.js wsdotMapUtils.js fixFeatureTableBugs.js externals.js > api.md"
+    "doc": "jsdoc2md ProjectFilter.js ProjectQueryManager.js conversionUtils.js infoWindowUtils.js wsdotMapUtils.js externals.js > api.md"
   },
   "repository": {
     "type": "git",
@@ -27,6 +27,6 @@
   "homepage": "https://github.com/WSDOT-GIS/WITPA#readme",
   "devDependencies": {
     "jasmine": "^2.4.1",
-    "jsdoc-to-markdown": "^1.3.3"
+    "jsdoc-to-markdown": "^1.3.6"
   }
 }

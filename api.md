@@ -19,9 +19,6 @@
 to the ArcGIS API&#39;s list of <a href="https://developers.arcgis.com/javascript/jshelp/inside_defaults.html#corsEnabledServers">CORS enabled servers</a>.</p>
 <p>Adds the WSDOT Multilevel basemap.</p>
 </dd>
-<dt><a href="#module_fixFeatureTableBugs">fixFeatureTableBugs</a></dt>
-<dd><p>Module to fix issues with <a href="#external_FeatureTable">FeatureTable</a>.</p>
-</dd>
 </dl>
 
 ## Typedefs
@@ -256,15 +253,6 @@ Provides common configuration options for use in WSDOT web maps.Adds "wsdot.wa
 ### wsdotMapUtils.defaultMapOptions : <code>Object</code>
 **Kind**: static property of <code>[wsdotMapUtils](#module_wsdotMapUtils)</code>  
 **See**: [esri/Map constructor options](https://developers.arcgis.com/javascript/3/jsapi/map-amd.html#map1)  
-<a name="module_fixFeatureTableBugs"></a>
-
-## fixFeatureTableBugs
-Module to fix issues with [FeatureTable](#external_FeatureTable).
-
-**Example**  
-```js
-require(["fixFeatureTableBugs", "esri/dijit/FeatureTable"], function(fixFeatureTableBugs, FeatureTable) {     // #tablePane is a div that will contain the feature table.     fixFeatureTableBugs(document.getElementById("tablePane"));});
-```
 <a name="DateRange"></a>
 
 ## DateRange : <code>Object.&lt;string, Date&gt;</code>
