@@ -120,12 +120,12 @@
       "url": "http://data.wsdot.wa.gov/arcgis/rest/services/TransportationProjects/PlannedProjects/MapServer",
       "visibility": true,
       "opacity": 1,
-      "title": "2015 Six-Year Plan",
+      "title": "Project Delivery Plan (2017)",
       "layers": [
         {
           "id": 0,
           "popupInfo": {
-            "title": "2015 Six-Year Plan: {Project_Title}",
+            "title": "Project Delivery Plan (2017): {Project_Title}",
             "fieldInfos": [
               {
                 "fieldName": "RouteID",
