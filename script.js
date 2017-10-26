@@ -24,7 +24,7 @@ require([
   "witpa/wsdotMapUtils",
   "dojo/text!./webmap/item.json",
   "dojo/text!./webmap/itemdata.json",
-  "jquery-ui/autocomplete",
+  "jquery-ui/widgets/autocomplete",
 
   "dijit/layout/BorderContainer",
   "dijit/layout/ContentPane",
