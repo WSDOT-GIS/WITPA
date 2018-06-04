@@ -1,3 +1,6 @@
+src/*.d.ts
+src/*.js
+
 # Logs
 logs
 *.log

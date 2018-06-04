@@ -1,0 +1,25 @@
+{
+    "defaultSeverity": "warn",
+    "extends": [
+        "tslint:recommended",
+        "tslint-plugin-prettier",
+        "tslint-config-prettier"
+    ],
+    "jsRules": {},
+    "rules": {
+        "prettier": true,
+        "only-arrow-functions": false,
+        "object-literal-sort-keys": false,
+        "interface-name": {
+            "options": [
+                "never-prefix"
+            ]
+        },
+        "variable-name": {
+            "options": [
+                "allow-leading-underscore"
+            ]
+        }
+    },
+    "rulesDirectory": []
+}

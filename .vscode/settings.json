@@ -10,5 +10,6 @@
         "**/.git": true,
         "**/.svn": true,
         "**/.DS_Store": true
-    }
+    },
+    "tslint.autoFixOnSave": true
 }

@@ -15,7 +15,7 @@
 </dd>
 <dt><a href="#module_wsdotMapUtils">wsdotMapUtils</a></dt>
 <dd><p>Provides common configuration options for use in WSDOT web maps.</p>
-<p>Adds &quot;wsdot.wa.gov&quot;, &quot;www.wsdot.wa.gov&quot;, and &quot;data.wsdot.wa.gov&quot;
+<p>Adds &quot;wsdot.wa.gov&quot;, &quot;<a href="http://www.wsdot.wa.gov&quot;">www.wsdot.wa.gov&quot;</a>, and &quot;data.wsdot.wa.gov&quot;
 to the ArcGIS API&#39;s list of <a href="https://developers.arcgis.com/javascript/jshelp/inside_defaults.html#corsEnabledServers">CORS enabled servers</a>.</p>
 <p>Adds the WSDOT Multilevel basemap.</p>
 </dd>
@@ -60,7 +60,7 @@ A module that creates a filter UI for projects.
 
 * [ProjectFilter](#module_ProjectFilter)
     * [ProjectFilter](#exp_module_ProjectFilter--ProjectFilter) ⏏
-        * [.form](#module_ProjectFilter--ProjectFilter+form) : <code>[HTMLFormElement](#external_HTMLFormElement)</code>
+        * [.form](#module_ProjectFilter--ProjectFilter+form) : [<code>HTMLFormElement</code>](#external_HTMLFormElement)
         * ["submit-query"](#module_ProjectFilter--ProjectFilter+event_submit-query)
 
 <a name="exp_module_ProjectFilter--ProjectFilter"></a>
@@ -69,17 +69,17 @@ A module that creates a filter UI for projects.
 **Kind**: Exported class  
 <a name="module_ProjectFilter--ProjectFilter+form"></a>
 
-#### projectFilter.form : <code>[HTMLFormElement](#external_HTMLFormElement)</code>
+#### projectFilter.form : [<code>HTMLFormElement</code>](#external_HTMLFormElement)
 The HTML form
 
-**Kind**: instance property of <code>[ProjectFilter](#exp_module_ProjectFilter--ProjectFilter)</code>  
-**Emits**: <code>[submit-query](#module_ProjectFilter--ProjectFilter+event_submit-query)</code>  
+**Kind**: instance property of [<code>ProjectFilter</code>](#exp_module_ProjectFilter--ProjectFilter)  
+**Emits**: [<code>submit-query</code>](#module_ProjectFilter--ProjectFilter+event_submit-query)  
 <a name="module_ProjectFilter--ProjectFilter+event_submit-query"></a>
 
 #### "submit-query"
 Submit query event
 
-**Kind**: event emitted by <code>[ProjectFilter](#exp_module_ProjectFilter--ProjectFilter)</code>  
+**Kind**: event emitted by [<code>ProjectFilter</code>](#exp_module_ProjectFilter--ProjectFilter)  
 **Properties**
 
 | Name | Type | Description |
@@ -97,9 +97,9 @@ Manages queries to the projects layer.
     * [ProjectQueryManager](#exp_module_ProjectQueryManager--ProjectQueryManager) ⏏
         * [new ProjectQueryManager(url)](#new_module_ProjectQueryManager--ProjectQueryManager_new)
         * _instance_
-            * [.queryForUniqueValues(fieldName, [resultOffset], [previousValues])](#module_ProjectQueryManager--ProjectQueryManager+queryForUniqueValues) ⇒ <code>[Promise.&lt;UniqueValuesQueryResponse&gt;](#UniqueValuesQueryResponse)</code>
-            * [.queryForUniqueValuesFromCommaDelimted(fieldName)](#module_ProjectQueryManager--ProjectQueryManager+queryForUniqueValuesFromCommaDelimted) ⇒ <code>[Promise.&lt;UniqueValuesQueryResponse&gt;](#UniqueValuesQueryResponse)</code>
-            * [.queryForDates()](#module_ProjectQueryManager--ProjectQueryManager+queryForDates) ⇒ <code>[Promise.&lt;DateRangeResponse&gt;](#DateRangeResponse)</code>
+            * [.queryForUniqueValues(fieldName, [resultOffset], [previousValues])](#module_ProjectQueryManager--ProjectQueryManager+queryForUniqueValues) ⇒ [<code>Promise.&lt;UniqueValuesQueryResponse&gt;</code>](#UniqueValuesQueryResponse)
+            * [.queryForUniqueValuesFromCommaDelimted(fieldName)](#module_ProjectQueryManager--ProjectQueryManager+queryForUniqueValuesFromCommaDelimted) ⇒ [<code>Promise.&lt;UniqueValuesQueryResponse&gt;</code>](#UniqueValuesQueryResponse)
+            * [.queryForDates()](#module_ProjectQueryManager--ProjectQueryManager+queryForDates) ⇒ [<code>Promise.&lt;DateRangeResponse&gt;</code>](#DateRangeResponse)
         * _inner_
             * [~url](#module_ProjectQueryManager--ProjectQueryManager..url) : <code>string</code>
 
@@ -117,11 +117,11 @@ Manages queries to the projects layer.
 
 <a name="module_ProjectQueryManager--ProjectQueryManager+queryForUniqueValues"></a>
 
-#### projectQueryManager.queryForUniqueValues(fieldName, [resultOffset], [previousValues]) ⇒ <code>[Promise.&lt;UniqueValuesQueryResponse&gt;](#UniqueValuesQueryResponse)</code>
+#### projectQueryManager.queryForUniqueValues(fieldName, [resultOffset], [previousValues]) ⇒ [<code>Promise.&lt;UniqueValuesQueryResponse&gt;</code>](#UniqueValuesQueryResponse)
 Begins a query for unique values.
 
-**Kind**: instance method of <code>[ProjectQueryManager](#exp_module_ProjectQueryManager--ProjectQueryManager)</code>  
-**Returns**: <code>[Promise.&lt;UniqueValuesQueryResponse&gt;](#UniqueValuesQueryResponse)</code> - Values returned from the query.  
+**Kind**: instance method of [<code>ProjectQueryManager</code>](#exp_module_ProjectQueryManager--ProjectQueryManager)  
+**Returns**: [<code>Promise.&lt;UniqueValuesQueryResponse&gt;</code>](#UniqueValuesQueryResponse) - Values returned from the query.  
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -131,11 +131,11 @@ Begins a query for unique values.
 
 <a name="module_ProjectQueryManager--ProjectQueryManager+queryForUniqueValuesFromCommaDelimted"></a>
 
-#### projectQueryManager.queryForUniqueValuesFromCommaDelimted(fieldName) ⇒ <code>[Promise.&lt;UniqueValuesQueryResponse&gt;](#UniqueValuesQueryResponse)</code>
+#### projectQueryManager.queryForUniqueValuesFromCommaDelimted(fieldName) ⇒ [<code>Promise.&lt;UniqueValuesQueryResponse&gt;</code>](#UniqueValuesQueryResponse)
 Queries a layer for all of the unique integer values contained in a field which containscomma-delmited lists of integers.
 
-**Kind**: instance method of <code>[ProjectQueryManager](#exp_module_ProjectQueryManager--ProjectQueryManager)</code>  
-**Returns**: <code>[Promise.&lt;UniqueValuesQueryResponse&gt;](#UniqueValuesQueryResponse)</code> - Values returned from the query.  
+**Kind**: instance method of [<code>ProjectQueryManager</code>](#exp_module_ProjectQueryManager--ProjectQueryManager)  
+**Returns**: [<code>Promise.&lt;UniqueValuesQueryResponse&gt;</code>](#UniqueValuesQueryResponse) - Values returned from the query.  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -143,17 +143,17 @@ Queries a layer for all of the unique integer values contained in a field which 
 
 <a name="module_ProjectQueryManager--ProjectQueryManager+queryForDates"></a>
 
-#### projectQueryManager.queryForDates() ⇒ <code>[Promise.&lt;DateRangeResponse&gt;](#DateRangeResponse)</code>
+#### projectQueryManager.queryForDates() ⇒ [<code>Promise.&lt;DateRangeResponse&gt;</code>](#DateRangeResponse)
 Starts the query for min and max date values.
 
-**Kind**: instance method of <code>[ProjectQueryManager](#exp_module_ProjectQueryManager--ProjectQueryManager)</code>  
-**Returns**: <code>[Promise.&lt;DateRangeResponse&gt;](#DateRangeResponse)</code> - A promise returning the min and max date values for date fields.  
+**Kind**: instance method of [<code>ProjectQueryManager</code>](#exp_module_ProjectQueryManager--ProjectQueryManager)  
+**Returns**: [<code>Promise.&lt;DateRangeResponse&gt;</code>](#DateRangeResponse) - A promise returning the min and max date values for date fields.  
 <a name="module_ProjectQueryManager--ProjectQueryManager..url"></a>
 
 #### ProjectQueryManager~url : <code>string</code>
 The URL to the feature layer.
 
-**Kind**: inner property of <code>[ProjectQueryManager](#exp_module_ProjectQueryManager--ProjectQueryManager)</code>  
+**Kind**: inner property of [<code>ProjectQueryManager</code>](#exp_module_ProjectQueryManager--ProjectQueryManager)  
 **Read only**: true  
 <a name="module_conversionUtils"></a>
 
@@ -171,7 +171,7 @@ Utility module that provides conversion functions.
 ### conversionUtils.listStringsToNumberArray(response) ⇒ <code>Array.&lt;number&gt;</code>
 Converts the arrays of comma-separated number strings array of numbers.
 
-**Kind**: static method of <code>[conversionUtils](#module_conversionUtils)</code>  
+**Kind**: static method of [<code>conversionUtils</code>](#module_conversionUtils)  
 **Returns**: <code>Array.&lt;number&gt;</code> - - An array of distinct numbers parsed from the input string.  
 
 | Param | Type | Description |
@@ -187,11 +187,11 @@ var input = [" ","01, 02","01, 02, 09","01, 04, 08","01, 06, 07, 09","01, 07","0
 ### conversionUtils.objectToQueryString(o) ⇒ <code>string</code>
 Converts an object into a query string.
 
-**Kind**: static method of <code>[conversionUtils](#module_conversionUtils)</code>  
+**Kind**: static method of [<code>conversionUtils</code>](#module_conversionUtils)  
 **Returns**: <code>string</code> - Returns a query string representation of the input object.  
 **Throws**:
 
-- <code>[TypeError](#external_TypeError)</code> - Throws a type error if the input is not an object.
+- [<code>TypeError</code>](#external_TypeError) - Throws a type error if the input is not an object.
 
 
 | Param | Type | Description |
@@ -203,16 +203,16 @@ Converts an object into a query string.
 ### conversionUtils.toRfc3339(date) ⇒ <code>string</code>
 Converts an integer into a string representation of a date suitable for date input element attributes.
 
-**Kind**: static method of <code>[conversionUtils](#module_conversionUtils)</code>  
+**Kind**: static method of [<code>conversionUtils</code>](#module_conversionUtils)  
 **Returns**: <code>string</code> - string representation of the input date value ([RFC 3339 format](https://tools.ietf.org/html/rfc3339)).  
 **Throws**:
 
-- <code>[TypeError](#external_TypeError)</code> - Thrown if the input parameter is not a valid Date or integer.
+- [<code>TypeError</code>](#external_TypeError) - Thrown if the input parameter is not a valid Date or integer.
 
 
 | Param | Type | Description |
 | --- | --- | --- |
-| date | <code>Date</code> &#124; <code>number</code> | An integer representation of a date. |
+| date | <code>Date</code> \| <code>number</code> | An integer representation of a date. |
 
 **Example**  
 ```js
@@ -228,11 +228,11 @@ Utilites for use with [esri/dijit/InfoWindow](#external_esri/dijit/InfoWindow) o
 ### infoWindowUtils.makeInfoWindowDraggable(infoWindow)
 Makes an InfoWindow draggable.
 
-**Kind**: static method of <code>[infoWindowUtils](#module_infoWindowUtils)</code>  
+**Kind**: static method of [<code>infoWindowUtils</code>](#module_infoWindowUtils)  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| infoWindow | <code>[esri/dijit/InfoWindow](#external_esri/dijit/InfoWindow)</code> | An info window. |
+| infoWindow | [<code>esri/dijit/InfoWindow</code>](#external_esri/dijit/InfoWindow) | An info window. |
 
 <a name="module_wsdotMapUtils"></a>
 
@@ -241,17 +241,17 @@ Provides common configuration options for use in WSDOT web maps.Adds "wsdot.wa
 
 
 * [wsdotMapUtils](#module_wsdotMapUtils)
-    * [.esriBasemaps](#module_wsdotMapUtils.esriBasemaps) : <code>[esri/basemaps](https://developers.arcgis.com/javascript/3/jsapi/esri.basemaps-amd.html)</code>
+    * [.esriBasemaps](#module_wsdotMapUtils.esriBasemaps) : [<code>esri/basemaps</code>](https://developers.arcgis.com/javascript/3/jsapi/esri.basemaps-amd.html)
     * [.defaultMapOptions](#module_wsdotMapUtils.defaultMapOptions) : <code>Object</code>
 
 <a name="module_wsdotMapUtils.esriBasemaps"></a>
 
-### wsdotMapUtils.esriBasemaps : <code>[esri/basemaps](https://developers.arcgis.com/javascript/3/jsapi/esri.basemaps-amd.html)</code>
-**Kind**: static property of <code>[wsdotMapUtils](#module_wsdotMapUtils)</code>  
+### wsdotMapUtils.esriBasemaps : [<code>esri/basemaps</code>](https://developers.arcgis.com/javascript/3/jsapi/esri.basemaps-amd.html)
+**Kind**: static property of [<code>wsdotMapUtils</code>](#module_wsdotMapUtils)  
 <a name="module_wsdotMapUtils.defaultMapOptions"></a>
 
 ### wsdotMapUtils.defaultMapOptions : <code>Object</code>
-**Kind**: static property of <code>[wsdotMapUtils](#module_wsdotMapUtils)</code>  
+**Kind**: static property of [<code>wsdotMapUtils</code>](#module_wsdotMapUtils)  
 **See**: [esri/Map constructor options](https://developers.arcgis.com/javascript/3/jsapi/map-amd.html#map1)  
 <a name="DateRange"></a>
 
@@ -272,9 +272,9 @@ Provides common configuration options for use in WSDOT web maps.Adds "wsdot.wa
 
 | Name | Type | Description |
 | --- | --- | --- |
-| Advertisement_Date | <code>[DateRange](#DateRange)</code> | Advertisement_Date |
-| Operationally_Complete | <code>[DateRange](#DateRange)</code> | Operationally_Complete |
-| Begin_Preliminary_Engineering | <code>[DateRange](#DateRange)</code> | Begin_Preliminary_Engineering |
+| Advertisement_Date | [<code>DateRange</code>](#DateRange) | Advertisement_Date |
+| Operationally_Complete | [<code>DateRange</code>](#DateRange) | Operationally_Complete |
+| Begin_Preliminary_Engineering | [<code>DateRange</code>](#DateRange) | Begin_Preliminary_Engineering |
 
 <a name="UniqueValuesQueryResponse"></a>
 
@@ -285,7 +285,7 @@ Provides common configuration options for use in WSDOT web maps.Adds "wsdot.wa
 | Name | Type | Description |
 | --- | --- | --- |
 | fieldName | <code>string</code> | The field name that the unique values correspond to. |
-| values | <code>Array.&lt;string&gt;</code> &#124; <code>Array.&lt;number&gt;</code> | An array of either string or number values. |
+| values | <code>Array.&lt;string&gt;</code> \| <code>Array.&lt;number&gt;</code> | An array of either string or number values. |
 | complete | <code>Boolean</code> | Indicates that the values list is complete. Used by recursive calls for when the number of features that is allowed to be returned is less than the total number of unique features. |
 
 <a name="external_TypeError"></a>
