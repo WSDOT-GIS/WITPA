@@ -11,12 +11,12 @@ import {
 } from "./conversionUtils";
 
 /**
- * @typedef {Object.<string, Date>} DateRange
- * @property {Date} min - Minimum date
- * @property {Date} max - Maximum date
+ * Represents a range of dates.
  */
 export interface DateRange {
+  /** minimum date */
   min: Date;
+  /** maximum date */
   max: Date;
 }
 
@@ -175,32 +175,24 @@ export class ProjectQueryManager {
    * @param {string} fieldName - The name of the field to query.
    * @returns {Promise.<UniqueValuesQueryResponse>} Values returned from the query.
    */
-  public queryForUniqueValuesFromCommaDelimted(
+  public async queryForUniqueValuesFromCommaDelimted(
     fieldName: string
   ): Promise<UniqueValuesQueryResponse> {
     const self = this;
-    return new Promise(function(resolve, reject) {
-      self.queryForUniqueValues(fieldName).then(function(response) {
-        // Get destinct array of integers. Convert to two-digit strings.
-        response.values = listStringsToNumberArray(
-          response.values as string[]
-        ) as number[];
-        resolve(response);
-      });
-    });
+    const response = await self.queryForUniqueValues(fieldName);
+    // Get destinct array of integers. Convert to two-digit strings.
+    response.values = listStringsToNumberArray(
+      response.values as string[]
+    ) as number[];
+    return response;
   }
 
   /**
    * Starts the query for min and max date values.
    * @returns {Promise.<DateRangeResponse>} A promise returning the min and max date values for date fields.
    */
-  public queryForDates(): Promise<DateRangeResponse> {
-    const query: any = {};
-
-    query.where = "Advertisement_Date IS NOT NULL";
-    query.f = "json";
-    // Create array of objects, then convert them to StatisticsDefinition objects.
-    query.outStatistics = [
+  public async queryForDates(): Promise<DateRangeResponse> {
+    const outStatistics = [
       {
         statisticType: "min",
         onStatisticField: "Advertisement_Date",
@@ -232,50 +224,52 @@ export class ProjectQueryManager {
         outStatisticFieldName: "Max_PE_Start_Date"
       }
     ];
+    const query = {
+      where: "Advertisement_Date IS NOT NULL",
+      f: "json",
+      // Create array of objects, then convert them to StatisticsDefinition objects.
+      outStatistics
+    };
 
     const qs = objectToQueryString(query);
-    const url = [this.url, qs].join("?");
+    const url = `${this.url}?${qs}`;
 
-    return fetch(url)
-      .then(function(response) {
-        return response.text();
-      })
-      .then(function(queryResponse) {
-        // Convert date values to
-        const queryResponseObj = JSON.parse(queryResponse, function(k, v) {
-          const dateFieldNameRe = /Date$/i;
-          if (dateFieldNameRe.test(k) && typeof v === "number") {
-            return toRfc3339(v);
-          } else {
-            return v;
-          }
-        });
+    const response = await fetch(url);
+    const queryResponse = await response.text();
+    // Convert date values to
+    const queryResponseObj = JSON.parse(queryResponse, function(k, v) {
+      const dateFieldNameRe = /Date$/i;
+      if (dateFieldNameRe.test(k) && typeof v === "number") {
+        return toRfc3339(v);
+      } else {
+        return v;
+      }
+    });
 
-        if (queryResponseObj.error) {
-          // reject(queryResponseObj);
-          // return;
-          throw new Error(queryResponse);
-        }
+    if (queryResponseObj.error) {
+      // reject(queryResponseObj);
+      // return;
+      throw new Error(queryResponse);
+    }
 
-        const values = queryResponseObj.features[0].attributes;
+    const values = queryResponseObj.features[0].attributes;
 
-        // Create a list of field ranges.
-        const ranges = {
-          Advertisement_Date: {
-            min: values.Min_Ad_Date,
-            max: values.Max_Ad_Date
-          },
-          Operationally_Complete: {
-            min: values.Min_OC_Date,
-            max: values.Max_OC_Date
-          },
-          Begin_Preliminary_Engineering: {
-            min: values.Min_PE_Start_Date,
-            max: values.Max_PE_Start_Date
-          }
-        };
-        return ranges;
-      });
+    // Create a list of field ranges.
+    const ranges = {
+      Advertisement_Date: {
+        min: values.Min_Ad_Date,
+        max: values.Max_Ad_Date
+      },
+      Operationally_Complete: {
+        min: values.Min_OC_Date,
+        max: values.Max_OC_Date
+      },
+      Begin_Preliminary_Engineering: {
+        min: values.Min_PE_Start_Date,
+        max: values.Max_PE_Start_Date
+      }
+    };
+    return ranges;
   }
 }
 

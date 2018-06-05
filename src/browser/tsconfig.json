@@ -1,0 +1,17 @@
+{
+    "extends": "../common/tsconfig.json",
+    "compilerOptions": {
+        "outDir": "../../dist/browser",
+        "module": "commonjs",
+        "lib": [
+            "dom",
+            "es2015"
+        ],
+        "resolveJsonModule": true,
+        "esModuleInterop": true,
+        "types": [
+            "arcgis-js-api",
+            "dojo"
+        ]
+    }
+}
