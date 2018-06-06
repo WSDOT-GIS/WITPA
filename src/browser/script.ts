@@ -5,13 +5,9 @@ import AccordionPane = require("dijit/layout/AccordionPane");
 import BorderContainer = require("dijit/layout/BorderContainer");
 import ContentPane = require("dijit/layout/ContentPane");
 import registry = require("dijit/registry");
-import Moveable = require("dojo/dnd/Moveable");
 import parser = require("dojo/parser");
-import item = require("dojo/text!./webmap/item.json");
-import itemData = require("dojo/text!./webmap/itemdata.json");
 import arcgisUtils = require("esri/arcgis/utils");
 import Color = require("esri/Color");
-import esriConfig = require("esri/config");
 import BasemapGallery = require("esri/dijit/BasemapGallery");
 import FeatureTable = require("esri/dijit/FeatureTable");
 import HomeButton = require("esri/dijit/HomeButton");
@@ -26,13 +22,14 @@ import Polyline = require("esri/geometry/Polyline");
 import Graphic = require("esri/graphic");
 import ArcGISDynamicMapServiceLayer = require("esri/layers/ArcGISDynamicMapServiceLayer");
 import FeatureLayer = require("esri/layers/FeatureLayer");
-import Map = require("esri/map");
+import EsriMap = require("esri/map");
 import SimpleLineSymbol = require("esri/symbols/SimpleLineSymbol");
 import Query = require("esri/tasks/query");
 import QueryTask = require("esri/tasks/QueryTask");
-import StatisticDefinition = require("esri/tasks/StatisticDefinition");
-import * as infoWindowUtils from "./infoWindowUtils";
+import { makeInfoWindowDraggable } from "./infoWindowUtils";
 import ProjectFilter from "./ProjectFilter";
+import webmapItem from "./webmap/item.json";
+import webmapItemData from "./webmap/itemdata.json";
 import { defaultMapOptions, esriBasemaps } from "./wsdotMapUtils";
 
 /**
@@ -82,9 +79,6 @@ filterPane.appendChild(projectFilter.form);
 // Parse the Dojo layout widgets defined in HTML markup.
 parser.parse();
 
-const webmapItem = JSON.parse(item);
-const webmapItemData = JSON.parse(itemData);
-
 const mapOptions = defaultMapOptions;
 mapOptions.minZoom = 7;
 
@@ -117,7 +111,7 @@ arcgisUtils
   .then((response: any) => {
     const map = response.map;
 
-    infoWindowUtils.makeInfoWindowDraggable(response.map.infoWindow);
+    makeInfoWindowDraggable(response.map.infoWindow);
 
     const dynamicLayer = map.getLayer("PlannedProjects");
 

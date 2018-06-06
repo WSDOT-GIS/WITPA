@@ -10,7 +10,7 @@ import InfoWindow = require("esri/dijit/InfoWindow");
  * Makes an InfoWindow draggable.
  * @param {external:esri/dijit/InfoWindow} infoWindow - An info window.
  */
-export function makeInfoWindowDraggable(this: Window, infoWindow: InfoWindow) {
+export function makeInfoWindowDraggable(this: any, infoWindow: InfoWindow) {
   const handle = infoWindow.domNode.querySelector(".title");
   const dnd = new Moveable(infoWindow.domNode, {
     handle

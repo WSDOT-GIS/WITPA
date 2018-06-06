@@ -1,4 +1,4 @@
-import template = require("dojo/text!./Templates/ProjectFilter.html");
+import templates from "./templates";
 
 /**
  * A module that creates a filter UI for projects.
@@ -26,7 +26,7 @@ export default class ProjectFilter {
     _form.classList.add("basic-mode");
     const self = this;
 
-    _form.innerHTML = template;
+    _form.innerHTML = templates.ProjectFilter;
 
     _form!
       .querySelector<HTMLAnchorElement>(".advanced-link")!

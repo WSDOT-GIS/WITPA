@@ -2,18 +2,20 @@ import {
   listStringsToNumberArray,
   objectToQueryString,
   toRfc3339
-} from "./conversionUtils";
-import { ProjectQueryManager } from "./ProjectQueryManager";
+} from "../common/conversionUtils";
+import { ProjectQueryManager } from "../common/ProjectQueryManager";
 
-self.addEventListener("error", function(err) {
-  self.postMessage({ error: err });
+const myWorker = self as DedicatedWorkerGlobalScope;
+
+myWorker.addEventListener("error", function(err) {
+  myWorker.postMessage({ error: err });
 });
 
-function postUniqueValuesMessage(response) {
-  self.postMessage(response);
+function postUniqueValuesMessage(response: any) {
+  myWorker.postMessage(response);
 }
 
-self.addEventListener("message", function(e) {
+myWorker.addEventListener("message", function(e) {
   const queryRe = /query\/?$/;
   const uniqueValueFieldNames = [
     "RouteID",
@@ -31,10 +33,12 @@ self.addEventListener("message", function(e) {
     // Start the queries, then close this worker when all queries are completed (whether successful or not).
 
     const queryManager = new ProjectQueryManager(e.data.url);
-    self.postMessage({ type: "queryTaskCreated", url: queryManager.url });
+    // @ts-ignore
+    myWorker.postMessage({ type: "queryTaskCreated", url: queryManager.url });
     const datePromise = queryManager.queryForDates();
     datePromise.then(function(dateRanges) {
-      self.postMessage({ ranges: dateRanges });
+      // @ts-ignore
+      myWorker.postMessage({ ranges: dateRanges });
     });
 
     const numberListPromises = numberListFieldNames.map(function(fieldName) {
@@ -59,10 +63,10 @@ self.addEventListener("message", function(e) {
 
     Promise.all(promises).then(
       function(successResult) {
-        self.close();
+        myWorker.close();
       },
       function(errorResult) {
-        self.close();
+        myWorker.close();
       }
     );
   }
