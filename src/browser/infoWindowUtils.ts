@@ -1,5 +1,5 @@
-import Moveable = require("dojo/dnd/Moveable");
-import InfoWindow = require("esri/dijit/InfoWindow");
+import Moveable from "dojo/dnd/Moveable";
+import InfoWindow from "esri/dijit/InfoWindow";
 
 /**
  * Utilites for use with {@link external:esri/dijit/InfoWindow} objects.

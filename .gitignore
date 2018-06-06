@@ -3,6 +3,7 @@ src/**/*.d.ts
 src/**/*.js
 src/**/templates.ts
 build-scripts/*.js
+css/dialog-polyfill.css
 
 # Logs
 logs

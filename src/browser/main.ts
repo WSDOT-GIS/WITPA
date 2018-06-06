@@ -1,31 +1,31 @@
 import { IExtent, ILayer, IWebmap } from "@esri/arcgis-rest-common-types";
 import dialogPolyfill from "dialog-polyfill";
-import AccordionContainer = require("dijit/layout/AccordionContainer");
-import AccordionPane = require("dijit/layout/AccordionPane");
-import BorderContainer = require("dijit/layout/BorderContainer");
-import ContentPane = require("dijit/layout/ContentPane");
-import registry = require("dijit/registry");
-import parser = require("dojo/parser");
-import arcgisUtils = require("esri/arcgis/utils");
-import Color = require("esri/Color");
-import BasemapGallery = require("esri/dijit/BasemapGallery");
-import FeatureTable = require("esri/dijit/FeatureTable");
-import HomeButton = require("esri/dijit/HomeButton");
-import LayerList = require("esri/dijit/LayerList");
-import Legend = require("esri/dijit/Legend");
-import Search = require("esri/dijit/Search");
-import geometryEngineAsync = require("esri/geometry/geometryEngineAsync");
-import Multipoint = require("esri/geometry/Multipoint");
-import Point = require("esri/geometry/Point");
-import Polygon = require("esri/geometry/Polygon");
-import Polyline = require("esri/geometry/Polyline");
-import Graphic = require("esri/graphic");
-import ArcGISDynamicMapServiceLayer = require("esri/layers/ArcGISDynamicMapServiceLayer");
-import FeatureLayer = require("esri/layers/FeatureLayer");
-import EsriMap = require("esri/map");
-import SimpleLineSymbol = require("esri/symbols/SimpleLineSymbol");
-import Query = require("esri/tasks/query");
-import QueryTask = require("esri/tasks/QueryTask");
+import AccordionContainer from "dijit/layout/AccordionContainer";
+import AccordionPane from "dijit/layout/AccordionPane";
+import BorderContainer from "dijit/layout/BorderContainer";
+import ContentPane from "dijit/layout/ContentPane";
+import registry from "dijit/registry";
+import parser from "dojo/parser";
+import arcgisUtils from "esri/arcgis/utils";
+import Color from "esri/Color";
+import BasemapGallery from "esri/dijit/BasemapGallery";
+import FeatureTable from "esri/dijit/FeatureTable";
+import HomeButton from "esri/dijit/HomeButton";
+import LayerList from "esri/dijit/LayerList";
+import Legend from "esri/dijit/Legend";
+import Search from "esri/dijit/Search";
+import geometryEngineAsync from "esri/geometry/geometryEngineAsync";
+import Multipoint from "esri/geometry/Multipoint";
+import Point from "esri/geometry/Point";
+import Polygon from "esri/geometry/Polygon";
+import Polyline from "esri/geometry/Polyline";
+import Graphic from "esri/graphic";
+import ArcGISDynamicMapServiceLayer from "esri/layers/ArcGISDynamicMapServiceLayer";
+import FeatureLayer from "esri/layers/FeatureLayer";
+import EsriMap from "esri/map";
+import SimpleLineSymbol from "esri/symbols/SimpleLineSymbol";
+import Query from "esri/tasks/query";
+import QueryTask from "esri/tasks/QueryTask";
 import { makeInfoWindowDraggable } from "./infoWindowUtils";
 import ProjectFilter from "./ProjectFilter";
 import webmapItem from "./webmap/item.json";
@@ -487,6 +487,24 @@ function getOperationalLayer(webMapData: IWebmap, opLayerId: string) {
 }
 
 /**
+ * Creates a unique element id to use in a document.
+ * @param suggestedId - ID you would like to use but don't know if it has been used in doc yet.
+ */
+function generateId(suggestedId?: string) {
+  if (!suggestedId) {
+    suggestedId = "id";
+  }
+
+  let checkId = suggestedId;
+  let i = 0;
+  while (document.getElementById(checkId)) {
+    checkId = `${suggestedId}${i}`;
+    i++;
+  }
+  return checkId;
+}
+
+/**
  * Setup the background worker process for querying the 6-year project map service
  * for input suggestions.
  * @param {string} url - The URL for the map service layer to be queried.
@@ -500,7 +518,7 @@ function getOperationalLayer(webMapData: IWebmap, opLayerId: string) {
   }
 
   // Create the worker.
-  const worker = new Worker("QueryWorker.js");
+  const worker = new Worker("dist/QueryWorker.js");
 
   /**
    * Handles messages from web worker.
@@ -508,6 +526,30 @@ function getOperationalLayer(webMapData: IWebmap, opLayerId: string) {
    * @param {Object} e.data - Data passed from worker.
    */
   worker.addEventListener("message", function(e) {
+    /**
+     * Adds the input values to a new datalist element and connect to
+     * the input element.
+     * @param input - HTML input element
+     * @param values - Suggestions for the list
+     */
+    function addSuggestionList(input: HTMLInputElement, values: string[]) {
+      const datalistId = generateId();
+      const datalist = document.createElement("datalist");
+      datalist.id = datalistId;
+      // Add items to the data list.
+      values
+        .map(s => {
+          const option = document.createElement("option");
+          option.value = option.textContent = s;
+          return option;
+        })
+        .forEach(o => datalist.appendChild(o));
+      // Add the datalist to the DOM.
+      (input.parentElement || document.body).appendChild(datalist);
+      // Set the input element to use the list for suggestions.
+      input.setAttribute("list", datalistId);
+    }
+
     /**
      * Adds values to the datalist corresponding to the given field name.
      * @param {string} fieldName - The name of a field in a map service layer.
@@ -536,14 +578,15 @@ function getOperationalLayer(webMapData: IWebmap, opLayerId: string) {
           }
           datalist.appendChild(docFrag);
         } else if (datalist instanceof HTMLInputElement) {
-          datalist.dataset.list = undefined;
-          // @ts-ignore
-          autocomplete(
-            {
-              source: values
-            },
-            datalist
-          );
+          addSuggestionList(datalist, values);
+          // // JQuery UI
+          // datalist.dataset.list = undefined;
+          // autocomplete(
+          //   {
+          //     source: values
+          //   },
+          //   datalist
+          // );
         }
       } else {
         console.warn(
@@ -553,11 +596,17 @@ function getOperationalLayer(webMapData: IWebmap, opLayerId: string) {
       }
     }
 
+    interface DateReps {
+      [key: string]: {
+        [key: string]: string;
+      };
+    }
+
     /**
      * Adds attributes to input elements.
      * @param {Object.<string, Object.<string, string>>} values - Object containing objects containing date representation strings.
      */
-    function addAttributes(values: any) {
+    function addAttributes(values: DateReps) {
       for (const fieldName in values) {
         if (values.hasOwnProperty(fieldName)) {
           const value = values[fieldName];

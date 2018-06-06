@@ -33,11 +33,9 @@ myWorker.addEventListener("message", function(e) {
     // Start the queries, then close this worker when all queries are completed (whether successful or not).
 
     const queryManager = new ProjectQueryManager(e.data.url);
-    // @ts-ignore
     myWorker.postMessage({ type: "queryTaskCreated", url: queryManager.url });
     const datePromise = queryManager.queryForDates();
     datePromise.then(function(dateRanges) {
-      // @ts-ignore
       myWorker.postMessage({ ranges: dateRanges });
     });
 

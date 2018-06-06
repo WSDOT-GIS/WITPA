@@ -30,7 +30,7 @@ readdir(templatesDir, (err, files) => {
 
   const outDir = resolve(templatesDir, "..");
   const outFile = resolve(outDir, "templates.ts");
-  const outText = `export = ${JSON.stringify(outObj)}`;
+  const outText = `export default ${JSON.stringify(outObj)}`;
   writeFile(outFile, outText, writeErr => {
     if (writeErr) {
       console.error(writeErr);

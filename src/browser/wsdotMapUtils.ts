@@ -1,5 +1,5 @@
-﻿import esriBasemaps = require("esri/basemaps");
-import esriConfig = require("esri/config");
+﻿import esriBasemaps from "esri/basemaps";
+import esriConfig from "esri/config";
 
 /**
  * Provides common configuration options for use in WSDOT web maps.
