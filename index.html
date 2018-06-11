@@ -1,27 +1,23 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
+
 <head>
     <title>Project Delivery Plan (2017)</title>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css" integrity="sha384-gFTAvnQMdZ1wfeb9vay1SlC/c+jfgXz8qMUgAGRrTso3Q6f6J6qvcUOdYFuEP9cE" crossorigin="anonymous" />
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css" integrity="sha384-gFTAvnQMdZ1wfeb9vay1SlC/c+jfgXz8qMUgAGRrTso3Q6f6J6qvcUOdYFuEP9cE"
+        crossorigin="anonymous" />
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+"
+        crossorigin="anonymous">
     <link href='//fonts.googleapis.com/css?family=Open+Sans:400,700|Pragati+Narrow' rel='stylesheet' type='text/css' />
     <link rel="stylesheet" href="//js.arcgis.com/3.17/esri/css/esri.css">
     <link rel="stylesheet" href="//js.arcgis.com/3.17/dijit/themes/claro/claro.css" />
-    <link href="bower_components/jquery-ui/themes/base/all.css" rel="stylesheet" />
     <link href="css/style.css" rel="stylesheet" async="async" />
-    <link href="css/FeatureTable.css" rel="stylesheet" async="async"/>
+    <link href="css/FeatureTable.css" rel="stylesheet" async="async" />
     <link href="css/bootstrap-mimic.css" rel="stylesheet" async="async" />
+    <link href="css/dialog-polyfill.css" rel="stylesheet" async="async" />
     <link rel="shortcut icon" href="http://www.wsdot.wa.gov/favicon.ico" async="async" />
-    <script>
-        var dialogPolyfillRequired = (function () {
-            return !window.HTMLDialogElement;
-        }());
-    </script>
-    <script src="bower_components/dialog-polyfill/dialog-polyfill.js"></script>
-    <link href="bower_components/dialog-polyfill/dialog-polyfill.css" rel="stylesheet" />
     <!-- Google Analytics -->
     <script>
         // Setup Google Analytics, but not if user has specified that they don't want to be tracked.
@@ -45,6 +41,7 @@
     </script>
     <!-- End Google Analytics -->
 </head>
+
 <body class="claro">
     <div data-dojo-type="dijit/layout/BorderContainer" data-dojo-props="gutters:false, design:'headline'" id="borderContainer">
         <div id="topPane" data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region: 'top'">
@@ -74,9 +71,16 @@
                 <div id="homeButton"></div>
                 <div id="search"></div>
                 <div id="infoButtons">
-                    <div id="infoButton"><a href="project-map.pdf" target="witpa_help" class="fa fa-question-circle" title="help"></a></div>
-                    <div id="metadataButton"><a href="http://data.wsdot.wa.gov/arcgis/rest/services/TransportationProjects/PlannedProjects/MapServer/exts/LayerMetadata/metadata/0" target="witpa_metadata" class="fa fa-info-circle" title="metadata"></a></div>
-                    <div id="feedbackButton"><a href="mailto:CPDMSystemsSupportandReporting@WSDOT.WA.GOV" class="fa fa-comment" title="feedback"></a></div>
+                    <div id="infoButton">
+                        <a href="project-map.pdf" target="witpa_help" class="fa fa-question-circle" title="help"></a>
+                    </div>
+                    <div id="metadataButton">
+                        <a href="http://data.wsdot.wa.gov/arcgis/rest/services/TransportationProjects/PlannedProjects/MapServer/exts/LayerMetadata/metadata/0"
+                            target="witpa_metadata" class="fa fa-info-circle" title="metadata"></a>
+                    </div>
+                    <div id="feedbackButton">
+                        <a href="mailto:CPDMSystemsSupportandReporting@WSDOT.WA.GOV" class="fa fa-comment" title="feedback"></a>
+                    </div>
                 </div>
                 <progress class="map-progress">Loading...</progress>
             </div>
@@ -100,11 +104,22 @@
         }());
 
     </script>
-    <script src="bower_components/core.js/client/core.min.js"></script>
-    <script src="bower_components/customevent-polyfill/customevent-polyfill.min.js"></script>
-    <script src="bower_components/fetch/fetch.js"></script>
-    <script src="amd-config.js"></script>
-    <script src="//js.arcgis.com/3.17/init.js" integrity="sha384-UIiMVdEutbM8Gw8aZAdy+9v4h7ySqcjaF9yVIsFiTLCSBUtw6DRZDnbUIn3lqcD+" crossorigin="anonymous"></script>
-    <script src="script.js"></script>
+    <script>
+        (function (root) {
+            window.dojoConfig = {
+                async: true,
+                packages: [
+                    {
+                        name: "witpa",
+                        location: `${root}/dist`
+                    }
+                ]
+            }
+        }(location.href.replace(/\/[^\/]*$/, "")));
+    </script>
+    <script src="//js.arcgis.com/3.17/init.js" integrity="sha384-UIiMVdEutbM8Gw8aZAdy+9v4h7ySqcjaF9yVIsFiTLCSBUtw6DRZDnbUIn3lqcD+"
+        crossorigin="anonymous"></script>
+    <script>require(["witpa"]);</script>
 </body>
+
 </html>

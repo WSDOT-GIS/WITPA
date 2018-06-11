@@ -1,0 +1,15 @@
+{
+    "extends": "../common/tsconfig.json",
+    "compilerOptions": {
+        "outDir": "../../dist/worker",
+        "lib": [
+            "webworker",
+            "es2015",
+            "scripthost",
+        ],
+        "types": [
+
+        ]
+
+    }
+}
