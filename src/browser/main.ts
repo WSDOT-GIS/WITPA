@@ -551,6 +551,25 @@ function generateId(suggestedId?: string) {
     }
 
     /**
+     * Adds values to a select element as options.
+     * @param datalist Select element
+     * @param values Values to add as options to the select element.
+     */
+    function addOptionsToSelect(datalist: HTMLSelectElement, values: string[]) {
+      const docFrag = document.createDocumentFragment();
+      let option = document.createElement("option");
+      option.selected = true;
+      docFrag.appendChild(option);
+      for (const value of values) {
+        option = document.createElement("option");
+        option.value = value;
+        option.textContent = value.toString();
+        docFrag.appendChild(option);
+      }
+      datalist.appendChild(docFrag);
+    }
+
+    /**
      * Adds values to the datalist corresponding to the given field name.
      * @param {string} fieldName - The name of a field in a map service layer.
      * @param {string[]} values - Values to be added to the datalist.
@@ -565,18 +584,7 @@ function generateId(suggestedId?: string) {
       if (datalist) {
         // For select element, add empty element to beginning of options list.
         if (datalist instanceof HTMLSelectElement) {
-          const docFrag = document.createDocumentFragment();
-          let option = document.createElement("option");
-          option.selected = true;
-          docFrag.appendChild(option);
-
-          for (const value of values) {
-            option = document.createElement("option");
-            option.value = value;
-            option.textContent = value.toString();
-            docFrag.appendChild(option);
-          }
-          datalist.appendChild(docFrag);
+          addOptionsToSelect(datalist, values);
         } else if (datalist instanceof HTMLInputElement) {
           addSuggestionList(datalist, values);
           // // JQuery UI
