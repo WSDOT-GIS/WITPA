@@ -27,7 +27,7 @@ import SimpleLineSymbol from "esri/symbols/SimpleLineSymbol";
 import Query from "esri/tasks/query";
 import QueryTask from "esri/tasks/QueryTask";
 import { makeInfoWindowDraggable } from "./infoWindowUtils";
-import ProjectFilter from "./ProjectFilter";
+import ProjectFilter, { SubmitQueryEventDetail } from "./ProjectFilter";
 import webmapItem from "./webmap/item.json";
 import webmapItemData from "./webmap/itemdata.json";
 import { defaultMapOptions, esriBasemaps } from "./wsdotMapUtils";
@@ -62,7 +62,7 @@ if (!(window as any).HTMLDialogElement) {
 }
 
 // Setup dialog close button.
-Array.from(document.querySelectorAll<HTMLDialogElement>("dialog"), function(d) {
+Array.from(document.querySelectorAll<HTMLDialogElement>("dialog"), d => {
   const closeButton = d.querySelector("button[value='close']");
   if (closeButton) {
     closeButton.addEventListener("click", (e: Event) => {
@@ -122,7 +122,7 @@ arcgisUtils
       "search"
     );
 
-    search.on("load", function() {
+    search.on("load", () => {
       const sources = search.get("sources");
       const source = search.defaultSource; // or sources[0];
       source.countryCode = "US";
@@ -188,16 +188,17 @@ arcgisUtils
 
     // When the user submits a query, set the feature layer's definition expression
     // so that only those rows are shown in the table.
-    projectFilter.form.addEventListener("submit-query", (e: any) => {
+    projectFilter.form.addEventListener("submit-query", e => {
       layer.clearSelection();
+      const { detail } = e as CustomEvent<SubmitQueryEventDetail>;
       // Google analytics
       // @ts-ignore
       if (typeof ga !== "undefined") {
         // @ts-ignore
         ga("send", "event", "filter", "select", "where", e.detail.where);
       }
-      layer.setDefinitionExpression(e.detail.where);
-      dynamicLayer.setLayerDefinitions([e.detail.where]);
+      layer.setDefinitionExpression(detail.where!);
+      dynamicLayer.setLayerDefinitions([detail.where]);
 
       /**
        * Set the map extent to the extent of the currently selected features (if any).
@@ -215,7 +216,7 @@ arcgisUtils
     });
 
     // Reset the definition expression to show all rows.
-    projectFilter.form.addEventListener("reset", function(e) {
+    projectFilter.form.addEventListener("reset", e => {
       layer.clearSelection();
       dynamicLayer.setDefaultLayerDefinitions();
       layer.setDefinitionExpression(layer.defaultDefinitionExpression);
@@ -317,7 +318,7 @@ arcgisUtils
         selectOrDeselectFeatures(rows, true);
       });
 
-      table.on("refresh", function(e) {
+      table.on("refresh", e => {
         // Show a modal dialog if all records have been
         // filtered out by the user.
         let dialog;
@@ -358,13 +359,13 @@ arcgisUtils
           map.setExtent(geometry.getExtent(), true);
         } else {
           // Create an array of geometries from the graphics' array.
-          geometries = features.map(function(graphic) {
+          geometries = features.map(graphic => {
             return graphic.geometry;
           });
           // Union the geometries into a single geometry, then zoom to unioned geometry's extent.
           geometryEngineAsync
             .union(geometries)
-            .then(function(unionedGeometry: Polyline | Polygon | Multipoint) {
+            .then((unionedGeometry: Polyline | Polygon | Multipoint) => {
               map.setExtent(unionedGeometry.getExtent(), true);
             });
         }
@@ -372,33 +373,28 @@ arcgisUtils
     }
 
     /**
-     * @typedef {Object} DGridRow
-     * @property {Object} data
-     * @property {number} data.OBJECTID
-     * @property {HTMLElement} element
-     * @property {string} id - A string containing the corresponding feature's Object ID.
-     */
-
-    /**
      * Selects or deselects features corresponding to row selected in the feature table.
      * @param {DGridRow[]} rows - An array of rows either selected or deselected from the feature table dGrid.
      * @param {Boolean} [deselect=false] - True to subtract the features associated with the rows to the feature layer selection, false to add them.
-     * @returns {external:dojo/Deferred} Returns the promise from the selectFeatures function.
+     * @returns Returns the promise from the selectFeatures function.
      */
-    function selectOrDeselectFeatures(rows: any[], deselect: boolean = false) {
+    function selectOrDeselectFeatures(
+      rows: DGridRow[],
+      deselect: boolean = false
+    ): dojo.Deferred {
       const selectionMethod = deselect
         ? FeatureLayer.SELECTION_SUBTRACT
         : FeatureLayer.SELECTION_ADD;
       const query = new Query();
       // Convert the array of rows into an array of corresponding object IDs.
-      const objectIds = rows.map(function(row) {
+      const objectIds = rows.map(row => {
         return parseInt(row.id, 10);
       });
       query.objectIds = objectIds;
       return layer.selectFeatures(query, selectionMethod);
     }
 
-    layer.on("selection-complete", function(evt) {
+    layer.on("selection-complete", evt => {
       const { method, target } = evt;
       let { features } = evt;
       features = layer.getSelectedFeatures();
@@ -410,7 +406,7 @@ arcgisUtils
     // Custom sort the layer list items array so that the item with the
     // title containing "Planned Projects" is last in the array. Other
     // items will remain in their original order.
-    layerListItems.sort(function(a, b) {
+    layerListItems.sort((a, b) => {
       const re = /(?:(?:Planned\s?Projects)|(?:Six-Year\sPlan))/i;
       let output;
       if (re.test(a.title) && !re.test(b.title)) {
@@ -452,7 +448,7 @@ arcgisUtils
     basemapGallery.startup();
 
     // Select the default basemap in the gallery.
-    basemapGallery.on("load", function() {
+    basemapGallery.on("load", () => {
       const { basemaps } = basemapGallery;
       if (basemaps && basemaps.length > 0) {
         for (const basemap of basemaps) {
@@ -509,8 +505,9 @@ function generateId(suggestedId?: string) {
  * for input suggestions.
  * @param {string} url - The URL for the map service layer to be queried.
  */
-(function(url) {
+(url => {
   if (typeof Worker === "undefined") {
+    // tslint:disable-next-line:no-console
     console.log(
       "This browser doesn't support web workers. Some features are not available."
     );
@@ -525,7 +522,7 @@ function generateId(suggestedId?: string) {
    * @param {Event} e - worker message event
    * @param {Object} e.data - Data passed from worker.
    */
-  worker.addEventListener("message", function(e) {
+  worker.addEventListener("message", e => {
     /**
      * Adds the input values to a new datalist element and connect to
      * the input element.
@@ -597,6 +594,7 @@ function generateId(suggestedId?: string) {
           // );
         }
       } else {
+        // tslint:disable-next-line:no-console
         console.warn(
           `Neither <input> nor <select> found for ${fieldName}.`,
           values
@@ -627,6 +625,7 @@ function generateId(suggestedId?: string) {
               }
             }
           } else {
+            // tslint:disable-next-line:no-console
             console.error("Expected input element not found.", selector);
           }
         }
@@ -648,7 +647,8 @@ function generateId(suggestedId?: string) {
   });
 
   // Set up worker event handler for error messages.
-  worker.addEventListener("error", function(e) {
+  worker.addEventListener("error", e => {
+    // tslint:disable-next-line:no-console
     console.error("worker error: " + e.message || "", e);
   });
 

@@ -82,7 +82,7 @@ export class ProjectQueryManager {
   ): Promise<UniqueValuesQueryResponse> {
     const self = this;
     const query: any = {
-      where: fieldName + " IS NOT NULL",
+      where: `${fieldName} IS NOT NULL`,
       returnGeometry: false,
       orderByFields: fieldName,
       outFields: fieldName,
@@ -123,50 +123,6 @@ export class ProjectQueryManager {
       values,
       complete: true
     } as UniqueValuesQueryResponse;
-
-    // return new Promise(function(resolve, reject) {
-    //   const request = new XMLHttpRequest();
-    //   request.open("get", url);
-    //   request.onloadend = function(e) {
-    //     let response = (e.target as any).response;
-    //     response = JSON.parse(response);
-    //     const exceededTransferLimit = response.exceededTransferLimit || false;
-    //     // Get just the values.
-    //     let values = response.features.map(function(feature) {
-    //       return feature.attributes[fieldName];
-    //     });
-
-    //     // Combine previous values with values from current query.
-    //     values = previousValues ? previousValues.concat(values) : values;
-
-    //     if (exceededTransferLimit) {
-    //       // If the query exceeded the amount of returned records for the service, submit a new query.
-    //       self
-    //         .queryForUniqueValues(
-    //           fieldName,
-    //           resultOffset + values.length,
-    //           values
-    //         )
-    //         .then(
-    //           function(resultPromise) {
-    //             if (resultPromise && resultPromise.complete) {
-    //               resolve(resultPromise);
-    //             }
-    //           },
-    //           function(err) {
-    //             reject(err);
-    //           }
-    //         );
-    //     } else {
-    //       resolve({
-    //         fieldName,
-    //         values,
-    //         complete: true
-    //       });
-    //     }
-    //   };
-    //   request.send();
-    // });
   }
 
   /**
@@ -237,7 +193,7 @@ export class ProjectQueryManager {
     const response = await fetch(url);
     const queryResponse = await response.text();
     // Convert date values to
-    const queryResponseObj = JSON.parse(queryResponse, function(k, v) {
+    const queryResponseObj = JSON.parse(queryResponse, (k, v) => {
       const dateFieldNameRe = /Date$/i;
       if (dateFieldNameRe.test(k) && typeof v === "number") {
         return toRfc3339(v);
@@ -252,10 +208,10 @@ export class ProjectQueryManager {
       throw new Error(queryResponse);
     }
 
-    const values = queryResponseObj.features[0].attributes;
+    const values = (queryResponseObj.features[0] as IFeature).attributes;
 
     // Create a list of field ranges.
-    const ranges = {
+    const ranges: DateRangeResponse = {
       Advertisement_Date: {
         min: values.Min_Ad_Date,
         max: values.Max_Ad_Date

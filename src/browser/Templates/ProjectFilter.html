@@ -34,14 +34,13 @@
                     </select>
                 </span>
                 <input id="projectTitleInput" name="Project_Title" type="text" title="Please enter a complete or partial project title."
-                       placeholder="Project Title" class="form-control" list="projectTitleList" />
+                    placeholder="Project Title" class="form-control" list="projectTitleList" />
                 <datalist id="projectTitleList" data-field-name="Project_Title"></datalist>
             </div>
         </div>
         <div class="form-group">
             <label for="countyInput">County</label>
-            <select id="countyInput" name="County" class="form-control"
-                    data-where-template="{field} LIKE '%{value}%'">
+            <select id="countyInput" name="County" class="form-control" data-where-template="{field} LIKE '%{value}%'">
                 <option value=""></option>
                 <option value="Adams">Adams</option>
                 <option value="Asotin">Asotin</option>
@@ -86,8 +85,7 @@
         </div>
         <div class="form-group">
             <label for="legDistrictInput">Legislative District</label>
-            <select id="legDistrictInput" name="Legislative_District"
-                    data-where-template="({field} = '{value}' OR (CHAR_LENGTH('{value}') = 1 AND {field} LIKE '%0' + '{value}' + '%') OR (CHAR_LENGTH('{value}') &gt; 1 AND {field} LIKE '%' + '{value}' + '%'))">
+            <select id="legDistrictInput" name="Legislative_District" data-where-template="({field} = '{value}' OR (CHAR_LENGTH('{value}') = 1 AND {field} LIKE '%0' + '{value}' + '%') OR (CHAR_LENGTH('{value}') &gt; 1 AND {field} LIKE '%' + '{value}' + '%'))">
                 <option value=""></option>
                 <option value='0'>00: Statewide and Regionwide </option>
                 <option value='1'>01: Northeast King County and South Snohomish County </option>
@@ -96,7 +94,8 @@
                 <option value='4'>04: Eastern parts of Spokane County </option>
                 <option value='5'>05: Southeast King County including North Bend, Snoqualmie, and Issaquah </option>
                 <option value='6'>06: Parts of Spokane, the Spokane Valley, and Southwest Spokane County </option>
-                <option value='7'>07: Pend Oreille County, Stevens County, Ferry County, Lincoln County, and parts of Okanogan and Spokane counties </option>
+                <option value='7'>07: Pend Oreille County, Stevens County, Ferry County, Lincoln County, and parts of Okanogan and Spokane
+                    counties </option>
                 <option value='8'>08: Most of Benton County including Richland and Kennewick </option>
                 <option value='9'>09: Adams County, Whitman County, and parts of Asotin and Spokane counties </option>
                 <option value='10'>10: All of Island County and parts of Skagit and Snohomish counties </option>
@@ -115,17 +114,22 @@
                 <option value='23'>23: Kitsap County, including Bainbridge Island, Silverdale, Poulsbo, Kingston, and parts of Bremerton </option>
                 <option value='24'>24: Clallam County, Jefferson County, and parts of Grays Harbor County </option>
                 <option value='25'>25: Puyallup, Sumner, Milton, Pacific, and Edgewood </option>
-                <option value='26'>26: Parts of Pierce County and Kitsap County, including Port Orchard and Gig Harbor, and parts of Tacoma and Bremerton </option>
+                <option value='26'>26: Parts of Pierce County and Kitsap County, including Port Orchard and Gig Harbor, and parts of Tacoma
+                    and Bremerton </option>
                 <option value='27'>27: Tacoma and Fife </option>
-                <option value='28'>28: Fircrest, University Place, Lakewood, Steilacoom, Tillicum, parts of Tacoma, and the islands of Anderson, Ketron, and McNeil </option>
+                <option value='28'>28: Fircrest, University Place, Lakewood, Steilacoom, Tillicum, parts of Tacoma, and the islands of Anderson,
+                    Ketron, and McNeil </option>
                 <option value='29'>29: South Tacoma, Manitou, Parkland, McChord AFB, and McKinley Hill </option>
                 <option value='30'>30: Federal Way and parts of Tacoma, Auburn, Fife, Milton, and Algona </option>
-                <option value='31'>31: South King County and parts of Pierce County, including Auburn, Bonney Lake, Buckley, Carbonado, Enumclaw, and Greenwater </option>
-                <option value='32'>32: Northwest King County, including North Ballard, Crown Hill, and Bitter Lake, and the cities of Shoreline and Lake Forest Park </option>
+                <option value='31'>31: South King County and parts of Pierce County, including Auburn, Bonney Lake, Buckley, Carbonado, Enumclaw,
+                    and Greenwater </option>
+                <option value='32'>32: Northwest King County, including North Ballard, Crown Hill, and Bitter Lake, and the cities of Shoreline
+                    and Lake Forest Park </option>
                 <option value='33'>33: SeaTac, Des Moines, Normandy Park, and parts of Burien, Kent, Tukwila, and Renton </option>
                 <option value='34'>34: West Seattle, Burien, and Vashon Island </option>
                 <option value='35'>35: Mason County and parts of Grays Harbor, Kitsap, and Thurston counties </option>
-                <option value='36'>36: Parts of Seattle, including Magnolia, Queen Anne, and Phinney Ridge, and parts of Ballard, Fremont, and Greenwood </option>
+                <option value='36'>36: Parts of Seattle, including Magnolia, Queen Anne, and Phinney Ridge, and parts of Ballard, Fremont, and
+                    Greenwood </option>
                 <option value='37'>37: Parts of Seattle including Madrona, Leschi, Rainier Valley, Beacon Hill, and Rainier Beach </option>
                 <option value='38'>38: Snohomish County including Everett, Marysville, and parts of the Snohomish Valley </option>
                 <option value='39'>39: Rural Snohomish County and parts of Northeast King County </option>
@@ -137,7 +141,8 @@
                 <option value='45'>45: Parts of King County including Kirkland, Woodinville, Redmond, Duvall, and Carnation </option>
                 <option value='46'>46: Parts of Seattle including View Ridge, Ravenna, Green Lake, Northgate, Pinehurst, and Lake City </option>
                 <option value='47'>47: Southeast King County including the Renton Highlands, Kent, and Black Diamond </option>
-                <option value='48'>48: Parts of King County including Medina, Yarrow Point, Clyde Hill, South Kirkland, and West Lake Sammamish </option>
+                <option value='48'>48: Parts of King County including Medina, Yarrow Point, Clyde Hill, South Kirkland, and West Lake Sammamish
+                </option>
                 <option value='49'>49: Parts of Vancouver County and Clark County</option>
             </select>
         </div>
@@ -161,15 +166,16 @@
         </div>
     </div>
 
-    <p><a href="#" class="advanced-link">Advanced</a></p>
+    <p>
+        <a href="#" class="advanced-link">Advanced</a>
+    </p>
 
     <div class="advanced-filters">
         <!-- PIN -->
         <div class="form-group">
             <label for="projectNoInput">Project No.</label>
-            <input id="projectNoInput" name="PIN" type="text" class="form-control"
-                   pattern="\d{6}[A-Za-z]" title="Project number (six digits + letter)"
-                   data-where-template="LOWER({field}) = LOWER('{value}')" placeholder="Project No." list="pinList" />
+            <input id="projectNoInput" name="PIN" type="text" class="form-control" pattern="\d{6}[A-Za-z]" title="Project number (six digits + letter)"
+                data-where-template="LOWER({field}) = LOWER('{value}')" placeholder="Project No." list="pinList" />
             <datalist id="pinList" data-field-name="PIN"></datalist>
         </div>
 
@@ -177,14 +183,14 @@
         <div class="form-group">
             <label for="improvementTypeInput">Improvement Type</label>
             <input id="improvementTypeInput" name="Improvement_Type" type="text" class="form-control" placeholder="Improvement Type"
-                   data-where-template="LOWER({field}) = LOWER('{value}')" list="improvementTypeList" />
+                data-where-template="LOWER({field}) = LOWER('{value}')" list="improvementTypeList" />
             <datalist id="improvementTypeList" data-field-name="Improvement_Type"></datalist>
         </div>
         <!-- Work_Description -->
         <div class="form-group">
             <label for="workDescriptionInput">Work Description</label>
             <input id="workDescriptionInput" name="Work_Description" type="text" class="form-control" placeholder="Work_Description"
-                   data-where-template="LOWER({field}) = LOWER('{value}')" list="workDescList" />
+                data-where-template="LOWER({field}) = LOWER('{value}')" list="workDescList" />
             <datalist id="workDescList" data-field-name="Work_Description"></datalist>
         </div>
         <!-- Sub_Program-->
@@ -218,7 +224,8 @@
                         <option value="{field} IS NOT NULL">NOT NULL</option>
                     </select>
                 </span>
-                <input id="peStartDateInput" name="Begin_Preliminary_Engineering" type="date" class="form-control" placeholder="YYYY-MM-DD" />
+                <input id="peStartDateInput" name="Begin_Preliminary_Engineering" type="date" class="form-control" placeholder="YYYY-MM-DD"
+                />
             </div>
         </div>
         <div class="form-group">
@@ -231,8 +238,10 @@
                         <option value="{field} = date '{value}'" selected="selected">=</option>
                         <option value="{field} &gt;= date '{value}'">&ge;</option>
                         <option value="{field} &gt; date '{value}'">&gt;</option>
+                        <!--
                         <option value="{field} IS NULL">NULL</option>
                         <option value="{field} IS NOT NULL">NOT NULL</option>
+                        -->
                     </select>
                 </span>
                 <input id="adDateInput" name="Advertisement_Date" type="date" class="form-control" placeholder="YYYY-MM-DD" />
@@ -248,8 +257,10 @@
                         <option value="{field} = date '{value}'" selected="selected">=</option>
                         <option value="{field} &gt;= date '{value}'">&ge;</option>
                         <option value="{field} &gt; date '{value}'">&gt;</option>
+                        <!--
                         <option value="{field} IS NULL">NULL</option>
                         <option value="{field} IS NOT NULL">NOT NULL</option>
+                        -->
                     </select>
                 </span>
                 <input id="ocDateInput" name="Operationally_Complete" type="date" class="form-control" placeholder="YYYY-MM-DD" />
@@ -260,8 +271,7 @@
         <div class="form-group">
             <label for="cDistInput">Congressional District</label>
             <div class="input-group">
-                <select id="cDistInput" name="Congressional_District" class="form-control"
-                        data-where-template="({field} = '{value}' OR (CHAR_LENGTH('{value}') = 1 AND {field} LIKE '%0' + '{value}' + '%') OR (CHAR_LENGTH('{value}') &gt; 1 AND {field} LIKE '%' + '{value}' + '%'))" >
+                <select id="cDistInput" name="Congressional_District" class="form-control" data-where-template="({field} = '{value}' OR (CHAR_LENGTH('{value}') = 1 AND {field} LIKE '%0' + '{value}' + '%') OR (CHAR_LENGTH('{value}') &gt; 1 AND {field} LIKE '%' + '{value}' + '%'))">
                 </select>
             </div>
         </div>
@@ -272,9 +282,9 @@
                 <span class="input-group-addon">
                     <select data-where-template-for="Begin_Mile_Post">
                         <option value="{field} &lt; {value}">&lt;</option>
-                        <option value="{field} &lt;= {value}" selected="selected">&le;</option>
+                        <option value="{field} &lt;= {value}">&le;</option>
                         <option value="{field} = {value}">=</option>
-                        <option value="{field} &gt;= {value}">&ge;</option>
+                        <option value="{field} &gt;= {value}" selected="selected">&ge;</option>
                         <option value="{field} &gt; {value}">&gt;</option>
                     </select>
                 </span>
@@ -288,9 +298,9 @@
                 <span class="input-group-addon">
                     <select data-where-template-for="End_Mile_Post">
                         <option value="{field} &lt; {value}">&lt;</option>
-                        <option value="{field} &lt;= {value}">&le;</option>
+                        <option value="{field} &lt;= {value}" selected="selected">&le;</option>
                         <option value="{field} = {value}">=</option>
-                        <option value="{field} &gt;= {value}" selected="selected">&ge;</option>
+                        <option value="{field} &gt;= {value}">&ge;</option>
                         <option value="{field} &gt; {value}">&gt;</option>
                     </select>
                 </span>

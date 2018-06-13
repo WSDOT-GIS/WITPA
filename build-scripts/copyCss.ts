@@ -1,7 +1,8 @@
-import fs from "fs";
+/**
+ * Copies CSS files from the node_modules directory to the css directory.
+ */
+import { constants, copyFile } from "fs";
 import { resolve } from "path";
-
-// tslint:disable:no-console
 
 const [source, dest] = [
   "../node_modules/dialog-polyfill/dialog-polyfill.css",
@@ -12,7 +13,8 @@ const [source, dest] = [
 
 const outCssFile = resolve(dest, "dialog-polyfill.css");
 
-fs.copyFile(source, outCssFile, (fs.constants as any).COPYFILE_FICLONE, err => {
+// Copy the file, overwriting if it already exists.
+copyFile(source, outCssFile, (constants as any).COPYFILE_FICLONE, err => {
   if (err) {
     console.error("Copy file error", err);
   }

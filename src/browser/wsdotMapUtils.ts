@@ -1,4 +1,4 @@
-﻿import esriBasemaps from "esri/basemaps";
+import esriBasemapsStandard from "esri/basemaps";
 import esriConfig from "esri/config";
 
 /**
@@ -12,14 +12,90 @@ import esriConfig from "esri/config";
  */
 
 // Add WSDOT servers to CORS enabled servers.
-["wsdot.wa.gov", "www.wsdot.wa.gov", "data.wsdot.wa.gov"].forEach(function(
-  server
-) {
+["wsdot.wa.gov", "www.wsdot.wa.gov", "data.wsdot.wa.gov"].forEach(server => {
   esriConfig.defaults.io.corsEnabledServers.push(server);
 });
 
+export interface EsriBasemaps {
+  /**
+   * The Dark Gray Canvas basemap is designed to be used as a soothing background map for overlaying and focus attention on other map layers.
+   */
+  "dark-gray": any;
+  /**
+   * This vector tile layer provides a detailed basemap for the world featuring a neutral background style with minimal colors, labels, and features.
+   */
+  "dark-gray-vector": any;
+  /**
+   * The Light Gray Canvas basemap is designed to be used as a neutral background map for overlaying and emphasizing other map layers.
+   */
+  gray: any;
+  /**
+   * This vector tile layer provides a detailed basemap for the world featuring a neutral background style with minimal colors, labels, and features.
+   */
+  "gray-vector": any;
+  /**
+   * The World Imagery map is a detailed imagery map layer and labels that is designed to be used as a basemap for various maps and applications.
+   */
+  hybrid: any;
+  /**
+   * The National Geographic basemap is designed to be used as a general reference map for informational and educational purposes.
+   */
+  "national-geographic": any;
+  /**
+   * The Ocean Basemap is designed to be used as a basemap by marine GIS professionals and as a reference map by anyone interested in ocean data.
+   */
+  oceans: any;
+  /**
+   * The OpenStreetMap is a community map layer that is designed to be used as a basemap for various maps and applications.
+   */
+  osm: any;
+  /**
+   * The World Imagery map is a detailed imagery map layer that is designed to be used as a basemap for various maps and applications.
+   */
+  satellite: any;
+  /**
+   * The Streets basemap presents a multiscale street map for the world.
+   */
+  streets: any;
+  /**
+   * This vector tile layer provides a detailed basemap for the world featuring a custom navigation map style.
+   */
+  "streets-navigation-vector": any;
+  /**
+   * This vector tile layer provides a detailed basemap for the world featuring a custom "night time" street map style.
+   */
+  "streets-night-vector": any;
+  /**
+   * This vector tile layer provides a detailed basemap for the world featuring a classic Esri street map style designed for use with a relief map.
+   */
+  "streets-relief-vector": any;
+  /**
+   * This vector tile layer provides a detailed basemap for the world featuring a classic Esri street map style.
+   */
+  "streets-vector": any;
+  /**
+   * The Terrain with Labels basemap is designed to be used to overlay and emphasize other thematic map layers.
+   */
+  terrain: any;
+  /**
+   * The Topographic map includes boundaries, cities, water features, physiographic features, parks, landmarks, transportation, and buildings.
+   */
+  topo: any;
+  /**
+   * This vector tile layer provides a detailed basemap for the world featuring a classic Esri topographic map style designed for use with a relief map.
+   */
+  "topo-vector": any;
+  [key: string]: any;
+}
+
+export interface EsriBasemapsWithWsdotBasemap {
+  "wsdot-multilevel": any;
+}
+
+const esriBasemaps = esriBasemapsStandard as EsriBasemaps;
+
 // Add WSDOT basemap
-(esriBasemaps as any)["wsdot-multilevel"] = {
+esriBasemaps["wsdot-multilevel"] = {
   id: "wsdot-multilevel",
   title: "WSDOT Multilevel",
   thumbnailUrl:

@@ -6,11 +6,39 @@ import templates from "./templates";
  */
 
 /**
+ * Detail of the CustomEvent returned from the "submit-query" event.
+ */
+export interface SubmitQueryEventDetail {
+  where: string | null;
+}
+
+/**
+ * Defines the event type of the "submit-query" event.
+ */
+interface ProjectFilterFormElementEventMap extends HTMLElementEventMap {
+  "submit-query": CustomEvent<SubmitQueryEventDetail>;
+}
+
+/**
+ * Extension of HTMLFormElement interface that adds the "submit-query" event.
+ */
+export interface ProjectFilterFormElement extends HTMLFormElement {
+  addEventListener<K extends keyof ProjectFilterFormElementEventMap>(
+    type: K,
+    listener: (
+      this: HTMLFormElement,
+      ev: ProjectFilterFormElementEventMap[K]
+    ) => any,
+    options?: boolean | AddEventListenerOptions
+  ): void;
+}
+
+/**
  * @alias module:ProjectFilter
  * @class
  */
 export default class ProjectFilter {
-  private _form: HTMLFormElement;
+  private _form: ProjectFilterFormElement;
   /**
    * The HTML form
    * @member {external:HTMLFormElement}
@@ -21,7 +49,7 @@ export default class ProjectFilter {
     return this._form;
   }
   constructor() {
-    const _form = document.createElement("form");
+    const _form = document.createElement("form") as ProjectFilterFormElement;
     this._form = _form;
     _form.classList.add("basic-mode");
     const self = this;
@@ -45,7 +73,7 @@ export default class ProjectFilter {
     }
 
     // Create a where clause from the values the user has entered into the _form.
-    _form.onsubmit = function() {
+    _form.onsubmit = () => {
       // Get all of the input boxes that have values entered into them.
       const inputs = GetInputs();
 
@@ -53,9 +81,7 @@ export default class ProjectFilter {
       const valuesParts = new Array<string>();
 
       // Loop through all of the input elements and create the queries, adding them to the array.
-      Array.from(inputs, function(input) {
-        return input;
-      }).forEach(function(input) {
+      Array.from(inputs, input => {
         let whereTemplate;
         if (input.value) {
           // Get the value of the data-where-template attribute, if available.
@@ -63,7 +89,7 @@ export default class ProjectFilter {
           // If there is no data-where-template attribute, get the corresponding select element that will have the query template.
           if (!whereTemplate) {
             whereTemplate = _form.querySelector(
-              "[data-where-template-for='" + input.name + "']"
+              `[data-where-template-for='${input.name}']`
             );
             whereTemplate = whereTemplate ? whereTemplate.value : null;
           }
@@ -97,11 +123,11 @@ export default class ProjectFilter {
 
       const values = valuesParts.length > 0 ? valuesParts.join(" AND ") : null;
 
-      let customEvent;
+      let customEvent: CustomEvent<SubmitQueryEventDetail>;
       if (valuesParts) {
         customEvent = new CustomEvent("submit-query", {
           detail: {
-            where: valuesParts
+            where: values
           }
         });
 

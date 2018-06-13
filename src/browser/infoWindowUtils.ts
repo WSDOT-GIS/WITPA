@@ -19,13 +19,13 @@ export function makeInfoWindowDraggable(this: any, infoWindow: InfoWindow) {
   // when the infoWindow is moved, hide the arrow:
   dnd.on(
     "FirstMove",
-    function() {
+    (() => {
       // hide pointer and outerpointer (used depending on where the pointer is shown)
       let arrowNode = infoWindow.domNode.querySelector(".outerPointer");
       arrowNode.classList.add("hidden");
 
       arrowNode = infoWindow.domNode.querySelector(".pointer");
       arrowNode.classList.add("hidden");
-    }.bind(this)
+    }).bind(this)
   );
 }
