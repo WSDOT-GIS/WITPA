@@ -1,16 +1,13 @@
 // Place your settings in this file to overwrite default and user settings.
 {
     "files.exclude": {
-        ".vs": true,
-        "bin": true,
-        "obj": true,
-        "*.csproj": true,
-        "*.sln": true,
-        "**/*.user": true,
+        "build-scripts/*.js": { "when": "$(basename).ts" },
         "**/.git": true,
         "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
         "**/.DS_Store": true
     },
     "tslint.autoFixOnSave": true,
-    "typescript.tsdk": "node_modules\\typescript\\lib"
+    "typescript.tsdk": "node_modules\\typescript\\lib",
 }
