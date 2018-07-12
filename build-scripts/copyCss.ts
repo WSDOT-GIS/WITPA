@@ -14,7 +14,7 @@ const [source, dest] = [
 const outCssFile = resolve(dest, "dialog-polyfill.css");
 
 // Copy the file, overwriting if it already exists.
-copyFile(source, outCssFile, (constants as any).COPYFILE_FICLONE, err => {
+copyFile(source, outCssFile, constants.COPYFILE_FICLONE, err => {
   if (err) {
     console.error("Copy file error", err);
   }

@@ -3,40 +3,14 @@
         <!-- State Route -->
         <div class="form-group">
             <label for="srInput">State Route</label>
-            <div class="input-group">
-                <span class="input-group-addon">
-                    <select data-where-template-for="RouteID">
-                        <option value="{field} = '{value}'">=</option>
-                        <option value="{field} LIKE '{value}%'">Starts With</option>
-                    </select>
-                </span>
-                <select id="srInput" name="RouteID" class="form-control"></select>
-                <datalist id="routeList" data-field-name="RouteID"></datalist>
-            </div>
+            <select id="srInput" name="RouteID" class="form-control" data-where-template="{field} = '{value}'"></select>
+            <datalist id="routeList" data-field-name="RouteID"></datalist>
         </div>
         <div class="form-group">
             <label for="projectTitleInput">Project Title</label>
-            <div class="input-group">
-                <span class="input-group-addon">
-                    <select data-where-template-for="Project_Title">
-                        <optgroup label="Case-insensitive">
-                            <option value="LOWER({field}) = LOWER('{value}')">=</option>
-                            <option value="LOWER({field}) LIKE LOWER('{value}%')">Starts with</option>
-                            <option value="LOWER({field}) LIKE LOWER('%{value}')">Ends with</option>
-                            <option value="LOWER({field}) LIKE LOWER('%{value}%')">Contains</option>
-                        </optgroup>
-                        <optgroup label="Case-sensitive">
-                            <option value="{field} = '{value}'">=</option>
-                            <option value="{field} LIKE '{value}%'">Starts with</option>
-                            <option value="{field} LIKE '%{value}'">Ends with</option>
-                            <option value="{field} LIKE '%{value}%'">Contains</option>
-                        </optgroup>
-                    </select>
-                </span>
-                <input id="projectTitleInput" name="Project_Title" type="text" title="Please enter a complete or partial project title."
-                    placeholder="Project Title" class="form-control" list="projectTitleList" />
-                <datalist id="projectTitleList" data-field-name="Project_Title"></datalist>
-            </div>
+            <input id="projectTitleInput" name="Project_Title" type="text" title="Please enter a complete or partial project title."
+                    placeholder="Project Title" class="form-control" list="projectTitleList" data-where-template="{field} LIKE '%{value}%'" />
+            <datalist id="projectTitleList" data-field-name="Project_Title"></datalist>
         </div>
         <div class="form-group">
             <label for="countyInput">County</label>
@@ -307,11 +281,6 @@
                 <input id="endMPInput" name="End_Mile_Post" type="number" min="0" class="form-control" placeholder="End Milepost" />
             </div>
         </div>
-
-
-
-
-
     </div>
 
     <div class="btn-group btn-group-justified" role="group">
