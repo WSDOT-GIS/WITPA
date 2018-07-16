@@ -9,7 +9,8 @@
         <div class="form-group">
             <label for="projectTitleInput">Project Title</label>
             <input id="projectTitleInput" name="Project_Title" type="text" title="Please enter a complete or partial project title."
-                    placeholder="Project Title" class="form-control" list="projectTitleList" data-where-template="{field} LIKE '%{value}%'" />
+                placeholder="Project Title" class="form-control" list="projectTitleList" data-where-template="{field} LIKE '%{value}%'"
+            />
             <datalist id="projectTitleList" data-field-name="Project_Title"></datalist>
         </div>
         <div class="form-group">
@@ -249,36 +250,28 @@
                 </select>
             </div>
         </div>
-        <!-- Begin MP -->
+
+        <!--
+            NOTE: Begin_Mile_Post can possibly be *greater than* End_Mile_Post
+
+            * B is the begin MP value the user has entered
+            * E is the end   MP value that the user has entered.
+
+            if B only
+                Begin_Mile_Post >= B
+            else if E only
+                End_Mile_Post <= E
+            else
+                (Begin_Mile_Post BETWEEN B AND E) AND
+                (End_Mile_Post BETWEEN B AND E)
+        -->
         <div class="form-group">
-            <label for="beginMPInput">Begin Milepost</label>
+            <label>Milepost</label>
             <div class="input-group">
-                <span class="input-group-addon">
-                    <select data-where-template-for="Begin_Mile_Post">
-                        <option value="{field} &lt; {value}">&lt;</option>
-                        <option value="{field} &lt;= {value}">&le;</option>
-                        <option value="{field} = {value}">=</option>
-                        <option value="{field} &gt;= {value}" selected="selected">&ge;</option>
-                        <option value="{field} &gt; {value}">&gt;</option>
-                    </select>
-                </span>
-                <input id="beginMPInput" name="Begin_Mile_Post" type="number" min="0" class="form-control" placeholder="Begin Milepost" />
-            </div>
-        </div>
-        <!-- End MP -->
-        <div class="form-group">
-            <label for="endMPInput">End Milepost</label>
-            <div class="input-group">
-                <span class="input-group-addon">
-                    <select data-where-template-for="End_Mile_Post">
-                        <option value="{field} &lt; {value}">&lt;</option>
-                        <option value="{field} &lt;= {value}" selected="selected">&le;</option>
-                        <option value="{field} = {value}">=</option>
-                        <option value="{field} &gt;= {value}">&ge;</option>
-                        <option value="{field} &gt; {value}">&gt;</option>
-                    </select>
-                </span>
-                <input id="endMPInput" name="End_Mile_Post" type="number" min="0" class="form-control" placeholder="End Milepost" />
+                <label for="beginMPInput">Begin</label>
+                <input type="number" name="Begin_Mile_Post" id="beginMPInput" data-range-type="begin" data-range-id="milepost">
+                <label for="endMPInput">End</label>
+                <input type="number" name="End_Mile_Post" id="endMPInput" data-range-type="end" data-range-id="milepost">
             </div>
         </div>
     </div>

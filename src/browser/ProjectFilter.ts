@@ -1,3 +1,4 @@
+import MissingAttributeError from "./MissingAttributeError";
 import templates from "./templates";
 
 /**
@@ -33,6 +34,62 @@ export interface ProjectFilterFormElement extends HTMLFormElement {
   ): void;
 }
 
+function getWhereStatementForRangeInput(
+  form: HTMLFormElement,
+  bInput: HTMLInputElement
+) {
+  const { rangeId } = bInput.dataset;
+  if (!rangeId) {
+    throw new MissingAttributeError(bInput, "data-range-id");
+  }
+  // Get the corresponding end field input
+  const eInput = form.querySelector<HTMLInputElement>(
+    `input[data-range-type='end'][data-range-id='${rangeId}'`
+  );
+  if (!eInput) {
+    throw new Error("begin range input does not have matching end input");
+  } else if (bInput.type !== eInput.type) {
+    throw new TypeError(
+      `Input types do not match: ${bInput.type}, ${eInput.type}`
+    );
+  }
+
+  // Get the begin and end values, then convert to how they would be written
+  // in a SQL statement. Numbers and nulls are unchanged while dates are converted to
+  // strings surrounded by single-quotes.
+  const [b, e] =
+    bInput.type === "number"
+      ? [bInput, eInput].map(i => (i.value ? i.valueAsNumber : null))
+      : [bInput, eInput]
+          .map(i => (i.value ? (i.valueAsDate as Date) : null))
+          .map(v => (v instanceof Date ? `'${v.toDateString()}'` : v));
+  // Get the field names corresponding to the input elements.
+  const [bName, eName] = [bInput, eInput].map(i => i.name);
+
+  // Return the appropriate where statement depending on which fields have values.
+  if (bInput.value && eInput.value) {
+    return `(${bName} BETWEEN ${b} AND ${e}) AND (${eName} BETWEEN ${b} AND ${e})`;
+  } else if (b !== null) {
+    return `${bName} >= ${b}`;
+  } else if (e !== null) {
+    return `${eName} <= ${e}`;
+  }
+}
+
+function* getRangeWhereStatements(form: HTMLFormElement) {
+  // Get input elements that hold the beginning value of a range.
+  const beginInputs = form.querySelectorAll<HTMLInputElement>(
+    "input[data-range-type='begin']"
+  );
+
+  for (const bInput of Array.from(beginInputs)) {
+    const where = getWhereStatementForRangeInput(form, bInput);
+    if (where) {
+      yield where;
+    }
+  }
+}
+
 /**
  * @alias module:ProjectFilter
  * @class
@@ -56,6 +113,7 @@ export default class ProjectFilter {
 
     _form.innerHTML = templates.ProjectFilter;
 
+    // Setup advanced mode toggle link.
     _form!
       .querySelector<HTMLAnchorElement>(".advanced-link")!
       .addEventListener("click", e => {
@@ -77,11 +135,17 @@ export default class ProjectFilter {
       // Get all of the input boxes that have values entered into them.
       const inputs = GetInputs();
 
+      // Create a filtered array of the input elements,
+      // removing the inputs that participate in a range.
+      const nonRangeInputs = Array.from(inputs).filter(
+        element => !element.dataset.hasOwnProperty("rangeType")
+      );
+
       // Initialize the array that will hold field queries.
       const valuesParts = new Array<string>();
 
       // Loop through all of the input elements and create the queries, adding them to the array.
-      Array.from(inputs, input => {
+      Array.from(nonRangeInputs, input => {
         let whereTemplate;
         if (input.value) {
           // Get the value of the data-where-template attribute, if available.
@@ -119,6 +183,11 @@ export default class ProjectFilter {
           const query = whereTemplate.replace(/\{field\}/g, fieldName);
           valuesParts.push(query);
         });
+      }
+
+      // Add the where statements for the range inputs.
+      for (const w of getRangeWhereStatements(_form)) {
+        valuesParts.push(w);
       }
 
       const values = valuesParts.length > 0 ? valuesParts.join(" AND ") : null;
