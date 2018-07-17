@@ -1,45 +1,49 @@
 body {
-    font-family: 'Open Sans', sans-serif;
-    font-size: 10pt;
+  font-family: "Open Sans", sans-serif;
+  font-size: 10pt;
 }
 
-html, body, #borderContainer, #map {
+html,
+body,
+#borderContainer,
+#map {
   width: 100%;
   height: 100%;
 }
 
 #topPane {
-    display:flex;
+  display: flex;
 }
 
-    #topPane > div:first-child {
-        -ms-flex: 0;
-        -webkit-flex: 0;
-        flex: 0;
-    }
+#topPane > div:first-child {
+  -ms-flex: 0;
+  -webkit-flex: 0;
+  flex: 0;
+}
 
-    /* Stretch page title to fill non-logo space. */
-    #topPane > div:last-child {
-        -ms-flex: auto;
-        -webkit-flex: auto;
-        flex: auto;
-    }
+/* Stretch page title to fill non-logo space. */
+#topPane > div:last-child {
+  -ms-flex: auto;
+  -webkit-flex: auto;
+  flex: auto;
+}
 
-    #topPane h1 {
-        text-align: center;
-        margin: 0;
-    }
+#topPane h1 {
+  text-align: center;
+  margin: 0;
+}
 
 #disclaimerDialog {
-    max-width: 500px;
+  max-width: 500px;
 }
 
 /* Color the input text in IE */
 input:-ms-input-placeholder {
-    color: lightgray;
+  color: lightgray;
 }
 
-html, body {
+html,
+body {
   margin: 0;
   overflow: hidden;
 }
@@ -71,27 +75,27 @@ html, body {
 }
 
 #infoButtons {
-    position: absolute;
-    top: 120px;
-    left: 20px;
-    z-index: 1;
-    display: block;
+  position: absolute;
+  top: 120px;
+  left: 20px;
+  z-index: 1;
+  display: block;
 }
 
 #infoButtons > div {
-    height: 30px;
-    width: 30px;
+  height: 30px;
+  width: 30px;
 
-    border-radius: 5px;
-    background-color: rgba(102,102,102,0.8);
-    text-align: center;
-    font-size: 15pt;
+  border-radius: 5px;
+  background-color: rgba(102, 102, 102, 0.8);
+  text-align: center;
+  font-size: 15pt;
 }
 
-    #infoButtons > div > a {
-        color: white;
-        text-decoration: none;
-    }
+#infoButtons > div > a {
+  color: white;
+  text-decoration: none;
+}
 
 .map progress {
   position: absolute;
@@ -106,42 +110,90 @@ html, body {
 }
 
 #search {
-    position: absolute;
-    top: 1em;
-    right: 5em;
-    z-index: 1;
-    background-color: white;
+  position: absolute;
+  top: 1em;
+  right: 5em;
+  z-index: 1;
+  background-color: white;
 }
 
 /* Change background when map zooms past WSDOT basemap tiles. */
-.map[data-zoom='18'] .esriMapLayers, .map[data-zoom='19'] .esriMapLayers {
-    background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAAAAACPAi4CAAAAAXNCSVQI5gpbmQAAAAlwSFlzAAAN1wAADdcBQiibeAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAO+SURBVFjDvZdZEqIwEIa5/9EIQRAUBNlBtktM7E5IGoKONVWTJ5X40f33ljjrPy7n7MHSFWkU+J7nB1FadMtvgKmImEsWi4vprwFtvPu3YrR/BahD93SFzVfAK9q9dmdM9PoIWHK9n8d5N85vQYY6u+rf8w+ASb8+bsbSWNNcbs+i6QwwcGV3Nq3jxbT8Mgrv7tIMf7ADOk/tFoZPF+r75f3aUVrBexug026K57d9AG4YIjSS9UfA4BnRWutjCCvYNmKQ+bAHTBKd4ebgCOCo3RKjDhMFLJFyDp7z0pJFsdyaYCwoIIcfPWHYCFJktnSsVtOGpwkYUMB6GMcRnbCI4PKmhdUh/WUA0IECPC9AjVtyXhFu42mXAICvu91RngLt9c4BPkrUbAAwiVfy8QO+BvkHE9IIoy0BLTrgq0RGgwrIRc6traEB0VoJAFXDh066BEMZ5oPoZMvwPIYkTpQKAjCxvc8V/JIaPeqAaMCQGQAgmm+6jP4zo+iWxw6QgAoFAODjk1Qf6hGZdV/scqKQOwQAPaCPKx0ntXY2gJtsEYAOjKbJH2Bt+KTdUR3KEAvfQdtSCuhkcpP+11JAhiI4awpfCeAqtsPPHml/VwKoMFIOatgTgBB3nSGD7ibgSQA9quisUEETAQxa9t5sugQwgVgCABFbTQBD0YIt35WMBLCgzM7qwV9MADdFqwyCWRclhJ8LAD8DYI34xmD3rABwYSEayP+8sLtpF5jVhTMRVfKx0S7iqEQEQwcCkP1ShvJmLQcdRsiYmgA26UsSSpLLmHqpSuWMpvJ2FAnQTlg9TeW7SmUopisFhEr6TipuKaZAFRNoy2g5uw9lAgxZ/j5nZLtydlU5o4rlrosXEoCD6nFoKEGmGwr2lv0geUgvYCN77d7vPn3d0ma2dUnyDlRy8XUX1ssDzdhktPUkPvTuK7T1yjao8kBlyBvQGLPiMFB5ZhlUsgO2ZLRFqX2MyUH1NM8ceNLZRhua4Ja+nYBDlxuBzmKdbsZ495qTUYr+p9tBMS6MMwoCXph/XWtdAw6q7XvJjCp1zH4Zn90KyKCS58GcntLQvuSEgM7V+JnZDlnr5H+0QQ+qAv/vz4eDJnbMcLQC1KCa7+7JQVOUO6K92krAQVXLSNuOuoIgu3b8st2izJZuP2wLOxU/sSCMcj477ovXbAUVVTP9/6hrIZo/3Jn0NhZmVQ9bp65K9PmF5V8uXfGXS9f49drXfLj2XZv/cfGEkXS8+kY/XH2xF/bi8h36nPuhuHz3P16+f1h/AEK5j0HCcSIyAAAAAElFTkSuQmCC') /*../images/no-image.png*/ repeat;
+.map[data-zoom="18"] .esriMapLayers,
+.map[data-zoom="19"] .esriMapLayers {
+  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAAAAACPAi4CAAAAAXNCSVQI5gpbmQAAAAlwSFlzAAAN1wAADdcBQiibeAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAO+SURBVFjDvZdZEqIwEIa5/9EIQRAUBNlBtktM7E5IGoKONVWTJ5X40f33ljjrPy7n7MHSFWkU+J7nB1FadMtvgKmImEsWi4vprwFtvPu3YrR/BahD93SFzVfAK9q9dmdM9PoIWHK9n8d5N85vQYY6u+rf8w+ASb8+bsbSWNNcbs+i6QwwcGV3Nq3jxbT8Mgrv7tIMf7ADOk/tFoZPF+r75f3aUVrBexug026K57d9AG4YIjSS9UfA4BnRWutjCCvYNmKQ+bAHTBKd4ebgCOCo3RKjDhMFLJFyDp7z0pJFsdyaYCwoIIcfPWHYCFJktnSsVtOGpwkYUMB6GMcRnbCI4PKmhdUh/WUA0IECPC9AjVtyXhFu42mXAICvu91RngLt9c4BPkrUbAAwiVfy8QO+BvkHE9IIoy0BLTrgq0RGgwrIRc6traEB0VoJAFXDh066BEMZ5oPoZMvwPIYkTpQKAjCxvc8V/JIaPeqAaMCQGQAgmm+6jP4zo+iWxw6QgAoFAODjk1Qf6hGZdV/scqKQOwQAPaCPKx0ntXY2gJtsEYAOjKbJH2Bt+KTdUR3KEAvfQdtSCuhkcpP+11JAhiI4awpfCeAqtsPPHml/VwKoMFIOatgTgBB3nSGD7ibgSQA9quisUEETAQxa9t5sugQwgVgCABFbTQBD0YIt35WMBLCgzM7qwV9MADdFqwyCWRclhJ8LAD8DYI34xmD3rABwYSEayP+8sLtpF5jVhTMRVfKx0S7iqEQEQwcCkP1ShvJmLQcdRsiYmgA26UsSSpLLmHqpSuWMpvJ2FAnQTlg9TeW7SmUopisFhEr6TipuKaZAFRNoy2g5uw9lAgxZ/j5nZLtydlU5o4rlrosXEoCD6nFoKEGmGwr2lv0geUgvYCN77d7vPn3d0ma2dUnyDlRy8XUX1ssDzdhktPUkPvTuK7T1yjao8kBlyBvQGLPiMFB5ZhlUsgO2ZLRFqX2MyUH1NM8ceNLZRhua4Ja+nYBDlxuBzmKdbsZ495qTUYr+p9tBMS6MMwoCXph/XWtdAw6q7XvJjCp1zH4Zn90KyKCS58GcntLQvuSEgM7V+JnZDlnr5H+0QQ+qAv/vz4eDJnbMcLQC1KCa7+7JQVOUO6K92krAQVXLSNuOuoIgu3b8st2izJZuP2wLOxU/sSCMcj477ovXbAUVVTP9/6hrIZo/3Jn0NhZmVQ9bp65K9PmF5V8uXfGXS9f49drXfLj2XZv/cfGEkXS8+kY/XH2xF/bi8h36nPuhuHz3P16+f1h/AEK5j0HCcSIyAAAAAElFTkSuQmCC")
+    /*../images/no-image.png*/ repeat;
 }
 
 /* Movable popup modifications */
 .esriPopupWrapper .title {
-    cursor: move;
+  cursor: move;
 }
-.esriPopup .pointer.hidden, .esriPopup .outerPointer.hidden {
-    display: none;
+.esriPopup .pointer.hidden,
+.esriPopup .outerPointer.hidden {
+  display: none;
 }
 
 .esriLayerList .esriList > li:before {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .esriLayerList .esriList > li:first-child:before {
-    content: 'Project Layers';
+  content: "Project Layers";
 }
 
 .esriLayerList .esriList > li:nth-child(3) {
-    margin-top: 1em;
+  margin-top: 1em;
 }
 
 .esriLayerList .esriList > li:nth-child(3):before {
-    content: 'Other Layers';
+  content: "Other Layers";
+}
+
+.basic-filters,
+.advanced-filters {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.basic-filters > input,
+.advanced-filters > input,
+.basic-filters > select,
+.advanced-filters > select {
+  max-width: 350px;
+}
+
+form > div > label {
+  margin-top: 0.5em;
 }
 
 .basic-mode .advanced-filters {
-    display: none;
+  display: none;
+}
+
+.range-input-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.range-input-container label {
+  text-align: center;
+}
+
+.input-group {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+}
+
+.btn-group {
+  margin-top: 0.5em;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.btn-group > div {
+  text-align: center;
+}
+
+.btn-group > div > button {
+  width: calc(100% - 5px);
 }
