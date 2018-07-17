@@ -22,5 +22,5 @@ Code is written in TypeScript, then run through Webpack to create the JavaScript
 Currently using jQuery 2.1.4 due to [issue with later versions](https://github.com/jquery/jquery/issues/2804).
 -->
 
-[ArcGIS web map JSON format]:http://resources.arcgis.com/en/help/arcgis-web-map-json/
+[ArcGIS web map JSON format]:https://resources.arcgis.com/en/help/arcgis-web-map-json/
 [esri/arcgis/utils.createMap]:https://developers.arcgis.com/javascript/3/jsapi/esri.arcgis.utils-amd.html#createmap

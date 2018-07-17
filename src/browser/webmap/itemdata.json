@@ -3,7 +3,7 @@
     {
       "id": "CountyBoundaries",
       "layerType": "ArcGISMapServiceLayer",
-      "url": "http://data.wsdot.wa.gov/arcgis/rest/services/Shared/CountyBoundaries/MapServer",
+      "url": "https://data.wsdot.wa.gov/arcgis/rest/services/Shared/CountyBoundaries/MapServer",
       "visibility": false,
       "opacity": 1,
       "title": "County Boundaries",
@@ -12,7 +12,7 @@
     {
       "id": "LegislativeDistricts",
       "layerType": "ArcGISMapServiceLayer",
-      "url": "http://data.wsdot.wa.gov/arcgis/rest/services/Shared/LegislativeDistricts/MapServer",
+      "url": "https://data.wsdot.wa.gov/arcgis/rest/services/Shared/LegislativeDistricts/MapServer",
       "visibility": false,
       "opacity": 1,
       "title": "Legislative Districts",
@@ -21,7 +21,7 @@
     {
       "id": "CityLimits",
       "layerType": "ArcGISMapServiceLayer",
-      "url": "http://data.wsdot.wa.gov/arcgis/rest/services/Shared/CityLimits/MapServer",
+      "url": "https://data.wsdot.wa.gov/arcgis/rest/services/Shared/CityLimits/MapServer",
       "visibility": false,
       "visibleLayers": [
         2
@@ -99,7 +99,7 @@
     {
       "id": "RegionalTransportationPlanning",
       "layerType": "ArcGISMapServiceLayer",
-      "url": "http://data.wsdot.wa.gov/arcgis/rest/services/Shared/RegionalTransportationPlanning/MapServer",
+      "url": "https://data.wsdot.wa.gov/arcgis/rest/services/Shared/RegionalTransportationPlanning/MapServer",
       "visibility": false,
       "opacity": 1,
       "title": "Regional Transportation Planning Organization",
@@ -108,7 +108,7 @@
     {
       "id": "RegionBoundaries",
       "layerType": "ArcGISMapServiceLayer",
-      "url": "http://data.wsdot.wa.gov/arcgis/rest/services/Shared/RegionBoundaries/MapServer",
+      "url": "https://data.wsdot.wa.gov/arcgis/rest/services/Shared/RegionBoundaries/MapServer",
       "visibility": false,
       "opacity": 1,
       "title": "Region Boundaries",
@@ -117,7 +117,7 @@
     {
       "id": "PlannedProjects",
       "layerType": "ArcGISMapServiceLayer",
-      "url": "http://data.wsdot.wa.gov/arcgis/rest/services/TransportationProjects/PlannedProjects/MapServer",
+      "url": "https://data.wsdot.wa.gov/arcgis/rest/services/TransportationProjects/PlannedProjects/MapServer",
       "visibility": true,
       "opacity": 1,
       "title": "Project Delivery Plan (2017)",
@@ -429,7 +429,7 @@
     {
       "id": "MilepostValues",
       "layerType": "ArcGISMapServiceLayer",
-      "url": "http://data.wsdot.wa.gov/arcgis/rest/services/Shared/MilepostValues/MapServer",
+      "url": "https://data.wsdot.wa.gov/arcgis/rest/services/Shared/MilepostValues/MapServer",
       "visibility": false,
       "opacity": 1,
       "title": "Milepost Values",
@@ -443,7 +443,7 @@
       {
         "id": "WebBaseMapWebMercator_731",
         "layerType": "ArcGISTiledMapServiceLayer",
-        "url": "http://data.wsdot.wa.gov/arcgis/rest/services/Shared/WebBaseMapWebMercator/MapServer",
+        "url": "https://data.wsdot.wa.gov/arcgis/rest/services/Shared/WebBaseMapWebMercator/MapServer",
         "visibility": true,
         "opacity": 1,
         "title": "WebBaseMapWebMercator"

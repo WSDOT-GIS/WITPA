@@ -104,13 +104,13 @@ esriBasemaps["wsdot-multilevel"] = {
     {
       id: "wsdotMultilevel0",
       url:
-        "http://data.wsdot.wa.gov/arcgis/rest/services/Shared/WebBaseMapWebMercator/MapServer",
+        "https://data.wsdot.wa.gov/arcgis/rest/services/Shared/WebBaseMapWebMercator/MapServer",
       displayLevels: [0, 1, 2, 3, 4, 5, 6]
     },
     {
       id: "wsdotMultilevel1",
       url:
-        "http://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer",
+        "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer",
       displayLevels: [
         0,
         1,
@@ -137,7 +137,7 @@ esriBasemaps["wsdot-multilevel"] = {
     {
       id: "wsdotMultilevel2",
       url:
-        "http://data.wsdot.wa.gov/arcgis/rest/services/Traffic/LocalRoads/MapServer"
+        "https://data.wsdot.wa.gov/arcgis/rest/services/Traffic/LocalRoads/MapServer"
     }
   ]
 };
