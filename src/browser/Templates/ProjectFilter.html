@@ -150,15 +150,18 @@
         <input id="improvementTypeInput" name="Improvement_Type" type="text" class="form-control" placeholder="Improvement Type"
             data-where-template="LOWER({field}) = LOWER('{value}')" list="improvementTypeList" />
         <datalist id="improvementTypeList" data-field-name="Improvement_Type"></datalist>
+
         <!-- Work_Description -->
         <label for="workDescriptionInput">Work Description</label>
         <input id="workDescriptionInput" name="Work_Description" type="text" class="form-control" placeholder="Work_Description"
             data-where-template="LOWER({field}) = LOWER('{value}')" list="workDescList" />
         <datalist id="workDescList" data-field-name="Work_Description"></datalist>
+
         <!-- Sub_Program-->
         <label for="subProgramInput">Sub Program</label>
         <select id="subProgramInput" name="Sub_Program" class="form-control" data-where-template="LOWER({field}) = LOWER('{value}')"></select>
 
+        <!-- Region -->
         <label for="regionInput">Region</label>
         <select id="regionInput" name="Region" class="form-control" data-where-template="LOWER({field}) = LOWER('{value}')"></select>
 
@@ -166,57 +169,25 @@
         <label for="programInput">Program</label>
         <select id="programInput" name="Program" class="form-control" data-where-template="LOWER({field}) = LOWER('{value}')"></select>
 
+        <!-- Preliminary Engineering Start Date -->
         <label for="peStartDateInput">Preliminary Engineering Start Date</label>
-        <!-- <div class="input-group">
-            <select data-where-template-for="Begin_Preliminary_Engineering">
-                <option value="{field} &lt; date '{value}'">&lt;</option>
-                <option value="{field} &lt;= date '{value}'">&le;</option>
-                <option value="{field} = date '{value}'" selected="selected">=</option>
-                <option value="{field} &gt;= date '{value}'">&ge;</option>
-                <option value="{field} &gt; date '{value}'">&gt;</option>
-                <option value="{field} IS NULL">NULL</option>
-                <option value="{field} IS NOT NULL">NOT NULL</option>
-            </select>
-            <input id="peStartDateInput" name="Begin_Preliminary_Engineering" type="date" class="form-control" placeholder="YYYY-MM-DD"
-            />
-        </div> -->
         <div class="range-input-container">
-            <input id="beginPEStartDateInput" name="Begin_Preliminary_Engineering" type="date" class="form-control" placeholder="YYYY-MM-DD"
-                data-range-type="begin" data-range-id="peStartDate" placeholder="begin" />
-            <input id="endPEStartDateInput" name="Begin_Preliminary_Engineering" type="date" class="form-control" placeholder="YYYY-MM-DD"
-                data-range-type="end" data-range-id="peStartDate" placeholder="begin" />
+            <input id="beginPEStartDateInput" name="Begin_Preliminary_Engineering" type="date" data-range-type="begin" data-range-id="peStartDate" />
+            <input id="endPEStartDateInput" name="Begin_Preliminary_Engineering" type="date" data-range-type="end" data-range-id="peStartDate" />
         </div>
 
-        <label for="adDateInput">Advertisement Date</label>
-        <div class="input-group">
-            <select data-where-template-for="Advertisement_Date">
-                <option value="{field} &lt; date '{value}'">&lt;</option>
-                <option value="{field} &lt;= date '{value}'">&le;</option>
-                <option value="{field} = date '{value}'" selected="selected">=</option>
-                <option value="{field} &gt;= date '{value}'">&ge;</option>
-                <option value="{field} &gt; date '{value}'">&gt;</option>
-                <!--
-                        <option value="{field} IS NULL">NULL</option>
-                        <option value="{field} IS NOT NULL">NOT NULL</option>
-                        -->
-            </select>
-            <input id="adDateInput" name="Advertisement_Date" type="date" class="form-control" placeholder="YYYY-MM-DD" />
+        <!-- Advertisement Date -->
+        <label for="beginADateInput">Advertisement Date</label>
+        <div class="range-input-container">
+            <input id="beginADateInput" name="Advertisement_Date" type="date" data-range-type="begin" data-range-id="adDate" />
+            <input id="endADateInput" name="Advertisement_Date" type="date" data-range-type="end" data-range-id="adDate" />
         </div>
 
-        <label for="ocDateInput">Operationally Complete Date</label>
-        <div class="input-group">
-            <select data-where-template-for="Operationally_Complete">
-                <option value="{field} &lt; date '{value}'">&lt;</option>
-                <option value="{field} &lt;= date '{value}'">&le;</option>
-                <option value="{field} = date '{value}'" selected="selected">=</option>
-                <option value="{field} &gt;= date '{value}'">&ge;</option>
-                <option value="{field} &gt; date '{value}'">&gt;</option>
-                <!--
-                        <option value="{field} IS NULL">NULL</option>
-                        <option value="{field} IS NOT NULL">NOT NULL</option>
-                        -->
-            </select>
-            <input id="ocDateInput" name="Operationally_Complete" type="date" class="form-control" placeholder="YYYY-MM-DD" />
+        <!-- Operationally Complete Date -->
+        <label for="beginOCDateInput">Operationally Complete Date</label>
+        <div class="range-input-container">
+            <input id="beginOCDateInput" name="Operationally_Complete" type="date" data-range-type="begin" data-range-id="ocDate" />
+            <input id="endOCDateInput" name="Operationally_Complete" type="date" data-range-type="end" data-range-id="ocDate" />
         </div>
 
         <!-- Congressional_District -->

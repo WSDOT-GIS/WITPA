@@ -26,7 +26,7 @@ function createConfig(entry) {
   }
 }
 
-module.exports = ["./dist/browser/browser/main.js","./dist/worker/worker/QueryWorker.js"].map(createConfig);
+module.exports = ["./dist/browser/main.js","./dist/worker/worker/QueryWorker.js"].map(createConfig);
 
 // module.exports = {
 //   mode: "production",

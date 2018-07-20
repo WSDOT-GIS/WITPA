@@ -1,9 +1,4 @@
 import { IExtent, ILayer, IWebmap } from "@esri/arcgis-rest-common-types";
-import dialogPolyfill from "dialog-polyfill";
-import AccordionContainer from "dijit/layout/AccordionContainer";
-import AccordionPane from "dijit/layout/AccordionPane";
-import BorderContainer from "dijit/layout/BorderContainer";
-import ContentPane from "dijit/layout/ContentPane";
 import registry from "dijit/registry";
 import parser from "dojo/parser";
 import arcgisUtils from "esri/arcgis/utils";
@@ -16,18 +11,15 @@ import Legend from "esri/dijit/Legend";
 import Search from "esri/dijit/Search";
 import geometryEngineAsync from "esri/geometry/geometryEngineAsync";
 import Multipoint from "esri/geometry/Multipoint";
-import Point from "esri/geometry/Point";
 import Polygon from "esri/geometry/Polygon";
 import Polyline from "esri/geometry/Polyline";
 import Graphic from "esri/graphic";
-import ArcGISDynamicMapServiceLayer from "esri/layers/ArcGISDynamicMapServiceLayer";
 import FeatureLayer from "esri/layers/FeatureLayer";
-import EsriMap from "esri/map";
 import SimpleLineSymbol from "esri/symbols/SimpleLineSymbol";
 import Query from "esri/tasks/query";
-import QueryTask from "esri/tasks/QueryTask";
 import { makeInfoWindowDraggable } from "./infoWindowUtils";
 import ProjectFilter, { SubmitQueryEventDetail } from "./ProjectFilter";
+import { generateId, setupDialogs } from "./utils";
 import webmapItem from "./webmap/item.json";
 import webmapItemData from "./webmap/itemdata.json";
 import { defaultMapOptions, esriBasemaps } from "./wsdotMapUtils";
@@ -53,19 +45,13 @@ interface DGridRow {
 // Register the dialog with the dialog polyfill
 // if the browser does not natively support
 // the dialog element.
-if (!(window as any).HTMLDialogElement) {
-  (dialogs => {
-    Array.from(dialogs, d => {
-      dialogPolyfill.registerDialog(d);
-    });
-  })(document.querySelectorAll<HTMLDialogElement>("dialog"));
-}
+setupDialogs();
 
 // Setup dialog close button.
 Array.from(document.querySelectorAll<HTMLDialogElement>("dialog"), d => {
   const closeButton = d.querySelector("button[value='close']");
   if (closeButton) {
-    closeButton.addEventListener("click", (e: Event) => {
+    closeButton.addEventListener("click", () => {
       d.close();
     });
   }
@@ -214,12 +200,11 @@ arcgisUtils
     });
 
     // Reset the definition expression to show all rows.
-    projectFilter.form.addEventListener("reset", e => {
+    projectFilter.form.addEventListener("reset", () => {
       layer.clearSelection();
       dynamicLayer.setDefaultLayerDefinitions();
       layer.setDefinitionExpression(layer.defaultDefinitionExpression);
       createTable();
-      // table.grid.refresh();
     });
 
     // Add the home button that allows the user to zoom to full extent.
@@ -393,7 +378,6 @@ arcgisUtils
     }
 
     layer.on("selection-complete", evt => {
-      const { method, target } = evt;
       let { features } = evt;
       features = layer.getSelectedFeatures();
       zoomToFeatures(features);
@@ -478,24 +462,6 @@ function getOperationalLayer(webMapData: IWebmap, opLayerId: string) {
     }
   }
   return opLayer;
-}
-
-/**
- * Creates a unique element id to use in a document.
- * @param suggestedId - ID you would like to use but don't know if it has been used in doc yet.
- */
-function generateId(suggestedId?: string) {
-  if (!suggestedId) {
-    suggestedId = "id";
-  }
-
-  let checkId = suggestedId;
-  let i = 0;
-  while (document.getElementById(checkId)) {
-    checkId = `${suggestedId}${i}`;
-    i++;
-  }
-  return checkId;
 }
 
 /**

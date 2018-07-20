@@ -37,6 +37,7 @@
     "@types/html-minifier": "^3.5.2",
     "@types/jquery": "^3.3.4",
     "@types/node": "^10.5.2",
+    "datalist-polyfill": "^1.20.1",
     "dialog-polyfill": "^0.4.10",
     "html-minifier": "^3.5.18",
     "jasmine": "^3.1.0",
