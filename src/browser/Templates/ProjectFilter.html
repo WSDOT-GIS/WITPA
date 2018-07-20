@@ -167,7 +167,7 @@
         <select id="programInput" name="Program" class="form-control" data-where-template="LOWER({field}) = LOWER('{value}')"></select>
 
         <label for="peStartDateInput">Preliminary Engineering Start Date</label>
-        <div class="input-group">
+        <!-- <div class="input-group">
             <select data-where-template-for="Begin_Preliminary_Engineering">
                 <option value="{field} &lt; date '{value}'">&lt;</option>
                 <option value="{field} &lt;= date '{value}'">&le;</option>
@@ -179,6 +179,12 @@
             </select>
             <input id="peStartDateInput" name="Begin_Preliminary_Engineering" type="date" class="form-control" placeholder="YYYY-MM-DD"
             />
+        </div> -->
+        <div class="range-input-container">
+            <input id="beginPEStartDateInput" name="Begin_Preliminary_Engineering" type="date" class="form-control" placeholder="YYYY-MM-DD"
+                data-range-type="begin" data-range-id="peStartDate" placeholder="begin" />
+            <input id="endPEStartDateInput" name="Begin_Preliminary_Engineering" type="date" class="form-control" placeholder="YYYY-MM-DD"
+                data-range-type="end" data-range-id="peStartDate" placeholder="begin" />
         </div>
 
         <label for="adDateInput">Advertisement Date</label>

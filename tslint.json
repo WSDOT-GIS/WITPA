@@ -5,6 +5,11 @@
         "tslint-plugin-prettier",
         "tslint-config-prettier"
     ],
+    "linterOptions": {
+        "exclude": [
+            "src/**/templates.ts"
+        ]
+    },
     "jsRules": {},
     "rules": {
         "prettier": true,

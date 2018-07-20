@@ -1,4 +1,9 @@
-import MissingAttributeError from "./MissingAttributeError";
+import { toRfc3339, tryParseDate } from "../common/conversionUtils";
+import {
+  MatchingElementForRangeInputNotFound,
+  MissingAttributeError,
+  TypeAttributeMismatchError
+} from "./Errors";
 import templates from "./templates";
 
 /**
@@ -34,6 +39,29 @@ export interface ProjectFilterFormElement extends HTMLFormElement {
   ): void;
 }
 
+/**
+ * Gets the value from an HTML input element and returns its
+ * as a string suitable for use in a SQL WHERE statement.
+ * @param inputElement HTML input element
+ */
+function getValueAsQueriableString(inputElement: HTMLInputElement) {
+  const { type } = inputElement;
+  if (type === "number") {
+    return inputElement.valueAsNumber;
+  } else if (type === "date") {
+    const date = tryParseDate(inputElement.value);
+    return date ? `'${toRfc3339(date)}'` : null;
+  } else {
+    return `'${inputElement.value}'`;
+  }
+}
+
+/**
+ * Creates a where statement from input elements on a form that represent a begin and end range.
+ * @param form The form containing the input element
+ * @param bInput The input element where the user enters the begin value for a begin and end range.
+ * (The end input element is determined by attributes and does not need to be passed to this function.)
+ */
 function getWhereStatementForRangeInput(
   form: HTMLFormElement,
   bInput: HTMLInputElement
@@ -47,28 +75,26 @@ function getWhereStatementForRangeInput(
     `input[data-range-type='end'][data-range-id='${rangeId}'`
   );
   if (!eInput) {
-    throw new Error("begin range input does not have matching end input");
+    throw new MatchingElementForRangeInputNotFound(bInput);
   } else if (bInput.type !== eInput.type) {
-    throw new TypeError(
-      `Input types do not match: ${bInput.type}, ${eInput.type}`
-    );
+    throw new TypeAttributeMismatchError(bInput, eInput);
   }
 
   // Get the begin and end values, then convert to how they would be written
   // in a SQL statement. Numbers and nulls are unchanged while dates are converted to
   // strings surrounded by single-quotes.
-  const [b, e] =
-    bInput.type === "number"
-      ? [bInput, eInput].map(i => (i.value ? i.valueAsNumber : null))
-      : [bInput, eInput]
-          .map(i => (i.value ? (i.valueAsDate as Date) : null))
-          .map(v => (v instanceof Date ? `'${v.toDateString()}'` : v));
+  const [b, e] = [bInput, eInput].map(getValueAsQueriableString);
+
   // Get the field names corresponding to the input elements.
   const [bName, eName] = [bInput, eInput].map(i => i.name);
 
   // Return the appropriate where statement depending on which fields have values.
-  if (bInput.value && eInput.value) {
-    return `(${bName} BETWEEN ${b} AND ${e}) AND (${eName} BETWEEN ${b} AND ${e})`;
+  if (b !== null && e !== null) {
+    if (bName === eName) {
+      return `${bName} BETWEEN ${b} AND ${e}`;
+    } else {
+      return `(${bName} BETWEEN ${b} AND ${e}) AND (${eName} BETWEEN ${b} AND ${e})`;
+    }
   } else if (b !== null) {
     return `${bName} >= ${b}`;
   } else if (e !== null) {
@@ -145,29 +171,31 @@ export default class ProjectFilter {
       const valuesParts = new Array<string>();
 
       // Loop through all of the input elements and create the queries, adding them to the array.
-      Array.from(nonRangeInputs, input => {
-        let whereTemplate;
-        if (input.value) {
-          // Get the value of the data-where-template attribute, if available.
-          whereTemplate = input.dataset.whereTemplate;
-          // If there is no data-where-template attribute, get the corresponding select element that will have the query template.
-          if (!whereTemplate) {
-            whereTemplate = _form.querySelector(
-              `[data-where-template-for='${input.name}']`
-            );
-            whereTemplate = whereTemplate ? whereTemplate.value : null;
-          }
-          // If the template was found, use the string template to create the where clause and
-          // add it to the array.
-          if (whereTemplate) {
-            valuesParts.push(
-              whereTemplate
-                .replace(/\{field\}/g, input.name)
-                .replace(/\{value\}/g, input.value)
-            );
-          }
+      for (const input of nonRangeInputs) {
+        if (!input.value) {
+          continue;
         }
-      });
+        // Get the value of the data-where-template attribute, if available.
+        let whereTemplate = input.dataset.whereTemplate || null;
+        // If there is no data-where-template attribute, get the corresponding select element that will have the query template.
+        if (!whereTemplate) {
+          const whereTemplateElement = _form.querySelector<HTMLInputElement>(
+            `[data-where-template-for='${input.name}']`
+          );
+          whereTemplate = whereTemplateElement
+            ? whereTemplateElement.value
+            : null;
+        }
+        // If the template was found, use the string template to create the where clause and
+        // add it to the array.
+        if (whereTemplate) {
+          valuesParts.push(
+            whereTemplate
+              .replace(/\{field\}/g, input.name)
+              .replace(/\{value\}/g, input.value)
+          );
+        }
+      }
 
       // Handle the "IS NULL" queries
       // Get all of the selected null option elements that are selected.
@@ -185,15 +213,19 @@ export default class ProjectFilter {
         });
       }
 
-      // Add the where statements for the range inputs.
-      for (const w of getRangeWhereStatements(_form)) {
-        valuesParts.push(w);
+      try {
+        // Add the where statements for the range inputs.
+        for (const w of getRangeWhereStatements(_form)) {
+          valuesParts.push(w);
+        }
+      } catch (error) {
+        console.error("error getting range WHERE statements", error);
       }
 
       const values = valuesParts.length > 0 ? valuesParts.join(" AND ") : null;
 
       let customEvent: CustomEvent<SubmitQueryEventDetail>;
-      if (valuesParts) {
+      if (values) {
         customEvent = new CustomEvent("submit-query", {
           detail: {
             where: values

@@ -1,3 +1,5 @@
+import { CannotParseDateError } from "./Errors";
+
 /**
  * Utility module that provides conversion functions.
  * @module conversionUtils
@@ -60,24 +62,53 @@ export function objectToQueryString(o: { [key: string]: any }) {
  * Converts an integer into a string representation of a date suitable for date input element attributes.
  * @param {(Date|number)} date - An integer representation of a date.
  * @returns {string} string representation of the input date value ({@link https://tools.ietf.org/html/rfc3339|RFC 3339 format}).
- * @throws {external:TypeError} - Thrown if the input parameter is not a valid Date or integer.
+ * @throws {TypeError} - Thrown if the input parameter is not a valid Date, integer, or string.
+ * @throws {CannotParseDateError} - Thrown if input is string but cannot be parsed into a valid Date.
  * @example
- * var d = new Date(2016, 4, 26);
- * var s = conversionUtils.toRfc3339(d);
+ * const d = new Date(2016, 4, 26);
+ * const s = toRfc3339(d);
  * // Jasmine test
  * expect(s).toBe("2016-05-26");
  */
-export function toRfc3339(date: Date | number): string {
-  const outDate =
-    typeof date === "number"
-      ? new Date(date)
-      : date instanceof Date
-        ? date
-        : null;
-  if (outDate === null) {
+export function toRfc3339(date: Date | number | string): string {
+  let outDate: Date | null = null;
+  if (date instanceof Date) {
+    outDate = date;
+  } else if (typeof date === "number" || typeof date === "string") {
+    outDate = new Date(date);
+  } else if (typeof date === "string") {
+    const parsedValue = Date.parse(date);
+    if (isNaN(parsedValue)) {
+      throw new CannotParseDateError(date);
+    }
+  }
+
+  if (!outDate) {
     throw new TypeError(
-      "The input parameter must be either a date or an integer."
+      "The input parameter must be either a date, an integer, or a string."
     );
   }
+  // Convert the date to ISO string, then remove the time portion (everything after and including the "T").
   return outDate.toISOString().replace(/T.+$/i, "");
+}
+
+/**
+ * Tries to parse a string into a date.
+ * If the string cannot be parsed into a valid date, null is returned.
+ * Otherwise the resulting Date object is returned.
+ *
+ * This differs from the Date constructor in that the Date constructor
+ * will return a Date representing an "Invalid Date" if an unparseable
+ * string is used, whereas this function returns a null in this case.
+ * @param input - a string that may or may not be parseable into a valid Date.
+ * @returns Returns a Date object (which is truthy) if the input string
+ * is parseable, and null (which is falsy) otherwise.
+ */
+export function tryParseDate(input: string) {
+  const parsedValue = Date.parse(input);
+  if (isNaN(parsedValue)) {
+    return null;
+  } else {
+    return new Date(input);
+  }
 }
