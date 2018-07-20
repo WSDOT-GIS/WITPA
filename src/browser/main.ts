@@ -192,9 +192,7 @@ arcgisUtils
       layer.clearSelection();
       const { detail } = e as CustomEvent<SubmitQueryEventDetail>;
       // Google analytics
-      // @ts-ignore
       if (typeof ga !== "undefined") {
-        // @ts-ignore
         ga("send", "event", "filter", "select", "where", e.detail.where);
       }
       layer.setDefinitionExpression(detail.where!);

@@ -43,16 +43,18 @@ export interface ProjectFilterFormElement extends HTMLFormElement {
  * Gets the value from an HTML input element and returns its
  * as a string suitable for use in a SQL WHERE statement.
  * @param inputElement HTML input element
+ * @returns values from date inputs will be returned as
  */
 function getValueAsQueriableString(inputElement: HTMLInputElement) {
-  const { type } = inputElement;
-  if (type === "number") {
-    return inputElement.valueAsNumber;
-  } else if (type === "date") {
-    const date = tryParseDate(inputElement.value);
-    return date ? `'${toRfc3339(date)}'` : null;
+  const { type, value } = inputElement;
+  if (!value) {
+    return null;
+  } else if (/^((date)|(time)|(datetime(-local)?))$/.test(type)) {
+    // Date value must be enclosed in single-quotes and in RFC 3339 format.
+    // The text of the attribute is already in RFC 3339, so there is no need to convert.
+    return `'${value}'`;
   } else {
-    return `'${inputElement.value}'`;
+    return value;
   }
 }
 
@@ -213,13 +215,9 @@ export default class ProjectFilter {
         });
       }
 
-      try {
-        // Add the where statements for the range inputs.
-        for (const w of getRangeWhereStatements(_form)) {
-          valuesParts.push(w);
-        }
-      } catch (error) {
-        console.error("error getting range WHERE statements", error);
+      // Add the where statements for the range inputs.
+      for (const w of getRangeWhereStatements(_form)) {
+        valuesParts.push(w);
       }
 
       const values = valuesParts.length > 0 ? valuesParts.join(" AND ") : null;
