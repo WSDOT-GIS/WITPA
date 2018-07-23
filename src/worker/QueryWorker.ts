@@ -7,7 +7,7 @@ import { ProjectQueryManager } from "../common/ProjectQueryManager";
 
 const myWorker = self as DedicatedWorkerGlobalScope;
 
-myWorker.addEventListener("error", function(err) {
+myWorker.addEventListener("error", err => {
   myWorker.postMessage({ error: err });
 });
 
@@ -15,7 +15,7 @@ function postUniqueValuesMessage(response: any) {
   myWorker.postMessage(response);
 }
 
-myWorker.addEventListener("message", function(e) {
+myWorker.addEventListener("message", e => {
   const queryRe = /query\/?$/;
   const uniqueValueFieldNames = [
     "RouteID",
@@ -35,24 +35,22 @@ myWorker.addEventListener("message", function(e) {
     const queryManager = new ProjectQueryManager(e.data.url);
     myWorker.postMessage({ type: "queryTaskCreated", url: queryManager.url });
     const datePromise = queryManager.queryForDates();
-    datePromise.then(function(dateRanges) {
+    datePromise.then(dateRanges => {
       myWorker.postMessage({ ranges: dateRanges });
     });
 
-    const numberListPromises = numberListFieldNames.map(function(fieldName) {
+    const numberListPromises = numberListFieldNames.map(fieldName => {
       return queryManager
         .queryForUniqueValuesFromCommaDelimted(fieldName)
-        .then(function(values) {
+        .then(values => {
           postUniqueValuesMessage(values);
         });
     });
 
-    const fieldPromises = uniqueValueFieldNames.map(function(fieldName) {
-      return queryManager
-        .queryForUniqueValues(fieldName)
-        .then(function(values) {
-          postUniqueValuesMessage(values);
-        });
+    const fieldPromises = uniqueValueFieldNames.map(fieldName => {
+      return queryManager.queryForUniqueValues(fieldName).then(values => {
+        postUniqueValuesMessage(values);
+      });
     });
 
     const promises = ([datePromise] as Array<Promise<any>>)
@@ -60,10 +58,10 @@ myWorker.addEventListener("message", function(e) {
       .concat(fieldPromises);
 
     Promise.all(promises).then(
-      function(successResult) {
+      successResult => {
         myWorker.close();
       },
-      function(errorResult) {
+      errorResult => {
         myWorker.close();
       }
     );
